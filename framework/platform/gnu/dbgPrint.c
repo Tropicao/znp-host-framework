@@ -41,12 +41,16 @@
  */
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "dbgPrint.h"
 
 /*********************************************************************
  * MACROS
  */
+
+#define PRINT_LEVEL_ENV "LOG_LEVEL"
 
 /*********************************************************************
  * LOCAL VARIABLE
@@ -55,6 +59,38 @@
 /*********************************************************************
  * LOCAL FUNCTIONS
  */
+
+/**
+ * @brief Function used to check if an environment variable has been set for
+ * loglevel
+ *
+ * @return The set log level if a correct value has been set, otherwise the
+ * default log level value
+ */
+static int _get_log_level()
+{
+    int result = -1;
+    char *env = getenv(PRINT_LEVEL_ENV);
+    if(env)
+    {
+        if(strcmp(env, "LOG_ERROR") == 0)
+           result = PRINT_LEVEL_ERROR;
+        else if(strcmp(env, "LOG_WARNING") == 0)
+           result = PRINT_LEVEL_WARNING;
+        else if(strcmp(env, "LOG_INFO") == 0)
+           result = PRINT_LEVEL_INFO;
+        else if(strcmp(env, "LOG_INFO_LOWLEVEL") == 0)
+           result = PRINT_LEVEL_INFO_LOWLEVEL;
+        else if(strcmp(env, "LOG_VERBOSE") == 0)
+           result = PRINT_LEVEL_VERBOSE;
+    }
+
+    if(result == -1)
+        result = PRINT_LEVEL;
+    return result;
+}
+
+
 
 /*********************************************************************
  * API FUNCTIONS
@@ -78,7 +114,7 @@
  */
 void dbg_print(int print_level, const char *fmt, ...)
 {
-	if (print_level > PRINT_LEVEL)
+	if (print_level > _get_log_level())
 	{
 		return;
 	}
