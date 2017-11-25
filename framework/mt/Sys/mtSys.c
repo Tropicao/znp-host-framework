@@ -1408,7 +1408,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		processSetTxPowerSrsp(rpcBuff, rpcLen);
 		break;
 	default:
-		dbg_print(PRINT_LEVEL_INFO, "processSrsp: unsupported message\n");
+		dbg_print(PRINT_LEVEL_INFO, "processSrsp: unsupported SYS message : %d (0x%02X)\n", rpcBuff[1], rpcBuff[1]);
 		break;
 	}
 
