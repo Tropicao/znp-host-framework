@@ -52,7 +52,7 @@
 #include <semaphore.h>
 #include <time.h>
 #include "queue.h"
-#include <time.h>
+#include <sys/time.h>
 
 #include "rpc.h"
 #include "rpcTransport.h"
