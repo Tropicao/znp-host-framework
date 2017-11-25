@@ -387,7 +387,7 @@ int32_t rpcProcess(void)
 				{
 					// unexpected SRSP discard
 					dbg_print(PRINT_LEVEL_WARNING,
-					        "rpcProcess: UNEXPECTED SREQ!: %02X%s:%02X%s",
+					        "rpcProcess: UNEXPECTED SREQ!: %02X:%02X",
 					        expectedSrspCmdId,
 					        (rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK));
 					return 0;
