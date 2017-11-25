@@ -3020,6 +3020,9 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		dbg_print(PRINT_LEVEL_VERBOSE, "zdoProcess: MT_ZDO_GET_LINK_KEY\n");
 		processGetLinkKey(rpcBuff, rpcLen);
 		break;
+    case MT_ZDO_NWK_DISCOVERY_REQ:
+		dbg_print(PRINT_LEVEL_VERBOSE, "zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s\n", rpcBuff[2] ? "ERROR":"SUCCESS");
+        break;
 	default:
 		dbg_print(PRINT_LEVEL_INFO, "processSrsp: unsupported ZDO message : %d (0x%02X)\n", rpcBuff[1], rpcBuff[1]);
 		break;
