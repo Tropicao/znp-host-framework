@@ -53,4 +53,4 @@ shared_library('znp',
     soversion:'0',
     install: true)
 
-install_headers(headers)
+install_headers(headers, subdir: 'libznp')
