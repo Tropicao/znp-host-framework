@@ -56,6 +56,11 @@ enum
 //#define PRINT_LEVEL PRINT_LEVEL_VERBOSE
 
 void dbg_print(int printf_level, const char *fmt, ...);
+void log_err(const char *fmt, ...);
+void log_warn(const char *fmt, ...);
+void log_linf(const char *fmt, ...);
+void log_inf(const char *fmt, ...);
+void log_dbg(const char *fmt, ...);
 
 #ifdef __cplusplus
 }

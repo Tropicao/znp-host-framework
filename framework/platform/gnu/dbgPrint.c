@@ -43,6 +43,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "dbgPrint.h"
 
@@ -50,7 +51,21 @@
  * MACROS
  */
 
-#define PRINT_LEVEL_ENV "LOG_LEVEL"
+#define PRINT_LEVEL_ENV     "LOG_LEVEL"
+#define ANSI_COLOR_RED      "\x1b[31m"
+#define ANSI_COLOR_GREEN    "\x1b[32m"
+#define ANSI_COLOR_YELLOW   "\x1b[33m"
+#define ANSI_COLOR_BLUE     "\x1b[34m"
+#define ANSI_COLOR_MAGENTA  "\x1b[35m"
+#define ANSI_COLOR_CYAN     "\x1b[36m"
+#define ANSI_COLOR_RESET    "\x1b[0m"
+#define MAX_LOG_LINE_SIZE   256
+#define PREFIX_ERR          "ERR"
+#define PREFIX_WARNING      "WARN"
+#define PREFIX_LOW_INFO     "LINF"
+#define PREFIX_INFO         "INF"
+#define PREFIX_DEBUG        "DBG"
+#define PREFIX_NONE         "..."
 
 /*********************************************************************
  * LOCAL VARIABLE
@@ -114,6 +129,45 @@ static int _get_log_level()
  */
 void dbg_print(int print_level, const char *fmt, ...)
 {
+    char buffer[MAX_LOG_LINE_SIZE] = {0};
+    time_t rawtime;
+    struct tm *tm_cur;
+    char *color, *prefix;
+
+    switch(print_level)
+    {
+        case PRINT_LEVEL_ERROR:
+            color = ANSI_COLOR_RED;
+            prefix = PREFIX_ERR;
+            break;
+        case PRINT_LEVEL_WARNING:
+            color = ANSI_COLOR_YELLOW;
+            prefix = PREFIX_WARNING;
+            break;
+        case PRINT_LEVEL_INFO_LOWLEVEL:
+            color = ANSI_COLOR_MAGENTA;
+            prefix = PREFIX_LOW_INFO;
+            break;
+        case PRINT_LEVEL_INFO:
+            color = ANSI_COLOR_GREEN;
+            prefix = PREFIX_INFO;
+            break;
+        case PRINT_LEVEL_VERBOSE:
+            color = ANSI_COLOR_BLUE;
+            prefix = PREFIX_DEBUG;
+            break;
+        default:
+            color = ANSI_COLOR_RESET;
+            prefix = PREFIX_NONE;
+            break;
+    }
+
+
+    time(&rawtime);
+    tm_cur = localtime (&rawtime);
+    snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : %s",
+            tm_cur->tm_mday, tm_cur->tm_mon+1, tm_cur->tm_year + 1900, tm_cur->tm_hour, tm_cur->tm_min, tm_cur->tm_sec,
+            color, prefix, ANSI_COLOR_RESET, fmt);
 	if (print_level > _get_log_level())
 	{
 		return;
@@ -122,7 +176,47 @@ void dbg_print(int print_level, const char *fmt, ...)
 	{
 		va_list argp;
 		va_start(argp, fmt);
-		vprintf(fmt, argp);
+		printf(buffer, argp);
 		va_end(argp);
 	}
+}
+
+void log_err(const char *fmt, ...)
+{
+    va_list argp;
+    va_start(argp, fmt);
+    dbg_print(PRINT_LEVEL_ERROR, fmt, argp);
+    va_end(argp);
+}
+
+void log_warn(const char *fmt, ...)
+{
+    va_list argp;
+    va_start(argp, fmt);
+    dbg_print(PRINT_LEVEL_WARNING, fmt, argp);
+    va_end(argp);
+}
+
+void log_linf(const char *fmt, ...)
+{
+    va_list argp;
+    va_start(argp, fmt);
+    dbg_print(PRINT_LEVEL_INFO_LOWLEVEL, fmt, argp);
+    va_end(argp);
+}
+
+void log_inf(const char *fmt, ...)
+{
+    va_list argp;
+    va_start(argp, fmt);
+    dbg_print(PRINT_LEVEL_INFO, fmt, argp);
+    va_end(argp);
+}
+
+void log_dbg(const char *fmt, ...)
+{
+    va_list argp;
+    va_start(argp, fmt);
+    dbg_print(PRINT_LEVEL_VERBOSE, fmt, argp);
+    va_end(argp);
 }
