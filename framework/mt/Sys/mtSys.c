@@ -158,7 +158,7 @@ uint8_t sysSetExtAddr(SetExtAddrFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -254,7 +254,7 @@ uint8_t sysRamRead(RamReadFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -339,7 +339,7 @@ uint8_t sysRamWrite(RamWriteFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -378,7 +378,7 @@ uint8_t sysResetReq(ResetReqFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -514,7 +514,7 @@ uint8_t sysOsalNvRead(OsalNvReadFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -600,7 +600,7 @@ uint8_t sysOsalNvWrite(OsalNvWriteFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -650,7 +650,7 @@ uint8_t sysOsalNvItemInit(OsalNvItemInitFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -693,7 +693,7 @@ uint8_t sysOsalNvDelete(OsalNvDeleteFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -734,7 +734,7 @@ uint8_t sysOsalNvLength(OsalNvLengthFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -808,7 +808,7 @@ uint8_t sysOsalStartTimer(OsalStartTimerFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -847,7 +847,7 @@ uint8_t sysOsalStopTimer(OsalStopTimerFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -916,7 +916,7 @@ uint8_t sysStackTune(StackTuneFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -986,7 +986,7 @@ uint8_t sysAdcRead(AdcReadFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -1057,7 +1057,7 @@ uint8_t sysGpio(GpioFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -1191,7 +1191,7 @@ uint8_t sysSetTime(SetTimeFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -1294,7 +1294,7 @@ uint8_t sysSetTxPower(SetTxPowerFormat_t *req)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated\n");
 		return 1;
 	}
 }
@@ -1360,55 +1360,55 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	switch (rpcBuff[1])
 	{
 	case MT_SYS_PING:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_PING\n");
+		log_dbg("sysProcess: MT_SYS_PING\n");
 		processPingSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_GET_EXTADDR:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_GET_EXTADDR\n");
+		log_dbg("sysProcess: MT_SYS_GET_EXTADDR\n");
 		processGetExtAddrSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_RAM_READ:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_RAM_READ\n");
+		log_dbg("sysProcess: MT_SYS_RAM_READ\n");
 		processRamReadSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_VERSION:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_VERSION\n");
+		log_dbg("sysProcess: MT_SYS_VERSION\n");
 		processVersionSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_OSAL_NV_READ:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_OSAL_NV_READ\n");
+		log_dbg("sysProcess: MT_SYS_OSAL_NV_READ\n");
 		processOsalNvReadSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_OSAL_NV_LENGTH:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_OSAL_NV_LENGTH\n");
+		log_dbg("sysProcess: MT_SYS_OSAL_NV_LENGTH\n");
 		processOsalNvLengthSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_STACK_TUNE:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_STACK_TUNE\n");
+		log_dbg("sysProcess: MT_SYS_STACK_TUNE\n");
 		processStackTuneSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_ADC_READ:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_ADC_READ\n");
+		log_dbg("sysProcess: MT_SYS_ADC_READ\n");
 		processAdcReadSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_GPIO:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_GPIO\n");
+		log_dbg("sysProcess: MT_SYS_GPIO\n");
 		processGpioSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_RANDOM:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_RANDOM\n");
+		log_dbg("sysProcess: MT_SYS_RANDOM\n");
 		processRandomSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_GET_TIME:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_GET_TIME\n");
+		log_dbg("sysProcess: MT_SYS_GET_TIME\n");
 		processGetTimeSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_SET_TX_POWER:
-		dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_SET_TX_POWER\n");
+		log_dbg("sysProcess: MT_SYS_SET_TX_POWER\n");
 		processSetTxPowerSrsp(rpcBuff, rpcLen);
 		break;
 	default:
-		dbg_print(PRINT_LEVEL_INFO, "processSrsp: unsupported SYS message : %d (0x%02X)\n", rpcBuff[1], rpcBuff[1]);
+		log_inf("processSrsp: unsupported SYS message : %d (0x%02X)\n", rpcBuff[1], rpcBuff[1]);
 		break;
 	}
 
@@ -1425,7 +1425,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
  *************************************************************************************************/
 void sysProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 {
-	dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: processing CMD0:%x, CMD1:%x\n",
+	log_dbg("sysProcess: processing CMD0:%x, CMD1:%x\n",
 	        rpcBuff[0], rpcBuff[1]);
 
 	//process the synchronous SRSP from SREQ
@@ -1439,16 +1439,16 @@ void sysProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 		switch (rpcBuff[1])
 		{
 		case MT_SYS_RESET_IND:
-			dbg_print(PRINT_LEVEL_VERBOSE, "sysProcess: MT_SYS_RESET_IND\n");
+			log_dbg("sysProcess: MT_SYS_RESET_IND\n");
 			processResetInd(rpcBuff, rpcLen);
 			break;
 		case MT_SYS_OSAL_TIMER_EXPIRED:
-			dbg_print(PRINT_LEVEL_VERBOSE,
+			log_dbg(
 			        "sysProcess: MT_SYS_OSAL_TIMER_EXPIRED\n");
 			processOsalTimerExpired(rpcBuff, rpcLen);
 			break;
 		default:
-			dbg_print(PRINT_LEVEL_WARNING,
+			log_warn(
 			        "processRpcSys: CMD0:%x, CMD1:%x, not handled\n",
 			        rpcBuff[0], rpcBuff[1]);
 			break;

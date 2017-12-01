@@ -106,7 +106,7 @@ int32_t rpcTransportOpen(char *_devicePath, uint32_t port)
 	{
 		if (strlen(_devicePath) > (sizeof(lastUsedDevicePath) - 1))
 		{
-			dbg_print(PRINT_LEVEL_ERROR,
+			log_err(
 			        "rpcTransportOpen: %s - device path too long\n",
 			        _devicePath);
 			return (-1);
@@ -124,7 +124,7 @@ int32_t rpcTransportOpen(char *_devicePath, uint32_t port)
 	if (serialPortFd < 0)
 	{
 		perror(devicePath);
-		dbg_print(PRINT_LEVEL_ERROR, "rpcTransportOpen: %s open failed\n",
+		log_err("rpcTransportOpen: %s open failed\n",
 		        devicePath);
 		return (-1);
 	}
@@ -186,12 +186,12 @@ void rpcTransportWrite(uint8_t* buf, uint8_t len)
 	int remain = len;
 	int offset = 0;
 #if 1
-	dbg_print(PRINT_LEVEL_VERBOSE, "rpcTransportWrite : len = %d\n", len);
+	log_dbg("rpcTransportWrite : len = %d\n", len);
 
 	while (remain > 0)
 	{
 		int sub = (remain >= 8 ? 8 : remain);
-		dbg_print(PRINT_LEVEL_VERBOSE,
+		log_dbg(
 		        "writing %d bytes (offset = %d, remain = %d)\n", sub, offset,
 		        remain);
 		write(serialPortFd, buf + offset, sub);
@@ -223,7 +223,7 @@ uint8_t rpcTransportRead(uint8_t* buf, uint8_t len)
 	uint8_t ret = read(serialPortFd, buf, len);
 	if (ret > 0)
 	{
-		dbg_print(PRINT_LEVEL_VERBOSE, "rpcTransportRead: read %d bytes\n",
+		log_dbg("rpcTransportRead: read %d bytes\n",
 		        ret);
 	}
 	return (ret);

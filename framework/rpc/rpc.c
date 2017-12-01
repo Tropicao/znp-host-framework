@@ -130,7 +130,7 @@ int32_t rpcOpen(char *_devicePath, uint32_t port)
 	if (fd < 0)
 	{
 		perror(_devicePath);
-		dbg_print(PRINT_LEVEL_ERROR, "rpcOpen: %s device open failed\n",
+		log_err("rpcOpen: %s device open failed\n",
 		        _devicePath);
 		return (-1);
 	}
@@ -191,14 +191,14 @@ int32_t rpcGetMqClientMsg(void)
 	uint8_t rpcFrame[RPC_MAX_LEN + 1];
 	int32_t rpcLen;
 
-	dbg_print(PRINT_LEVEL_INFO, "rpcWaitMqClient: waiting on queue\n");
+	log_inf("rpcWaitMqClient: waiting on queue\n");
 
 	// wait for incoming message queue
 	rpcLen = llq_receive(&rpcLlq, (char *) rpcFrame, RPC_MAX_LEN + 1);
 
 	if (rpcLen != -1)
 	{
-		dbg_print(PRINT_LEVEL_VERBOSE, "rpcWaitMqClient: processing MT[%d]\n",
+		log_dbg("rpcWaitMqClient: processing MT[%d]\n",
 		        rpcLen);
 
 		// process incoming message
@@ -206,7 +206,7 @@ int32_t rpcGetMqClientMsg(void)
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING, "rpcWaitMqClient: Timeout\n");
+		log_warn("rpcWaitMqClient: Timeout\n");
 		return -1;
 	}
 
@@ -233,8 +233,8 @@ int32_t rpcWaitMqClientMsg(uint32_t timeout)
 	to.tv_sec = time(0) + (timeout / 1000);
 	to.tv_nsec = (long) ((long) timeout % 1000) * 1000000L;
 
-	dbg_print(PRINT_LEVEL_INFO, "rpcWaitMqClientMsg: timeout=%d\n", timeout);
-	dbg_print(PRINT_LEVEL_INFO,
+	log_inf("rpcWaitMqClientMsg: timeout=%d\n", timeout);
+	log_inf(
 	        "rpcWaitMqClientMsg: waiting on queue %d:%d:%d\n", timeout,
 	        to.tv_sec, to.tv_nsec);
 
@@ -249,14 +249,14 @@ int32_t rpcWaitMqClientMsg(uint32_t timeout)
 		mAftTime += aftTime.tv_usec / 1000;
 		timeLeft = mAftTime - mBefTime;
 		timeLeft = timeout - timeLeft;
-		dbg_print(PRINT_LEVEL_INFO, "rpcWaitMqClientMsg: processing MT[%d]\n",
+		log_inf("rpcWaitMqClientMsg: processing MT[%d]\n",
 		        rpcLen);
 		// process incoming message
 		mtProcess(rpcFrame, rpcLen);
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_INFO, "rpcWaitMqClientMsg: Timed out [%d] - %s\n",
+		log_inf("rpcWaitMqClientMsg: Timed out [%d] - %s\n",
 		        rpcLen, strerror(errno));
 		return -1;
 	}
@@ -334,7 +334,7 @@ int32_t rpcProcess(void)
 				if (bytesRead > rpcTempLen)
 				{
 					//there was an error
-					dbg_print(PRINT_LEVEL_WARNING,
+					log_warn(
 					        "rpcProcess: read of %d bytes failed - %s\n",
 					        rpcTempLen, strerror(errno));
 
@@ -350,7 +350,7 @@ int32_t rpcProcess(void)
 					else
 					{
 						// something went wrong, abort
-						dbg_print(PRINT_LEVEL_ERROR,
+						log_err(
 						        "rpcProcess: transport read failed too many times\n");
 
 						return -1;
@@ -376,7 +376,7 @@ int32_t rpcProcess(void)
 			fcs = calcFcs(&rpcBuff[0], (len + 3));
 			if (rpcBuff[len + 3] != fcs)
 			{
-				dbg_print(PRINT_LEVEL_WARNING, "rpcProcess: fcs error %x:%x\n",
+				log_warn("rpcProcess: fcs error %x:%x\n",
 				        rpcBuff[len + 3], fcs);
 				return -1;
 			}
@@ -386,14 +386,14 @@ int32_t rpcProcess(void)
 				// SRSP command ID deteced
 				if (expectedSrspCmdId == (rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK))
 				{
-					dbg_print(PRINT_LEVEL_INFO,
+					log_inf(
 					        "rpcProcess: processing expected srsp [%02X]\n",
 					        rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK);
 
 					//unblock waiting sreq
 					sem_post(&srspSem);
 
-					dbg_print(PRINT_LEVEL_INFO,
+					log_inf(
 					        "rpcProcess: writing %d bytes SRSP to head of the queue\n",
 					        rpcLen);
 
@@ -403,7 +403,7 @@ int32_t rpcProcess(void)
 				else
 				{
 					// unexpected SRSP discard
-					dbg_print(PRINT_LEVEL_WARNING,
+					log_warn(
 					        "rpcProcess: UNEXPECTED SREQ!: %02X:%02X",
 					        expectedSrspCmdId,
 					        (rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK));
@@ -413,7 +413,7 @@ int32_t rpcProcess(void)
 			else
 			{
 				// should be AREQ frame
-				dbg_print(PRINT_LEVEL_INFO,
+				log_inf(
 				        "rpcProcess: writing %d bytes AREQ to tail of the que\n",
 				        rpcLen);
 
@@ -425,13 +425,13 @@ int32_t rpcProcess(void)
 		}
 		else
 		{
-			dbg_print(PRINT_LEVEL_WARNING, "rpcProcess: Len Not read [%x]\n",
+			log_warn("rpcProcess: Len Not read [%x]\n",
 			        bytesRead);
 		}
 	}
 	else
 	{
-		dbg_print(PRINT_LEVEL_WARNING,
+		log_warn(
 		        "rpcProcess: No valid Start Of Frame found [%x:%x]\n", sofByte,
 		        bytesRead);
 	}
@@ -456,9 +456,9 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 	int32_t status = MT_RPC_SUCCESS;
 
 	// block here if SREQ is in progress
-	dbg_print(PRINT_LEVEL_INFO, "rpcSendFrame: Blocking on RPC sem\n");
+	log_inf("rpcSendFrame: Blocking on RPC sem\n");
 	sem_wait(&rpcSem);
-	dbg_print(PRINT_LEVEL_INFO, "rpcSendFrame: Sending RPC\n");
+	log_inf("rpcSendFrame: Sending RPC\n");
 
 	// fill in header bytes
 	buf[0] = MT_RPC_SOF;
@@ -501,21 +501,21 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 			{ time(0) + (SRSP_TIMEOUT_MS / 1000), (long) ((long) SRSP_TIMEOUT_MS
 			        % 1000) * 1000000 };
 
-		dbg_print(PRINT_LEVEL_INFO, "rpcSendFrame: waiting for SRSP [%02x]\n",
+		log_inf("rpcSendFrame: waiting for SRSP [%02x]\n",
 		        expectedSrspCmdId);
 
 		//Wait for the SRSP
 		status = sem_timedwait(&srspSem, &srspTimeOut);
 		if (status == -1)
 		{
-			dbg_print(PRINT_LEVEL_WARNING,
+			log_warn(
 			        "rpcSendFrame: SRSP Error - CMD0: 0x%02X CMD1: 0x%02X\n",
 			        cmd0, cmd1);
 			status = MT_RPC_ERR_SUBSYSTEM;
 		}
 		else
 		{
-			dbg_print(PRINT_LEVEL_INFO, "rpcSendFrame: Receive SRSP\n");
+			log_inf("rpcSendFrame: Receive SRSP\n");
 			status = MT_RPC_SUCCESS;
 		}
 
@@ -573,18 +573,18 @@ static void printRpcMsg(char* preMsg, uint8_t sof, uint8_t len, uint8_t *msg)
 	uint8_t i;
 
 	// print headers
-	dbg_print(PRINT_LEVEL_INFO_LOWLEVEL,
+	log_linf(
 	        "%s %d Bytes: SOF:%02X, Len:%02X, CMD0:%02X, CMD1:%02X, Payload:",
 	        preMsg, len + 5, sof, len, msg[0], msg[1]);
 
 	// print frame payload
 	for (i = 2; i < len + 2; i++)
 	{
-		dbg_print(PRINT_LEVEL_INFO_LOWLEVEL, "%02X%s", msg[i],
+		log_linf("%02X%s", msg[i],
 		        i < (len + 2 - 1) ? ":" : ",");
 	}
 
 	// print FCS
-	dbg_print(PRINT_LEVEL_INFO_LOWLEVEL, " FCS:%02X\n", msg[i]);
+	log_linf(" FCS:%02X\n", msg[i]);
 
 }
