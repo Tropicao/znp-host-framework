@@ -104,7 +104,7 @@ static Hwi_Struct usbBusFaultHwiStruct;
  */
 static Void EK_TM4C1294XL_errorDMAHwi(UArg arg)
 {
-	System_printf("DMA error code: %d\n", uDMAErrorStatusGet());
+	System_printf("DMA error code: %d", uDMAErrorStatusGet());
 	uDMAErrorStatusClear();
 	System_abort("DMA error!!");
 }

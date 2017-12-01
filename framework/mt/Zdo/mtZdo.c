@@ -1547,7 +1547,7 @@ static void processGetLinkKey(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.IEEEAddr = 0;
@@ -1582,7 +1582,7 @@ static void processNwkAddrRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.IEEEAddr = 0;
@@ -1628,7 +1628,7 @@ static void processIeeeAddrRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.IEEEAddr = 0;
@@ -1675,7 +1675,7 @@ static void processNodeDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1724,7 +1724,7 @@ static void processPowerDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1759,7 +1759,7 @@ static void processSimpleDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1816,7 +1816,7 @@ static void processActiveEpRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1857,7 +1857,7 @@ static void processMatchDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1898,7 +1898,7 @@ static void processComplexDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1939,7 +1939,7 @@ static void processUserDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1980,7 +1980,7 @@ static void processUserDescConf(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2013,7 +2013,7 @@ static void processServerDiscRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2046,7 +2046,7 @@ static void processEndDeviceBindRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2077,7 +2077,7 @@ static void processBindRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2108,7 +2108,7 @@ static void processUnbindRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2139,7 +2139,7 @@ static void processMgmtNwkDiscRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2188,7 +2188,7 @@ static void processMgmtLqiRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2248,7 +2248,7 @@ static void processMgmtRtgRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2295,7 +2295,7 @@ static void processMgmtBindRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2348,7 +2348,7 @@ static void processMgmtLeaveRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2379,7 +2379,7 @@ static void processMgmtDirectJoinRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2410,7 +2410,7 @@ static void processMgmtPermitJoinRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2441,7 +2441,7 @@ static void processEndDeviceAnnceInd(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2478,7 +2478,7 @@ static void processMatchDescRspSent(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.NwkAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2523,7 +2523,7 @@ static void processStatusErrorRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2554,7 +2554,7 @@ static void processSrcRtgInd(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.DstAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2590,7 +2590,7 @@ static void processBeaconNotifyInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 			printf("MT_RPC_ERR_LENGTH");
 		}
-		printf("rpcLen = %d\n", rpcLen);
+		printf("rpcLen = %d", rpcLen);
 
 		rsp.BeaconCount = rpcBuff[msgIdx++];
 		if (rpcLen > 1)
@@ -2646,7 +2646,7 @@ static void processJoinCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 			printf("MT_RPC_ERR_LENGTH");
 		}
-		printf("rpcLen = %d\n", rpcLen);
+		printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.DevAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
@@ -2678,7 +2678,7 @@ static void processNwkDiscoveryCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 			printf("MT_RPC_ERR_LENGTH");
 		}
-		printf("rpcLen = %d\n", rpcLen);
+		printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 
@@ -2706,7 +2706,7 @@ static void processLeaveInd(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2746,7 +2746,7 @@ static void processMsgCbIncoming(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2830,7 +2830,7 @@ uint8_t zdoInit(void)
  ***********************************************************************************************/
 void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 {
-	log_dbg("zdoProcess: processing CMD0:%x, CMD1:%x\n",
+	log_dbg("zdoProcess: processing CMD0:%x, CMD1:%x",
 	        rpcBuff[0], rpcBuff[1]);
 
 	//process the synchronous SRSP from SREQ
@@ -2993,7 +2993,7 @@ void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 
 		default:
 			log_warn(
-			        "zdoProcess: CMD0:%x, CMD1:%x, not handled\n", rpcBuff[0],
+			        "zdoProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
 			        rpcBuff[1]);
 			break;
 		}
@@ -3021,10 +3021,10 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		processGetLinkKey(rpcBuff, rpcLen);
 		break;
     case MT_ZDO_NWK_DISCOVERY_REQ:
-		log_dbg("zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s\n", rpcBuff[2] ? "ERROR":"SUCCESS");
+		log_dbg("zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s", rpcBuff[2] ? "ERROR":"SUCCESS");
         break;
 	default:
-		log_inf("processSrsp: unsupported ZDO message : %d (0x%02X)\n", rpcBuff[1], rpcBuff[1]);
+		log_inf("processSrsp: unsupported ZDO message : %d (0x%02X)", rpcBuff[1], rpcBuff[1]);
 		break;
 	}
 }

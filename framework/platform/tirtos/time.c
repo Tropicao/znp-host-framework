@@ -120,8 +120,8 @@ int nanosleep(timespec* req, timespec* rem)
 	uint32_t sleepTicks = (uint32_t) req->tv_sec * (ticks_per_s);
 	sleepTicks += (uint32_t)(req->tv_nsec / period_in_ns);
 
-	//consolePrint("nanosleep: req->tv_sec=%d, req->tv_nsec=%d \n", req->tv_sec, req->tv_nsec);
-	//consolePrint("sleepTicks=%d, Clock_tickPeriod=%d, sleep time=%dus\n", sleepTicks, Clock_tickPeriod, sleepTicks * Clock_tickPeriod);
+	//consolePrint("nanosleep: req->tv_sec=%d, req->tv_nsec=%d ", req->tv_sec, req->tv_nsec);
+	//consolePrint("sleepTicks=%d, Clock_tickPeriod=%d, sleep time=%dus", sleepTicks, Clock_tickPeriod, sleepTicks * Clock_tickPeriod);
 
 	Task_sleep(sleepTicks);
 

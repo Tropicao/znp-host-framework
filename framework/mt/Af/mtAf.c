@@ -346,7 +346,7 @@ static void processDataConfirm(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 			printf("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Endpoint = rpcBuff[msgIdx++];
@@ -366,7 +366,7 @@ static void processIncomingMsg(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 			printf("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.GroupId = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -407,7 +407,7 @@ static void processIncomingMsgExt(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 			printf("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.GroupId = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -491,7 +491,7 @@ static void processDataRetrieveSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 			printf("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Length = rpcBuff[msgIdx++];
@@ -549,7 +549,7 @@ static void processReflectError(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 			printf("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Endpoint = rpcBuff[msgIdx++];
@@ -587,7 +587,7 @@ void afRegisterCallbacks(mtAfCb_t cbs)
  *************************************************************************************************/
 void afProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 {
-	log_dbg("afProcess: processing CMD0:%x, CMD1:%x\n",
+	log_dbg("afProcess: processing CMD0:%x, CMD1:%x",
 	        rpcBuff[0], rpcBuff[1]);
 
 	//process the synchronous SRSP from SREQ
@@ -619,7 +619,7 @@ void afProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 			break;
 		default:
 			log_warn(
-			        "processRpcAf: CMD0:%x, CMD1:%x, not handled\n", rpcBuff[0],
+			        "processRpcAf: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
 			        rpcBuff[1]);
 			break;
 		}
@@ -649,7 +649,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		break;
 	default:
 		log_inf(
-		        "processSrsp: unsupported message [%x:%x]\n", rpcBuff[0],
+		        "processSrsp: unsupported message [%x:%x]", rpcBuff[0],
 		        rpcBuff[1]);
 		break;
 	}

@@ -130,7 +130,7 @@ int32_t rpcOpen(char *_devicePath, uint32_t port)
 	if (fd < 0)
 	{
 		perror(_devicePath);
-		log_err("rpcOpen: %s device open failed\n",
+		log_err("rpcOpen: %s device open failed",
 		        _devicePath);
 		return (-1);
 	}
@@ -198,7 +198,7 @@ int32_t rpcGetMqClientMsg(void)
 
 	if (rpcLen != -1)
 	{
-		log_dbg("rpcWaitMqClient: processing MT[%d]\n",
+		log_dbg("rpcWaitMqClient: processing MT[%d]",
 		        rpcLen);
 
 		// process incoming message
@@ -233,9 +233,9 @@ int32_t rpcWaitMqClientMsg(uint32_t timeout)
 	to.tv_sec = time(0) + (timeout / 1000);
 	to.tv_nsec = (long) ((long) timeout % 1000) * 1000000L;
 
-	log_inf("rpcWaitMqClientMsg: timeout=%d\n", timeout);
+	log_inf("rpcWaitMqClientMsg: timeout=%d", timeout);
 	log_inf(
-	        "rpcWaitMqClientMsg: waiting on queue %d:%d:%d\n", timeout,
+	        "rpcWaitMqClientMsg: waiting on queue %d:%d:%d", timeout,
 	        to.tv_sec, to.tv_nsec);
 
 	gettimeofday(&befTime, NULL);
@@ -249,14 +249,14 @@ int32_t rpcWaitMqClientMsg(uint32_t timeout)
 		mAftTime += aftTime.tv_usec / 1000;
 		timeLeft = mAftTime - mBefTime;
 		timeLeft = timeout - timeLeft;
-		log_inf("rpcWaitMqClientMsg: processing MT[%d]\n",
+		log_inf("rpcWaitMqClientMsg: processing MT[%d]",
 		        rpcLen);
 		// process incoming message
 		mtProcess(rpcFrame, rpcLen);
 	}
 	else
 	{
-		log_inf("rpcWaitMqClientMsg: Timed out [%d] - %s\n",
+		log_inf("rpcWaitMqClientMsg: Timed out [%d] - %s",
 		        rpcLen, strerror(errno));
 		return -1;
 	}
@@ -335,7 +335,7 @@ int32_t rpcProcess(void)
 				{
 					//there was an error
 					log_warn(
-					        "rpcProcess: read of %d bytes failed - %s\n",
+					        "rpcProcess: read of %d bytes failed - %s",
 					        rpcTempLen, strerror(errno));
 
 					// check whether retry limits has been reached
@@ -376,7 +376,7 @@ int32_t rpcProcess(void)
 			fcs = calcFcs(&rpcBuff[0], (len + 3));
 			if (rpcBuff[len + 3] != fcs)
 			{
-				log_warn("rpcProcess: fcs error %x:%x\n",
+				log_warn("rpcProcess: fcs error %x:%x",
 				        rpcBuff[len + 3], fcs);
 				return -1;
 			}
@@ -387,14 +387,14 @@ int32_t rpcProcess(void)
 				if (expectedSrspCmdId == (rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK))
 				{
 					log_inf(
-					        "rpcProcess: processing expected srsp [%02X]\n",
+					        "rpcProcess: processing expected srsp [%02X]",
 					        rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK);
 
 					//unblock waiting sreq
 					sem_post(&srspSem);
 
 					log_inf(
-					        "rpcProcess: writing %d bytes SRSP to head of the queue\n",
+					        "rpcProcess: writing %d bytes SRSP to head of the queue",
 					        rpcLen);
 
 					// send message to queue
@@ -414,7 +414,7 @@ int32_t rpcProcess(void)
 			{
 				// should be AREQ frame
 				log_inf(
-				        "rpcProcess: writing %d bytes AREQ to tail of the que\n",
+				        "rpcProcess: writing %d bytes AREQ to tail of the que",
 				        rpcLen);
 
 				// send message to queue
@@ -425,14 +425,14 @@ int32_t rpcProcess(void)
 		}
 		else
 		{
-			log_warn("rpcProcess: Len Not read [%x]\n",
+			log_warn("rpcProcess: Len Not read [%x]",
 			        bytesRead);
 		}
 	}
 	else
 	{
 		log_warn(
-		        "rpcProcess: No valid Start Of Frame found [%x:%x]\n", sofByte,
+		        "rpcProcess: No valid Start Of Frame found [%x:%x]", sofByte,
 		        bytesRead);
 	}
 
@@ -501,7 +501,7 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 			{ time(0) + (SRSP_TIMEOUT_MS / 1000), (long) ((long) SRSP_TIMEOUT_MS
 			        % 1000) * 1000000 };
 
-		log_inf("rpcSendFrame: waiting for SRSP [%02x]\n",
+		log_inf("rpcSendFrame: waiting for SRSP [%02x]",
 		        expectedSrspCmdId);
 
 		//Wait for the SRSP
@@ -509,7 +509,7 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 		if (status == -1)
 		{
 			log_warn(
-			        "rpcSendFrame: SRSP Error - CMD0: 0x%02X CMD1: 0x%02X\n",
+			        "rpcSendFrame: SRSP Error - CMD0: 0x%02X CMD1: 0x%02X",
 			        cmd0, cmd1);
 			status = MT_RPC_ERR_SUBSYSTEM;
 		}
@@ -585,6 +585,6 @@ static void printRpcMsg(char* preMsg, uint8_t sof, uint8_t len, uint8_t *msg)
 	}
 
 	// print FCS
-	log_linf(" FCS:%02X\n", msg[i]);
+	log_linf(" FCS:%02X", msg[i]);
 
 }

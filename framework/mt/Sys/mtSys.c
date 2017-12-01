@@ -114,7 +114,7 @@ static void processPingSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Capabilities = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -207,7 +207,7 @@ static void processGetExtAddrSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.ExtAddr = 0;
 		uint8_t i;
@@ -281,7 +281,7 @@ static void processRamReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Len = rpcBuff[msgIdx++];
@@ -405,7 +405,7 @@ static void processResetInd(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Reason = rpcBuff[msgIdx++];
 		rsp.TransportRev = rpcBuff[msgIdx++];
@@ -465,7 +465,7 @@ static void processVersionSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.TransportRev = rpcBuff[msgIdx++];
 		rsp.Product = rpcBuff[msgIdx++];
@@ -541,7 +541,7 @@ static void processOsalNvReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Len = rpcBuff[msgIdx++];
@@ -761,7 +761,7 @@ static void processOsalNvLengthSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.ItemLen = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -873,7 +873,7 @@ static void processOsalTimerExpired(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Id = rpcBuff[msgIdx++];
 
@@ -943,7 +943,7 @@ static void processStackTuneSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Value = rpcBuff[msgIdx++];
 
@@ -1013,7 +1013,7 @@ static void processAdcReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Value = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1084,7 +1084,7 @@ static void processGpioSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Value = rpcBuff[msgIdx++];
 
@@ -1138,7 +1138,7 @@ static void processRandomSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.Value = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1242,7 +1242,7 @@ static void processGetTimeSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.UTCTime = 0;
 		uint8_t i;
@@ -1321,7 +1321,7 @@ static void processSetTxPowerSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 			printf("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d\n", rpcLen);
+		//printf("rpcLen = %d", rpcLen);
 
 		rsp.TxPower = rpcBuff[msgIdx++];
 
@@ -1408,7 +1408,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		processSetTxPowerSrsp(rpcBuff, rpcLen);
 		break;
 	default:
-		log_inf("processSrsp: unsupported SYS message : %d (0x%02X)\n", rpcBuff[1], rpcBuff[1]);
+		log_inf("processSrsp: unsupported SYS message : %d (0x%02X)", rpcBuff[1], rpcBuff[1]);
 		break;
 	}
 
@@ -1425,7 +1425,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
  *************************************************************************************************/
 void sysProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 {
-	log_dbg("sysProcess: processing CMD0:%x, CMD1:%x\n",
+	log_dbg("sysProcess: processing CMD0:%x, CMD1:%x",
 	        rpcBuff[0], rpcBuff[1]);
 
 	//process the synchronous SRSP from SREQ
@@ -1449,7 +1449,7 @@ void sysProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 			break;
 		default:
 			log_warn(
-			        "processRpcSys: CMD0:%x, CMD1:%x, not handled\n",
+			        "processRpcSys: CMD0:%x, CMD1:%x, not handled",
 			        rpcBuff[0], rpcBuff[1]);
 			break;
 		}

@@ -221,7 +221,7 @@ static int sem_pend(sem_t * sem, UInt timeout)
 
 	if (sem != SEM_FAILED)
 	{
-		//consolePrint("Semaphore_pend(%d)++\n", timeout);
+		//consolePrint("Semaphore_pend(%d)++", timeout);
 		// wait for semaphore forever
 		if (Semaphore_pend(*sem, timeout) == TRUE)
 		{
