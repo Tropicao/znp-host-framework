@@ -165,7 +165,7 @@ void dbg_print(int print_level, const char *fmt, ...)
 
     time(&rawtime);
     tm_cur = localtime (&rawtime);
-    snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : %s",
+    snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : %s\n",
             tm_cur->tm_mday, tm_cur->tm_mon+1, tm_cur->tm_year + 1900, tm_cur->tm_hour, tm_cur->tm_min, tm_cur->tm_sec,
             color, prefix, ANSI_COLOR_RESET, fmt);
 	if (print_level > _get_log_level())
