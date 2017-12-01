@@ -144,6 +144,23 @@ int32_t rpcOpen(char *_devicePath, uint32_t port)
 }
 
 /*********************************************************************
+ * @fn      rpcOpen
+ *
+ * @brief   Close serial device file descriptor
+ *
+ * @param   devicePath - path to the UART device
+ *
+ * @return  status
+ */
+void rpcClose(void)
+{
+    rpcTransportClose();
+    sem_destroy(&rpcSem);
+    sem_destroy(&srspSem);
+}
+
+
+/*********************************************************************
  * @fn      rpcInitMq
  *
  * @brief   init message queue
