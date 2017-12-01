@@ -59,7 +59,7 @@
 #define ANSI_COLOR_MAGENTA  "\x1b[35m"
 #define ANSI_COLOR_CYAN     "\x1b[36m"
 #define ANSI_COLOR_RESET    "\x1b[0m"
-#define MAX_LOG_LINE_SIZE   256
+#define MAX_LOG_LINE_SIZE   512
 #define PREFIX_ERR          "ERR"
 #define PREFIX_WARNING      "WARN"
 #define PREFIX_LOW_INFO     "LINF"
@@ -165,7 +165,7 @@ void dbg_print(int print_level, const char *fmt, ...)
 
     time(&rawtime);
     tm_cur = localtime (&rawtime);
-    snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : %s",
+    snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : %s\n",
             tm_cur->tm_mday, tm_cur->tm_mon+1, tm_cur->tm_year + 1900, tm_cur->tm_hour, tm_cur->tm_min, tm_cur->tm_sec,
             color, prefix, ANSI_COLOR_RESET, fmt);
 	if (print_level > _get_log_level())
