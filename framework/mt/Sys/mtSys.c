@@ -111,7 +111,7 @@ static void processPingSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		PingSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -158,7 +158,7 @@ uint8_t sysSetExtAddr(SetExtAddrFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -204,7 +204,7 @@ static void processGetExtAddrSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		GetExtAddrSrspFormat_t rsp;
 		if (rpcLen < 8)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -254,7 +254,7 @@ uint8_t sysRamRead(RamReadFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -278,7 +278,7 @@ static void processRamReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		RamReadSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -339,7 +339,7 @@ uint8_t sysRamWrite(RamWriteFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -378,7 +378,7 @@ uint8_t sysResetReq(ResetReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -402,7 +402,7 @@ static void processResetInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		ResetIndFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -462,7 +462,7 @@ static void processVersionSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		VersionSrspFormat_t rsp;
 		if (rpcLen < 5)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -514,7 +514,7 @@ uint8_t sysOsalNvRead(OsalNvReadFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -538,7 +538,7 @@ static void processOsalNvReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		OsalNvReadSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -600,7 +600,7 @@ uint8_t sysOsalNvWrite(OsalNvWriteFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -650,7 +650,7 @@ uint8_t sysOsalNvItemInit(OsalNvItemInitFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -693,7 +693,7 @@ uint8_t sysOsalNvDelete(OsalNvDeleteFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -734,7 +734,7 @@ uint8_t sysOsalNvLength(OsalNvLengthFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -758,7 +758,7 @@ static void processOsalNvLengthSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		OsalNvLengthSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -808,7 +808,7 @@ uint8_t sysOsalStartTimer(OsalStartTimerFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -847,7 +847,7 @@ uint8_t sysOsalStopTimer(OsalStopTimerFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -870,7 +870,7 @@ static void processOsalTimerExpired(uint8_t *rpcBuff, uint8_t rpcLen)
 		OsalTimerExpiredFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -916,7 +916,7 @@ uint8_t sysStackTune(StackTuneFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -940,7 +940,7 @@ static void processStackTuneSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		StackTuneSrspFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -986,7 +986,7 @@ uint8_t sysAdcRead(AdcReadFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1010,7 +1010,7 @@ static void processAdcReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		AdcReadSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -1057,7 +1057,7 @@ uint8_t sysGpio(GpioFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1081,7 +1081,7 @@ static void processGpioSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		GpioSrspFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -1135,7 +1135,7 @@ static void processRandomSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		RandomSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -1191,7 +1191,7 @@ uint8_t sysSetTime(SetTimeFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1239,7 +1239,7 @@ static void processGetTimeSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		GetTimeSrspFormat_t rsp;
 		if (rpcLen < 11)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -1294,7 +1294,7 @@ uint8_t sysSetTxPower(SetTxPowerFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1318,7 +1318,7 @@ static void processSetTxPowerSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		SetTxPowerSrspFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 
 		}
 		//printf("rpcLen = %d\n", rpcLen);
@@ -1360,51 +1360,51 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	switch (rpcBuff[1])
 	{
 	case MT_SYS_PING:
-		log_dbg("sysProcess: MT_SYS_PING\n");
+		log_dbg("sysProcess: MT_SYS_PING");
 		processPingSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_GET_EXTADDR:
-		log_dbg("sysProcess: MT_SYS_GET_EXTADDR\n");
+		log_dbg("sysProcess: MT_SYS_GET_EXTADDR");
 		processGetExtAddrSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_RAM_READ:
-		log_dbg("sysProcess: MT_SYS_RAM_READ\n");
+		log_dbg("sysProcess: MT_SYS_RAM_READ");
 		processRamReadSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_VERSION:
-		log_dbg("sysProcess: MT_SYS_VERSION\n");
+		log_dbg("sysProcess: MT_SYS_VERSION");
 		processVersionSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_OSAL_NV_READ:
-		log_dbg("sysProcess: MT_SYS_OSAL_NV_READ\n");
+		log_dbg("sysProcess: MT_SYS_OSAL_NV_READ");
 		processOsalNvReadSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_OSAL_NV_LENGTH:
-		log_dbg("sysProcess: MT_SYS_OSAL_NV_LENGTH\n");
+		log_dbg("sysProcess: MT_SYS_OSAL_NV_LENGTH");
 		processOsalNvLengthSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_STACK_TUNE:
-		log_dbg("sysProcess: MT_SYS_STACK_TUNE\n");
+		log_dbg("sysProcess: MT_SYS_STACK_TUNE");
 		processStackTuneSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_ADC_READ:
-		log_dbg("sysProcess: MT_SYS_ADC_READ\n");
+		log_dbg("sysProcess: MT_SYS_ADC_READ");
 		processAdcReadSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_GPIO:
-		log_dbg("sysProcess: MT_SYS_GPIO\n");
+		log_dbg("sysProcess: MT_SYS_GPIO");
 		processGpioSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_RANDOM:
-		log_dbg("sysProcess: MT_SYS_RANDOM\n");
+		log_dbg("sysProcess: MT_SYS_RANDOM");
 		processRandomSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_GET_TIME:
-		log_dbg("sysProcess: MT_SYS_GET_TIME\n");
+		log_dbg("sysProcess: MT_SYS_GET_TIME");
 		processGetTimeSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_SET_TX_POWER:
-		log_dbg("sysProcess: MT_SYS_SET_TX_POWER\n");
+		log_dbg("sysProcess: MT_SYS_SET_TX_POWER");
 		processSetTxPowerSrsp(rpcBuff, rpcLen);
 		break;
 	default:
@@ -1439,12 +1439,12 @@ void sysProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 		switch (rpcBuff[1])
 		{
 		case MT_SYS_RESET_IND:
-			log_dbg("sysProcess: MT_SYS_RESET_IND\n");
+			log_dbg("sysProcess: MT_SYS_RESET_IND");
 			processResetInd(rpcBuff, rpcLen);
 			break;
 		case MT_SYS_OSAL_TIMER_EXPIRED:
 			log_dbg(
-			        "sysProcess: MT_SYS_OSAL_TIMER_EXPIRED\n");
+			        "sysProcess: MT_SYS_OSAL_TIMER_EXPIRED");
 			processOsalTimerExpired(rpcBuff, rpcLen);
 			break;
 		default:

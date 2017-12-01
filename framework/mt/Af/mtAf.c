@@ -111,7 +111,7 @@ uint8_t afRegister(RegisterFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -157,7 +157,7 @@ uint8_t afDataRequest(DataRequestFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -206,7 +206,7 @@ uint8_t afDataRequestExt(DataRequestExtFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -257,7 +257,7 @@ uint8_t afDataRequestSrcRtg(DataRequestSrcRtgFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -293,7 +293,7 @@ uint8_t afInterPanCtl(InterPanCtlFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -331,7 +331,7 @@ uint8_t afDataStore(DataStoreFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -344,7 +344,7 @@ static void processDataConfirm(uint8_t *rpcBuff, uint8_t rpcLen)
 		DataConfirmFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -364,7 +364,7 @@ static void processIncomingMsg(uint8_t *rpcBuff, uint8_t rpcLen)
 		IncomingMsgFormat_t rsp;
 		if (rpcLen < 17)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -405,7 +405,7 @@ static void processIncomingMsgExt(uint8_t *rpcBuff, uint8_t rpcLen)
 		IncomingMsgExtFormat_t rsp;
 		if (rpcLen < 27)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -476,7 +476,7 @@ uint8_t afDataRetrieve(DataRetrieveFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -489,7 +489,7 @@ static void processDataRetrieveSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		DataRetrieveSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -534,7 +534,7 @@ uint8_t afApsfConfigSet(ApsfConfigSetFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -547,7 +547,7 @@ static void processReflectError(uint8_t *rpcBuff, uint8_t rpcLen)
 		ReflectErrorFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -601,20 +601,20 @@ void afProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 		switch (rpcBuff[1])
 		{
 		case MT_AF_DATA_CONFIRM:
-			log_dbg("afProcess: MT_AF_DATA_CONFIRM\n");
+			log_dbg("afProcess: MT_AF_DATA_CONFIRM");
 			processDataConfirm(rpcBuff, rpcLen);
 			break;
 		case MT_AF_INCOMING_MSG:
-			log_dbg("afProcess: MT_AF_INCOMING_MSG\n");
+			log_dbg("afProcess: MT_AF_INCOMING_MSG");
 			processIncomingMsg(rpcBuff, rpcLen);
 			break;
 		case MT_AF_INCOMING_MSG_EXT:
 			log_dbg(
-			        "afProcess: MT_AF_INCOMING_MSG_EXT\n");
+			        "afProcess: MT_AF_INCOMING_MSG_EXT");
 			processIncomingMsgExt(rpcBuff, rpcLen);
 			break;
 		case MT_AF_REFLECT_ERROR:
-			log_dbg("afProcess: MT_AF_REFLECT_ERROR\n");
+			log_dbg("afProcess: MT_AF_REFLECT_ERROR");
 			processReflectError(rpcBuff, rpcLen);
 			break;
 		default:
@@ -644,7 +644,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	switch (rpcBuff[1])
 	{
 	case MT_AF_DATA_RETRIEVE:
-		log_dbg("afProcess: MT_AF_DATA_RETRIEVE\n");
+		log_dbg("afProcess: MT_AF_DATA_RETRIEVE");
 		processDataRetrieveSrsp(rpcBuff, rpcLen);
 		break;
 	default:

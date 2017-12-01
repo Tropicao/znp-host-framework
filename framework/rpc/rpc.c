@@ -191,7 +191,7 @@ int32_t rpcGetMqClientMsg(void)
 	uint8_t rpcFrame[RPC_MAX_LEN + 1];
 	int32_t rpcLen;
 
-	log_inf("rpcWaitMqClient: waiting on queue\n");
+	log_inf("rpcWaitMqClient: waiting on queue");
 
 	// wait for incoming message queue
 	rpcLen = llq_receive(&rpcLlq, (char *) rpcFrame, RPC_MAX_LEN + 1);
@@ -206,7 +206,7 @@ int32_t rpcGetMqClientMsg(void)
 	}
 	else
 	{
-		log_warn("rpcWaitMqClient: Timeout\n");
+		log_warn("rpcWaitMqClient: Timeout");
 		return -1;
 	}
 
@@ -351,7 +351,7 @@ int32_t rpcProcess(void)
 					{
 						// something went wrong, abort
 						log_err(
-						        "rpcProcess: transport read failed too many times\n");
+						        "rpcProcess: transport read failed too many times");
 
 						return -1;
 					}
@@ -456,9 +456,9 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 	int32_t status = MT_RPC_SUCCESS;
 
 	// block here if SREQ is in progress
-	log_inf("rpcSendFrame: Blocking on RPC sem\n");
+	log_inf("rpcSendFrame: Blocking on RPC sem");
 	sem_wait(&rpcSem);
-	log_inf("rpcSendFrame: Sending RPC\n");
+	log_inf("rpcSendFrame: Sending RPC");
 
 	// fill in header bytes
 	buf[0] = MT_RPC_SOF;
@@ -515,7 +515,7 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 		}
 		else
 		{
-			log_inf("rpcSendFrame: Receive SRSP\n");
+			log_inf("rpcSendFrame: Receive SRSP");
 			status = MT_RPC_SUCCESS;
 		}
 

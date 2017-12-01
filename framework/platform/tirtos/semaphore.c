@@ -195,7 +195,7 @@ int sem_post(sem_t * sem)
 
 	if (sem != SEM_FAILED)
 	{
-		//consolePrint("Semaphore_post++\n");
+		//consolePrint("Semaphore_post++");
 
 		// post semaphore
 		Semaphore_post(*sem);
@@ -225,7 +225,7 @@ static int sem_pend(sem_t * sem, UInt timeout)
 		// wait for semaphore forever
 		if (Semaphore_pend(*sem, timeout) == TRUE)
 		{
-			//consolePrint("Semaphore_pend(%d)--\n");
+			//consolePrint("Semaphore_pend(%d)--");
 			// return success
 			ret = 0;
 		}
@@ -236,7 +236,7 @@ static int sem_pend(sem_t * sem, UInt timeout)
 		errno = EINVAL;
 	}
 
-	//consolePrint("Semaphore_pend--: error\n");
+	//consolePrint("Semaphore_pend--: error");
 
 	return ret;
 }

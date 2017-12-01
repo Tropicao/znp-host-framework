@@ -230,7 +230,7 @@ void EK_TM4C1294XL_initEMAC(void)
 	FlashUserGet(&ulUser0, &ulUser1);
 	if ((ulUser0 != 0xffffffff) && (ulUser1 != 0xffffffff))
 	{
-		System_printf("Using MAC address in flash\n");
+		System_printf("Using MAC address in flash");
 		/*
 		 *  Convert the 24/24 split MAC address from NV ram into a 32/16 split MAC
 		 *  address needed to program the hardware registers, then program the MAC

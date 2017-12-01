@@ -150,7 +150,7 @@ uint8_t zbAppRegisterReq(AppRegisterReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -217,7 +217,7 @@ uint8_t zbPermitJoiningReq(PermitJoiningReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -260,7 +260,7 @@ uint8_t zbBindDevice(BindDeviceFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -300,7 +300,7 @@ uint8_t zbAllowBind(AllowBindFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -354,7 +354,7 @@ uint8_t zbSendDataReq(SendDataReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -394,7 +394,7 @@ uint8_t zbFindDeviceReq(FindDeviceReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -440,7 +440,7 @@ uint8_t zbWriteConfiguration(WriteConfigurationFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -479,7 +479,7 @@ uint8_t zbGetDeviceInfo(GetDeviceInfoFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -519,7 +519,7 @@ uint8_t zbReadConfiguration(ReadConfigurationFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated\n");
+		log_warn("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -544,7 +544,7 @@ static void processReadConfigurationSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		ReadConfigurationSrspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -583,7 +583,7 @@ static void processGetDeviceInfoSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		GetDeviceInfoSrspFormat_t rsp;
 		if (rpcLen < 9)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -618,7 +618,7 @@ static void processFindDeviceCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		FindDeviceCnfFormat_t rsp;
 		if (rpcLen < 11)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -653,7 +653,7 @@ static void processSendDataCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		SendDataCnfFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -684,7 +684,7 @@ static void processReceiveDataInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		ReceiveDataIndFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -725,7 +725,7 @@ static void processAllowBindCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		AllowBindCnfFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -755,7 +755,7 @@ static void processBindCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		BindCnfFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -786,7 +786,7 @@ static void processStartCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		StartCnfFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH\n");
+			printf("MT_RPC_ERR_LENGTH");
 		}
 		//printf("rpcLen = %d\n", rpcLen);
 
@@ -815,12 +815,12 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	{
 	case MT_SAPI_READ_CONFIGURATION:
 		log_dbg(
-		        "sapiProcess: MT_SAPI_READ_CONFIGURATION\n");
+		        "sapiProcess: MT_SAPI_READ_CONFIGURATION");
 		processReadConfigurationSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SAPI_GET_DEVICE_INFO:
 		log_dbg(
-		        "sapiProcess: MT_SAPI_GET_DEVICE_INFO\n");
+		        "sapiProcess: MT_SAPI_GET_DEVICE_INFO");
 		processGetDeviceInfoSrsp(rpcBuff, rpcLen);
 		break;
 	default:
@@ -857,30 +857,30 @@ void sapiProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 		{
 		case MT_SAPI_FIND_DEVICE_CNF:
 			log_dbg(
-			        "sapiProcess: MT_SAPI_FIND_DEVICE_CNF\n");
+			        "sapiProcess: MT_SAPI_FIND_DEVICE_CNF");
 			processFindDeviceCnf(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_SEND_DATA_CNF:
 			log_dbg(
-			        "sapiProcess: MT_SAPI_SEND_DATA_CNF\n");
+			        "sapiProcess: MT_SAPI_SEND_DATA_CNF");
 			processSendDataCnf(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_RECEIVE_DATA_IND:
 			log_dbg(
-			        "sapiProcess: MT_SAPI_RECEIVE_DATA_IND\n");
+			        "sapiProcess: MT_SAPI_RECEIVE_DATA_IND");
 			processReceiveDataInd(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_ALLOW_BIND_CNF:
 			log_dbg(
-			        "sapiProcess: MT_SAPI_ALLOW_BIND_CNF\n");
+			        "sapiProcess: MT_SAPI_ALLOW_BIND_CNF");
 			processAllowBindCnf(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_BIND_CNF:
-			log_dbg("sapiProcess: MT_SAPI_BIND_CNF\n");
+			log_dbg("sapiProcess: MT_SAPI_BIND_CNF");
 			processBindCnf(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_START_CNF:
-			log_dbg("sapiProcess: MT_SAPI_START_CNF\n");
+			log_dbg("sapiProcess: MT_SAPI_START_CNF");
 			processStartCnf(rpcBuff, rpcLen);
 			break;
 

@@ -125,6 +125,6 @@ int nanosleep(timespec* req, timespec* rem)
 
 	Task_sleep(sleepTicks);
 
-	//consolePrint("nanosleep--\n");
+	//consolePrint("nanosleep--");
 	return 0;
 }
