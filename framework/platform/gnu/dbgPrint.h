@@ -38,6 +38,8 @@
 #ifndef DBGPRINT_H
 #define DBGPRINT_H
 
+#include <stdarg.h>
+
 #ifdef __cplusplus
 extern "C"
 {
