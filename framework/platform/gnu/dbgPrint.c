@@ -127,12 +127,18 @@ static int _get_log_level()
  * @return      None.
  **************************************************************************************************
  */
-void dbg_print(int print_level, const char *fmt, ...)
+void dbg_print(int print_level, const char *fmt, va_list argp)
 {
     char buffer[MAX_LOG_LINE_SIZE] = {0};
     time_t rawtime;
     struct tm *tm_cur;
     char *color, *prefix;
+    int index = -1;
+
+	if (print_level > _get_log_level())
+	{
+		return;
+	}
 
     switch(print_level)
     {
@@ -165,20 +171,14 @@ void dbg_print(int print_level, const char *fmt, ...)
 
     time(&rawtime);
     tm_cur = localtime (&rawtime);
-    snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : %s\n",
+    index = snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : ",
             tm_cur->tm_mday, tm_cur->tm_mon+1, tm_cur->tm_year + 1900, tm_cur->tm_hour, tm_cur->tm_min, tm_cur->tm_sec,
-            color, prefix, ANSI_COLOR_RESET, fmt);
-	if (print_level > _get_log_level())
-	{
-		return;
-	}
-	else
-	{
-		va_list argp;
-		va_start(argp, fmt);
-		printf(buffer, argp);
-		va_end(argp);
-	}
+            color, prefix, ANSI_COLOR_RESET);
+    if(index < 0)
+        return;
+
+    vsnprintf(buffer + index, MAX_LOG_LINE_SIZE - index, fmt, argp);
+    fprintf(stdout, "%s\n", buffer);
 }
 
 void log_err(const char *fmt, ...)

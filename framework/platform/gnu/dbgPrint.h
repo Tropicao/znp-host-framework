@@ -55,7 +55,7 @@ enum
 #define PRINT_LEVEL PRINT_LEVEL_WARNING
 //#define PRINT_LEVEL PRINT_LEVEL_VERBOSE
 
-void dbg_print(int printf_level, const char *fmt, ...);
+void dbg_print(int printf_level, const char *fmt, va_list argp);
 void log_err(const char *fmt, ...);
 void log_warn(const char *fmt, ...);
 void log_linf(const char *fmt, ...);
