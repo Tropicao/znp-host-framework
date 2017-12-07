@@ -586,6 +586,6 @@ static void printRpcMsg(char* preMsg, uint8_t sof, uint8_t len, uint8_t *msg)
 	}
 
 	// print FCS
-	log_dbg(" FCS:%02X", msg[i]);
+	log_dbg("FCS:%02X", msg[i]);
 
 }
