@@ -574,10 +574,11 @@ static void printRpcMsg(char* preMsg, uint8_t sof, uint8_t len, uint8_t *msg)
 
 	// print headers
 	log_dbg(
-	        "%s %d Bytes: SOF:%02X, Len:%02X, CMD0:%02X, CMD1:%02X, Payload:",
+	        "%s %d Bytes: SOF:%02X, Len:%02X, CMD0:%02X, CMD1:%02X",
 	        preMsg, len + 5, sof, len, msg[0], msg[1]);
 
 	// print frame payload
+    log_dbg_no_line_return("Payload:");
 	for (i = 2; i < len + 2; i++)
 	{
 		log_dbg_no_line_return("%02X%s", msg[i],
