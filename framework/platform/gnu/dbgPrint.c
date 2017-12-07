@@ -124,16 +124,22 @@ static int _get_log_level()
  */
 static void dbg_print(int print_level, const char *fmt, va_list argp)
 {
+    static int env_print_level = -1;
     char buffer[MAX_LOG_LINE_SIZE] = {0};
     time_t rawtime;
     struct tm *tm_cur;
     char *color, *prefix;
     int index = -1;
 
-	if (print_level > _get_log_level())
-	{
+    if(env_print_level < 0)
+    {
+        env_print_level = _get_log_level();
+    }
+
+	if (print_level > env_print_level)
+    {
 		return;
-	}
+    }
 
     switch(print_level)
     {
