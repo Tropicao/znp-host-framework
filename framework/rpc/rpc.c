@@ -580,7 +580,7 @@ static void printRpcMsg(char* preMsg, uint8_t sof, uint8_t len, uint8_t *msg)
 	// print frame payload
 	for (i = 2; i < len + 2; i++)
 	{
-		log_dbg("%02X%s", msg[i],
+		log_dbg_no_line_return("%02X%s", msg[i],
 		        i < (len + 2 - 1) ? ":" : ",");
 	}
 
