@@ -45,8 +45,12 @@ rtdep = cc.find_library('rt')
 pthreaddep = dependency('threads')
 dep = [rtdep, pthreaddep]
 
+# Build options
+cflags=['-Wall', '-Wextra', '-Werror']
+
 shared_library('znp',
     sources: src,
+    c_args: cflags,
     include_directories: incdir,
     dependencies: dep,
     version: '1.0.0',
