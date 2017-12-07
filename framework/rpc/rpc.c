@@ -130,7 +130,7 @@ int32_t rpcOpen(char *_devicePath, uint32_t port)
 	if (fd < 0)
 	{
 		perror(_devicePath);
-		log_err("rpcOpen: %s device open failed",
+		log_cri("rpcOpen: %s device open failed",
 		        _devicePath);
 		return (-1);
 	}
@@ -206,7 +206,7 @@ int32_t rpcGetMqClientMsg(void)
 	}
 	else
 	{
-		log_warn("rpcWaitMqClient: Timeout");
+		log_err("rpcWaitMqClient: Timeout");
 		return -1;
 	}
 
@@ -334,7 +334,7 @@ int32_t rpcProcess(void)
 				if (bytesRead > rpcTempLen)
 				{
 					//there was an error
-					log_warn(
+					log_err(
 					        "rpcProcess: read of %d bytes failed - %s",
 					        rpcTempLen, strerror(errno));
 
@@ -350,7 +350,7 @@ int32_t rpcProcess(void)
 					else
 					{
 						// something went wrong, abort
-						log_err(
+						log_cri(
 						        "rpcProcess: transport read failed too many times");
 
 						return -1;
@@ -376,7 +376,7 @@ int32_t rpcProcess(void)
 			fcs = calcFcs(&rpcBuff[0], (len + 3));
 			if (rpcBuff[len + 3] != fcs)
 			{
-				log_warn("rpcProcess: fcs error %x:%x",
+				log_err("rpcProcess: fcs error %x:%x",
 				        rpcBuff[len + 3], fcs);
 				return -1;
 			}
@@ -403,7 +403,7 @@ int32_t rpcProcess(void)
 				else
 				{
 					// unexpected SRSP discard
-					log_warn(
+					log_err(
 					        "rpcProcess: UNEXPECTED SREQ!: %02X:%02X",
 					        expectedSrspCmdId,
 					        (rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK));
@@ -425,13 +425,13 @@ int32_t rpcProcess(void)
 		}
 		else
 		{
-			log_warn("rpcProcess: Len Not read [%x]",
+			log_err("rpcProcess: Len Not read [%x]",
 			        bytesRead);
 		}
 	}
 	else
 	{
-		log_warn(
+		log_err(
 		        "rpcProcess: No valid Start Of Frame found [%x:%x]", sofByte,
 		        bytesRead);
 	}
@@ -508,7 +508,7 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 		status = sem_timedwait(&srspSem, &srspTimeOut);
 		if (status == -1)
 		{
-			log_warn(
+			log_err(
 			        "rpcSendFrame: SRSP Error - CMD0: 0x%02X CMD1: 0x%02X",
 			        cmd0, cmd1);
 			status = MT_RPC_ERR_SUBSYSTEM;
@@ -573,18 +573,18 @@ static void printRpcMsg(char* preMsg, uint8_t sof, uint8_t len, uint8_t *msg)
 	uint8_t i;
 
 	// print headers
-	log_linf(
+	log_dbg(
 	        "%s %d Bytes: SOF:%02X, Len:%02X, CMD0:%02X, CMD1:%02X, Payload:",
 	        preMsg, len + 5, sof, len, msg[0], msg[1]);
 
 	// print frame payload
 	for (i = 2; i < len + 2; i++)
 	{
-		log_linf("%02X%s", msg[i],
+		log_dbg("%02X%s", msg[i],
 		        i < (len + 2 - 1) ? ":" : ",");
 	}
 
 	// print FCS
-	log_linf(" FCS:%02X", msg[i]);
+	log_dbg(" FCS:%02X", msg[i]);
 
 }

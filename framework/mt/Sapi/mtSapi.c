@@ -150,7 +150,7 @@ uint8_t zbAppRegisterReq(AppRegisterReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -217,7 +217,7 @@ uint8_t zbPermitJoiningReq(PermitJoiningReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -260,7 +260,7 @@ uint8_t zbBindDevice(BindDeviceFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -300,7 +300,7 @@ uint8_t zbAllowBind(AllowBindFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -354,7 +354,7 @@ uint8_t zbSendDataReq(SendDataReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -394,7 +394,7 @@ uint8_t zbFindDeviceReq(FindDeviceReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -440,7 +440,7 @@ uint8_t zbWriteConfiguration(WriteConfigurationFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -479,7 +479,7 @@ uint8_t zbGetDeviceInfo(GetDeviceInfoFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -519,7 +519,7 @@ uint8_t zbReadConfiguration(ReadConfigurationFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }

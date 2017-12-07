@@ -47,20 +47,19 @@ extern "C"
 
 enum
 {
-	PRINT_LEVEL_ERROR,
-	PRINT_LEVEL_WARNING,
-	PRINT_LEVEL_INFO,
-	PRINT_LEVEL_INFO_LOWLEVEL,
-	PRINT_LEVEL_VERBOSE
+	PRINT_LEVEL_CRI,
+	PRINT_LEVEL_ERR,
+	PRINT_LEVEL_WARN,
+	PRINT_LEVEL_INF,
+	PRINT_LEVEL_DBG
 };
 
-#define PRINT_LEVEL PRINT_LEVEL_WARNING
+#define PRINT_LEVEL PRINT_LEVEL_WARN
 //#define PRINT_LEVEL PRINT_LEVEL_VERBOSE
 
-void dbg_print(int printf_level, const char *fmt, va_list argp);
+void log_cri(const char *fmt, ...);
 void log_err(const char *fmt, ...);
 void log_warn(const char *fmt, ...);
-void log_linf(const char *fmt, ...);
 void log_inf(const char *fmt, ...);
 void log_dbg(const char *fmt, ...);
 

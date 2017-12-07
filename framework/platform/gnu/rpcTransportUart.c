@@ -106,7 +106,7 @@ int32_t rpcTransportOpen(char *_devicePath, uint32_t port)
 	{
 		if (strlen(_devicePath) > (sizeof(lastUsedDevicePath) - 1))
 		{
-			log_err(
+			log_cri(
 			        "rpcTransportOpen: %s - device path too long",
 			        _devicePath);
 			return (-1);
@@ -124,7 +124,7 @@ int32_t rpcTransportOpen(char *_devicePath, uint32_t port)
 	if (serialPortFd < 0)
 	{
 		perror(devicePath);
-		log_err("rpcTransportOpen: %s open failed",
+		log_cri("rpcTransportOpen: %s open failed",
 		        devicePath);
 		return (-1);
 	}

@@ -60,11 +60,11 @@
 #define ANSI_COLOR_CYAN     "\x1b[36m"
 #define ANSI_COLOR_RESET    "\x1b[0m"
 #define MAX_LOG_LINE_SIZE   512
+#define PREFIX_CRI          "CRI"
 #define PREFIX_ERR          "ERR"
-#define PREFIX_WARNING      "WARN"
-#define PREFIX_LOW_INFO     "LINF"
-#define PREFIX_INFO         "INF"
-#define PREFIX_DEBUG        "DBG"
+#define PREFIX_WARN         "WARN"
+#define PREFIX_INF          "INF"
+#define PREFIX_DBG          "DBG"
 #define PREFIX_NONE         "..."
 
 /*********************************************************************
@@ -88,16 +88,16 @@ static int _get_log_level()
     char *env = getenv(PRINT_LEVEL_ENV);
     if(env)
     {
-        if(strcmp(env, "LOG_ERROR") == 0)
-           result = PRINT_LEVEL_ERROR;
-        else if(strcmp(env, "LOG_WARNING") == 0)
-           result = PRINT_LEVEL_WARNING;
-        else if(strcmp(env, "LOG_INFO") == 0)
-           result = PRINT_LEVEL_INFO;
-        else if(strcmp(env, "LOG_INFO_LOWLEVEL") == 0)
-           result = PRINT_LEVEL_INFO_LOWLEVEL;
-        else if(strcmp(env, "LOG_VERBOSE") == 0)
-           result = PRINT_LEVEL_VERBOSE;
+        if(strcmp(env, "LOG_CRI") == 0)
+           result = PRINT_LEVEL_CRI;
+        else if(strcmp(env, "LOG_ERR") == 0)
+           result = PRINT_LEVEL_ERR;
+        else if(strcmp(env, "LOG_WARN") == 0)
+           result = PRINT_LEVEL_WARN;
+        else if(strcmp(env, "LOG_INF") == 0)
+           result = PRINT_LEVEL_INF;
+        else if(strcmp(env, "LOG_DBG") == 0)
+           result = PRINT_LEVEL_DBG;
     }
 
     if(result == -1)
@@ -106,12 +106,7 @@ static int _get_log_level()
 }
 
 
-
-/*********************************************************************
- * API FUNCTIONS
- */
-
-/**************************************************************************************************
+/**
  * @fn          dbgPrint
  *
  * @brief       This function checks the print level and prints if required.
@@ -127,7 +122,7 @@ static int _get_log_level()
  * @return      None.
  **************************************************************************************************
  */
-void dbg_print(int print_level, const char *fmt, va_list argp)
+static void dbg_print(int print_level, const char *fmt, va_list argp)
 {
     char buffer[MAX_LOG_LINE_SIZE] = {0};
     time_t rawtime;
@@ -142,25 +137,25 @@ void dbg_print(int print_level, const char *fmt, va_list argp)
 
     switch(print_level)
     {
-        case PRINT_LEVEL_ERROR:
+        case PRINT_LEVEL_CRI:
             color = ANSI_COLOR_RED;
+            prefix = PREFIX_CRI;
+            break;
+        case PRINT_LEVEL_ERR:
+            color = ANSI_COLOR_YELLOW;
             prefix = PREFIX_ERR;
             break;
-        case PRINT_LEVEL_WARNING:
-            color = ANSI_COLOR_YELLOW;
-            prefix = PREFIX_WARNING;
-            break;
-        case PRINT_LEVEL_INFO_LOWLEVEL:
+        case PRINT_LEVEL_WARN:
             color = ANSI_COLOR_MAGENTA;
-            prefix = PREFIX_LOW_INFO;
+            prefix = PREFIX_WARN;
             break;
-        case PRINT_LEVEL_INFO:
+        case PRINT_LEVEL_INF:
             color = ANSI_COLOR_GREEN;
-            prefix = PREFIX_INFO;
+            prefix = PREFIX_INF;
             break;
-        case PRINT_LEVEL_VERBOSE:
+        case PRINT_LEVEL_DBG:
             color = ANSI_COLOR_BLUE;
-            prefix = PREFIX_DEBUG;
+            prefix = PREFIX_DBG;
             break;
         default:
             color = ANSI_COLOR_RESET;
@@ -181,11 +176,24 @@ void dbg_print(int print_level, const char *fmt, va_list argp)
     fprintf(stdout, "%s\n", buffer);
 }
 
+
+/*********************************************************************
+ * API FUNCTIONS
+*********************************************************************/
+
+void log_cri(const char *fmt, ...)
+{
+    va_list argp;
+    va_start(argp, fmt);
+    dbg_print(PRINT_LEVEL_CRI, fmt, argp);
+    va_end(argp);
+}
+
 void log_err(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_ERROR, fmt, argp);
+    dbg_print(PRINT_LEVEL_ERR, fmt, argp);
     va_end(argp);
 }
 
@@ -193,15 +201,7 @@ void log_warn(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_WARNING, fmt, argp);
-    va_end(argp);
-}
-
-void log_linf(const char *fmt, ...)
-{
-    va_list argp;
-    va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_INFO_LOWLEVEL, fmt, argp);
+    dbg_print(PRINT_LEVEL_WARN, fmt, argp);
     va_end(argp);
 }
 
@@ -209,7 +209,7 @@ void log_inf(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_INFO, fmt, argp);
+    dbg_print(PRINT_LEVEL_INF, fmt, argp);
     va_end(argp);
 }
 
@@ -217,6 +217,6 @@ void log_dbg(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_VERBOSE, fmt, argp);
+    dbg_print(PRINT_LEVEL_DBG, fmt, argp);
     va_end(argp);
 }

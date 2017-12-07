@@ -111,7 +111,7 @@ uint8_t afRegister(RegisterFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -157,7 +157,7 @@ uint8_t afDataRequest(DataRequestFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -206,7 +206,7 @@ uint8_t afDataRequestExt(DataRequestExtFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -257,7 +257,7 @@ uint8_t afDataRequestSrcRtg(DataRequestSrcRtgFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -293,7 +293,7 @@ uint8_t afInterPanCtl(InterPanCtlFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -331,7 +331,7 @@ uint8_t afDataStore(DataStoreFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -476,7 +476,7 @@ uint8_t afDataRetrieve(DataRetrieveFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -534,7 +534,7 @@ uint8_t afApsfConfigSet(ApsfConfigSetFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -618,7 +618,7 @@ void afProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 			processReflectError(rpcBuff, rpcLen);
 			break;
 		default:
-			log_warn(
+			log_err(
 			        "processRpcAf: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
 			        rpcBuff[1]);
 			break;

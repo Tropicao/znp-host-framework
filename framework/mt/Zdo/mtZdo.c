@@ -127,7 +127,7 @@ uint8_t zdoNwkAddrReq(NwkAddrReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -170,7 +170,7 @@ uint8_t zdoIeeeAddrReq(IeeeAddrReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -213,7 +213,7 @@ uint8_t zdoNodeDescReq(NodeDescReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -256,7 +256,7 @@ uint8_t zdoPowerDescReq(PowerDescReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -300,7 +300,7 @@ uint8_t zdoSimpleDescReq(SimpleDescReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -343,7 +343,7 @@ uint8_t zdoActiveEpReq(ActiveEpReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -402,7 +402,7 @@ uint8_t zdoMatchDescReq(MatchDescReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -445,7 +445,7 @@ uint8_t zdoComplexDescReq(ComplexDescReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -488,7 +488,7 @@ uint8_t zdoUserDescReq(UserDescReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -532,7 +532,7 @@ uint8_t zdoDeviceAnnce(DeviceAnnceFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -582,7 +582,7 @@ uint8_t zdoUserDescSet(UserDescSetFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -623,7 +623,7 @@ uint8_t zdoServerDiscReq(ServerDiscReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -685,7 +685,7 @@ uint8_t zdoEndDeviceBindReq(EndDeviceBindReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -738,7 +738,7 @@ uint8_t zdoBindReq(BindReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -791,7 +791,7 @@ uint8_t zdoUnbindReq(UnbindReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -836,7 +836,7 @@ uint8_t zdoMgmtNwkDiscReq(MgmtNwkDiscReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -878,7 +878,7 @@ uint8_t zdoMgmtLqiReq(MgmtLqiReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -920,7 +920,7 @@ uint8_t zdoMgmtRtgReq(MgmtRtgReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -962,7 +962,7 @@ uint8_t zdoMgmtBindReq(MgmtBindReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1006,7 +1006,7 @@ uint8_t zdoMgmtLeaveReq(MgmtLeaveReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1050,7 +1050,7 @@ uint8_t zdoMgmtDirectJoinReq(MgmtDirectJoinReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1094,7 +1094,7 @@ uint8_t zdoMgmtPermitJoinReq(MgmtPermitJoinReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1142,7 +1142,7 @@ uint8_t zdoMgmtNwkUpdateReq(MgmtNwkUpdateReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1182,7 +1182,7 @@ uint8_t zdoStartupFromApp(StartupFromAppFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1222,7 +1222,7 @@ uint8_t zdoAutoFindDestination(AutoFindDestinationFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1267,7 +1267,7 @@ uint8_t zdoSetLinkKey(SetLinkKeyFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1308,7 +1308,7 @@ uint8_t zdoRemoveLinkKey(RemoveLinkKeyFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1349,7 +1349,7 @@ uint8_t zdoGetLinkKey(GetLinkKeyFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1391,7 +1391,7 @@ uint8_t zdoNwkDiscoveryReq(NwkDiscoveryReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1439,7 +1439,7 @@ uint8_t zdoJoinReq(JoinReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1480,7 +1480,7 @@ uint8_t zdoMsgCbRegister(MsgCbRegisterFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1521,7 +1521,7 @@ uint8_t zdoMsgCbRemove(MsgCbRemoveFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -2814,7 +2814,7 @@ uint8_t zdoInit(void)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -2992,7 +2992,7 @@ void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 			break;
 
 		default:
-			log_warn(
+			log_err(
 			        "zdoProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
 			        rpcBuff[1]);
 			break;

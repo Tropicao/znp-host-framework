@@ -158,7 +158,7 @@ uint8_t sysSetExtAddr(SetExtAddrFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -254,7 +254,7 @@ uint8_t sysRamRead(RamReadFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -339,7 +339,7 @@ uint8_t sysRamWrite(RamWriteFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -378,7 +378,7 @@ uint8_t sysResetReq(ResetReqFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -514,7 +514,7 @@ uint8_t sysOsalNvRead(OsalNvReadFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -600,7 +600,7 @@ uint8_t sysOsalNvWrite(OsalNvWriteFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -650,7 +650,7 @@ uint8_t sysOsalNvItemInit(OsalNvItemInitFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -693,7 +693,7 @@ uint8_t sysOsalNvDelete(OsalNvDeleteFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -734,7 +734,7 @@ uint8_t sysOsalNvLength(OsalNvLengthFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -808,7 +808,7 @@ uint8_t sysOsalStartTimer(OsalStartTimerFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -847,7 +847,7 @@ uint8_t sysOsalStopTimer(OsalStopTimerFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -916,7 +916,7 @@ uint8_t sysStackTune(StackTuneFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -986,7 +986,7 @@ uint8_t sysAdcRead(AdcReadFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1057,7 +1057,7 @@ uint8_t sysGpio(GpioFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1191,7 +1191,7 @@ uint8_t sysSetTime(SetTimeFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1294,7 +1294,7 @@ uint8_t sysSetTxPower(SetTxPowerFormat_t *req)
 	}
 	else
 	{
-		log_warn("Memory for cmd was not allocated");
+		log_err("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1448,7 +1448,7 @@ void sysProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 			processOsalTimerExpired(rpcBuff, rpcLen);
 			break;
 		default:
-			log_warn(
+			log_err(
 			        "processRpcSys: CMD0:%x, CMD1:%x, not handled",
 			        rpcBuff[0], rpcBuff[1]);
 			break;
