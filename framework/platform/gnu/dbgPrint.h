@@ -45,6 +45,13 @@ extern "C"
 {
 #endif
 
+#define LOG_CRI(x, ...)        log_cri(__FILE__, __func__, x,  ##__VA_ARGS__)
+#define LOG_ERR(x, ...)        log_err(__FILE__, __func__, x, ##__VA_ARGS__)
+#define LOG_WARN(x, ...)       log_warn(__FILE__, __func__, x, ##__VA_ARGS__)
+#define LOG_INF(x, ...)        log_inf(__FILE__, __func__, x, ##__VA_ARGS__)
+#define LOG_DBG(x, ...)        log_dbg(__FILE__, __func__, x, ##__VA_ARGS__)
+#define LOG_DBG_NLR(x, ...)    log_dbg_no_line_return(__FILE__, __func__, x, ##__VA_ARGS__)
+
 enum
 {
 	PRINT_LEVEL_CRI,
@@ -57,12 +64,12 @@ enum
 #define PRINT_LEVEL PRINT_LEVEL_WARN
 //#define PRINT_LEVEL PRINT_LEVEL_VERBOSE
 
-void log_cri(const char *fmt, ...);
-void log_err(const char *fmt, ...);
-void log_warn(const char *fmt, ...);
-void log_inf(const char *fmt, ...);
-void log_dbg(const char *fmt, ...);
-void log_dbg_no_line_return(const char *fmt, ...);
+void log_cri(const char *file, const char *func, const char *fmt, ...);
+void log_err(const char *file, const char *func, const char *fmt, ...);
+void log_warn(const char *file, const char *func, const char *fmt, ...);
+void log_inf(const char *file, const char *func, const char *fmt, ...);
+void log_dbg(const char *file, const char *func, const char *fmt, ...);
+void log_dbg_no_line_return(const char *file, const char *func, const char *fmt, ...);
 
 #ifdef __cplusplus
 }

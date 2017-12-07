@@ -127,7 +127,7 @@ uint8_t zdoNwkAddrReq(NwkAddrReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -170,7 +170,7 @@ uint8_t zdoIeeeAddrReq(IeeeAddrReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -213,7 +213,7 @@ uint8_t zdoNodeDescReq(NodeDescReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -256,7 +256,7 @@ uint8_t zdoPowerDescReq(PowerDescReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -300,7 +300,7 @@ uint8_t zdoSimpleDescReq(SimpleDescReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -343,7 +343,7 @@ uint8_t zdoActiveEpReq(ActiveEpReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -402,7 +402,7 @@ uint8_t zdoMatchDescReq(MatchDescReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -445,7 +445,7 @@ uint8_t zdoComplexDescReq(ComplexDescReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -488,7 +488,7 @@ uint8_t zdoUserDescReq(UserDescReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -532,7 +532,7 @@ uint8_t zdoDeviceAnnce(DeviceAnnceFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -582,7 +582,7 @@ uint8_t zdoUserDescSet(UserDescSetFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -623,7 +623,7 @@ uint8_t zdoServerDiscReq(ServerDiscReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -685,7 +685,7 @@ uint8_t zdoEndDeviceBindReq(EndDeviceBindReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -738,7 +738,7 @@ uint8_t zdoBindReq(BindReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -791,7 +791,7 @@ uint8_t zdoUnbindReq(UnbindReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -836,7 +836,7 @@ uint8_t zdoMgmtNwkDiscReq(MgmtNwkDiscReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -878,7 +878,7 @@ uint8_t zdoMgmtLqiReq(MgmtLqiReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -920,7 +920,7 @@ uint8_t zdoMgmtRtgReq(MgmtRtgReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -962,7 +962,7 @@ uint8_t zdoMgmtBindReq(MgmtBindReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1006,7 +1006,7 @@ uint8_t zdoMgmtLeaveReq(MgmtLeaveReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1050,7 +1050,7 @@ uint8_t zdoMgmtDirectJoinReq(MgmtDirectJoinReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1094,7 +1094,7 @@ uint8_t zdoMgmtPermitJoinReq(MgmtPermitJoinReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1142,7 +1142,7 @@ uint8_t zdoMgmtNwkUpdateReq(MgmtNwkUpdateReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1182,7 +1182,7 @@ uint8_t zdoStartupFromApp(StartupFromAppFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1222,7 +1222,7 @@ uint8_t zdoAutoFindDestination(AutoFindDestinationFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1267,7 +1267,7 @@ uint8_t zdoSetLinkKey(SetLinkKeyFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1308,7 +1308,7 @@ uint8_t zdoRemoveLinkKey(RemoveLinkKeyFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1349,7 +1349,7 @@ uint8_t zdoGetLinkKey(GetLinkKeyFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1391,7 +1391,7 @@ uint8_t zdoNwkDiscoveryReq(NwkDiscoveryReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1439,7 +1439,7 @@ uint8_t zdoJoinReq(JoinReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1480,7 +1480,7 @@ uint8_t zdoMsgCbRegister(MsgCbRegisterFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -1521,7 +1521,7 @@ uint8_t zdoMsgCbRemove(MsgCbRemoveFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -2814,7 +2814,7 @@ uint8_t zdoInit(void)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -2830,7 +2830,7 @@ uint8_t zdoInit(void)
  ***********************************************************************************************/
 void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 {
-	log_dbg("zdoProcess: processing CMD0:%x, CMD1:%x",
+	LOG_DBG("zdoProcess: processing CMD0:%x, CMD1:%x",
 	        rpcBuff[0], rpcBuff[1]);
 
 	//process the synchronous SRSP from SREQ
@@ -2844,155 +2844,155 @@ void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 		switch (rpcBuff[1])
 		{
 		case MT_ZDO_STATE_CHANGE_IND:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_STATE_CHANGE_IND");
 			processStateChange(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_NWK_ADDR_RSP:
-			log_dbg("zdoProcess: MT_ZDO_NWK_ADDR_RSP");
+			LOG_DBG("zdoProcess: MT_ZDO_NWK_ADDR_RSP");
 			processNwkAddrRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_IEEE_ADDR_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_IEEE_ADDR_RSP");
 			processIeeeAddrRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_NODE_DESC_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_NODE_DESC_RSP");
 			processNodeDescRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_POWER_DESC_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_POWER_DESC_RSP");
 			processPowerDescRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_SIMPLE_DESC_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_SIMPLE_DESC_RSP");
 			processSimpleDescRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_ACTIVE_EP_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_ACTIVE_EP_RSP");
 			processActiveEpRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MATCH_DESC_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_MATCH_DESC_RSP");
 			processMatchDescRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_COMPLEX_DESC_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_COMPLEX_DESC_RSP");
 			processComplexDescRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_USER_DESC_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_USER_DESC_RSP");
 			processUserDescRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_USER_DESC_CONF:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_USER_DESC_CONF");
 			processUserDescConf(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_SERVER_DISC_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_SERVER_DISC_RSP");
 			processServerDiscRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_END_DEVICE_BIND_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_END_DEVICE_BIND_RSP");
 			processEndDeviceBindRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_BIND_RSP:
-			log_dbg("zdoProcess: MT_ZDO_BIND_RSP");
+			LOG_DBG("zdoProcess: MT_ZDO_BIND_RSP");
 			processBindRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_UNBIND_RSP:
-			log_dbg("zdoProcess: MT_ZDO_UNBIND_RSP");
+			LOG_DBG("zdoProcess: MT_ZDO_UNBIND_RSP");
 			processUnbindRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MGMT_NWK_DISC_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_MGMT_NWK_DISC_RSP");
 			processMgmtNwkDiscRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MGMT_LQI_RSP:
-			log_dbg("zdoProcess: MT_ZDO_MGMT_LQI_RSP");
+			LOG_DBG("zdoProcess: MT_ZDO_MGMT_LQI_RSP");
 			processMgmtLqiRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MGMT_RTG_RSP:
-			log_dbg("zdoProcess: MT_ZDO_MGMT_RTG_RSP");
+			LOG_DBG("zdoProcess: MT_ZDO_MGMT_RTG_RSP");
 			processMgmtRtgRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MGMT_BIND_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_MGMT_BIND_RSP");
 			processMgmtBindRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MGMT_LEAVE_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_MGMT_LEAVE_RSP");
 			processMgmtLeaveRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MGMT_DIRECT_JOIN_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_MGMT_DIRECT_JOIN_RSP");
 			processMgmtDirectJoinRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MGMT_PERMIT_JOIN_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_MGMT_PERMIT_JOIN_RSP");
 			processMgmtPermitJoinRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_END_DEVICE_ANNCE_IND:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_END_DEVICE_ANNCE_IND");
 			processEndDeviceAnnceInd(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MATCH_DESC_RSP_SENT:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_MATCH_DESC_RSP_SENT");
 			processMatchDescRspSent(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_STATUS_ERROR_RSP:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_STATUS_ERROR_RSP");
 			processStatusErrorRsp(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_SRC_RTG_IND:
-			log_dbg("zdoProcess: MT_ZDO_SRC_RTG_IND");
+			LOG_DBG("zdoProcess: MT_ZDO_SRC_RTG_IND");
 			processSrcRtgInd(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_BEACON_NOTIFY_IND:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_BEACON_NOTIFY_IND");
 			processBeaconNotifyInd(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_JOIN_CNF:
-			log_dbg("zdoProcess: MT_ZDO_JOIN_CNF");
+			LOG_DBG("zdoProcess: MT_ZDO_JOIN_CNF");
 			processJoinCnf(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_NWK_DISCOVERY_CNF:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_NWK_DISCOVERY_CNF");
 			processNwkDiscoveryCnf(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_LEAVE_IND:
-			log_dbg("zdoProcess: MT_ZDO_LEAVE_IND");
+			LOG_DBG("zdoProcess: MT_ZDO_LEAVE_IND");
 			processLeaveInd(rpcBuff, rpcLen);
 			break;
 		case MT_ZDO_MSG_CB_INCOMING:
-			log_dbg(
+			LOG_DBG(
 			        "zdoProcess: MT_ZDO_MSG_CB_INCOMING");
 			processMsgCbIncoming(rpcBuff, rpcLen);
 			break;
 
 		default:
-			log_err(
+			LOG_ERR(
 			        "zdoProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
 			        rpcBuff[1]);
 			break;
@@ -3017,14 +3017,14 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	switch (rpcBuff[1])
 	{
 	case MT_ZDO_GET_LINK_KEY:
-		log_dbg("zdoProcess: MT_ZDO_GET_LINK_KEY");
+		LOG_DBG("zdoProcess: MT_ZDO_GET_LINK_KEY");
 		processGetLinkKey(rpcBuff, rpcLen);
 		break;
     case MT_ZDO_NWK_DISCOVERY_REQ:
-		log_dbg("zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s", rpcBuff[2] ? "ERROR":"SUCCESS");
+		LOG_DBG("zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s", rpcBuff[2] ? "ERROR":"SUCCESS");
         break;
 	default:
-		log_inf("processSrsp: unsupported ZDO message : %d (0x%02X)", rpcBuff[1], rpcBuff[1]);
+		LOG_INF("processSrsp: unsupported ZDO message : %d (0x%02X)", rpcBuff[1], rpcBuff[1]);
 		break;
 	}
 }

@@ -150,7 +150,7 @@ uint8_t zbAppRegisterReq(AppRegisterReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -217,7 +217,7 @@ uint8_t zbPermitJoiningReq(PermitJoiningReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -260,7 +260,7 @@ uint8_t zbBindDevice(BindDeviceFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -300,7 +300,7 @@ uint8_t zbAllowBind(AllowBindFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -354,7 +354,7 @@ uint8_t zbSendDataReq(SendDataReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -394,7 +394,7 @@ uint8_t zbFindDeviceReq(FindDeviceReqFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -440,7 +440,7 @@ uint8_t zbWriteConfiguration(WriteConfigurationFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -479,7 +479,7 @@ uint8_t zbGetDeviceInfo(GetDeviceInfoFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -519,7 +519,7 @@ uint8_t zbReadConfiguration(ReadConfigurationFormat_t *req)
 	}
 	else
 	{
-		log_err("Memory for cmd was not allocated");
+		LOG_ERR("Memory for cmd was not allocated");
 		return 1;
 	}
 }
@@ -814,17 +814,17 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	switch (rpcBuff[1])
 	{
 	case MT_SAPI_READ_CONFIGURATION:
-		log_dbg(
+		LOG_DBG(
 		        "sapiProcess: MT_SAPI_READ_CONFIGURATION");
 		processReadConfigurationSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SAPI_GET_DEVICE_INFO:
-		log_dbg(
+		LOG_DBG(
 		        "sapiProcess: MT_SAPI_GET_DEVICE_INFO");
 		processGetDeviceInfoSrsp(rpcBuff, rpcLen);
 		break;
 	default:
-		log_inf(
+		LOG_INF(
 		        "processSrsp: unsupported message  [%x:%x]", rpcBuff[0],
 		        rpcBuff[1]);
 		break;
@@ -842,7 +842,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
  ***********************************************************************************************/
 void sapiProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 {
-	log_dbg("sapiProcess: processing CMD0:%x, CMD1:%x",
+	LOG_DBG("sapiProcess: processing CMD0:%x, CMD1:%x",
 	        rpcBuff[0], rpcBuff[1]);
 
 //process the synchronous SRSP from SREQ
@@ -856,36 +856,36 @@ void sapiProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 		switch (rpcBuff[1])
 		{
 		case MT_SAPI_FIND_DEVICE_CNF:
-			log_dbg(
+			LOG_DBG(
 			        "sapiProcess: MT_SAPI_FIND_DEVICE_CNF");
 			processFindDeviceCnf(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_SEND_DATA_CNF:
-			log_dbg(
+			LOG_DBG(
 			        "sapiProcess: MT_SAPI_SEND_DATA_CNF");
 			processSendDataCnf(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_RECEIVE_DATA_IND:
-			log_dbg(
+			LOG_DBG(
 			        "sapiProcess: MT_SAPI_RECEIVE_DATA_IND");
 			processReceiveDataInd(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_ALLOW_BIND_CNF:
-			log_dbg(
+			LOG_DBG(
 			        "sapiProcess: MT_SAPI_ALLOW_BIND_CNF");
 			processAllowBindCnf(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_BIND_CNF:
-			log_dbg("sapiProcess: MT_SAPI_BIND_CNF");
+			LOG_DBG("sapiProcess: MT_SAPI_BIND_CNF");
 			processBindCnf(rpcBuff, rpcLen);
 			break;
 		case MT_SAPI_START_CNF:
-			log_dbg("sapiProcess: MT_SAPI_START_CNF");
+			LOG_DBG("sapiProcess: MT_SAPI_START_CNF");
 			processStartCnf(rpcBuff, rpcLen);
 			break;
 
 		default:
-			log_inf(
+			LOG_INF(
 			        "sapiProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
 			        rpcBuff[1]);
 			break;

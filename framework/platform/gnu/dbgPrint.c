@@ -45,6 +45,7 @@
 #include <string.h>
 #include <time.h>
 #include <stdint.h>
+#include <libgen.h>
 
 #include "dbgPrint.h"
 
@@ -123,7 +124,7 @@ static int _get_log_level()
  * @return      None.
  **************************************************************************************************
  */
-static void dbg_print(int print_level, const char *fmt, va_list argp, uint8_t no_line_return)
+static void dbg_print(int print_level, const char *file, const char *func, const char *fmt, va_list argp, uint8_t no_line_return)
 {
     static int env_print_level = -1;
     char buffer[MAX_LOG_LINE_SIZE] = {0};
@@ -173,9 +174,10 @@ static void dbg_print(int print_level, const char *fmt, va_list argp, uint8_t no
 
     time(&rawtime);
     tm_cur = localtime (&rawtime);
-    index = snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : ",
+    index = snprintf(buffer, MAX_LOG_LINE_SIZE, "%02d/%02d/%04d %02d:%02d:%02d %s%5s%s : [%s] %s : ",
             tm_cur->tm_mday, tm_cur->tm_mon+1, tm_cur->tm_year + 1900, tm_cur->tm_hour, tm_cur->tm_min, tm_cur->tm_sec,
-            color, prefix, ANSI_COLOR_RESET);
+            color, prefix, ANSI_COLOR_RESET,
+            basename((char *)file), func);
     if(index < 0)
         return;
 
@@ -185,55 +187,54 @@ static void dbg_print(int print_level, const char *fmt, va_list argp, uint8_t no
     fflush(stdout);
 }
 
-
 /*********************************************************************
  * API FUNCTIONS
 *********************************************************************/
 
-void log_cri(const char *fmt, ...)
+void log_cri(const char *file, const char *func, const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_CRI, fmt, argp, 0);
+    dbg_print(PRINT_LEVEL_CRI, file, func, fmt, argp, 0);
     va_end(argp);
 }
 
-void log_err(const char *fmt, ...)
+void log_err(const char *file, const char *func, const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_ERR, fmt, argp, 0);
+    dbg_print(PRINT_LEVEL_ERR, file, func, fmt, argp, 0);
     va_end(argp);
 }
 
-void log_warn(const char *fmt, ...)
+void log_warn(const char *file, const char *func, const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_WARN, fmt, argp, 0);
+    dbg_print(PRINT_LEVEL_WARN, file, func, fmt, argp, 0);
     va_end(argp);
 }
 
-void log_inf(const char *fmt, ...)
+void log_inf(const char *file, const char *func, const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_INF, fmt, argp, 0);
+    dbg_print(PRINT_LEVEL_INF, file, func, fmt, argp, 0);
     va_end(argp);
 }
 
-void log_dbg(const char *fmt, ...)
+void log_dbg(const char *file, const char *func, const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_DBG, fmt, argp, 0);
+    dbg_print(PRINT_LEVEL_DBG, file, func, fmt, argp, 0);
     va_end(argp);
 }
 
-void log_dbg_no_line_return(const char *fmt, ...)
+void log_dbg_no_line_return(const char *file, const char *func, const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_DBG, fmt, argp, 1);
+    dbg_print(PRINT_LEVEL_DBG, file, func, fmt, argp, 1);
     va_end(argp);
 }

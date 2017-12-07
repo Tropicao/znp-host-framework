@@ -106,7 +106,7 @@ void mtProcess(uint8_t *rpcBuff, uint8_t rpcLen)
         break;
 
     default:
-        log_dbg(
+        LOG_DBG(
                 "mtProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
                 rpcBuff[1]);
 
