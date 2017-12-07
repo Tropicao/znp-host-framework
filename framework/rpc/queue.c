@@ -109,7 +109,7 @@ void llq_open(llq_t *hndl)
 	sem_init(&(hndl->llqCountSem), 0, 0);
 }
 
-void llq_close(llq_t *hndl)
+void llq_close(llq_t *hndl __attribute__((unused)))
 {
 
 }
@@ -126,7 +126,7 @@ void llq_close(llq_t *hndl)
  *
  * @return   length of message read from queue
  */
-int llq_timedreceive(llq_t *hndl, char *buffer, int maxLength,
+int llq_timedreceive(llq_t *hndl, char *buffer, int maxLength __attribute__((unused)),
         const struct timespec * timeout)
 {
 	int rLength = 0, sepmRnt;

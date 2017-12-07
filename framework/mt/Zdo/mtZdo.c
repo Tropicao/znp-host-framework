@@ -78,7 +78,7 @@ static void processNwkAddrRsp(uint8_t *rpcBuff, uint8_t rpcLen);
  *
  * @return  none
  */
-static void processStateChange(uint8_t *rpcBuff, uint8_t rpcLen)
+static void processStateChange(uint8_t *rpcBuff, uint8_t rpcLen __attribute__((unused)))
 {
 
 	uint8_t zdoState = rpcBuff[2];
