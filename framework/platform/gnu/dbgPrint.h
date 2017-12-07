@@ -62,6 +62,7 @@ void log_err(const char *fmt, ...);
 void log_warn(const char *fmt, ...);
 void log_inf(const char *fmt, ...);
 void log_dbg(const char *fmt, ...);
+void log_dbg_no_line_return(const char *fmt, ...);
 
 #ifdef __cplusplus
 }

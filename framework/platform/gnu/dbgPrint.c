@@ -44,6 +44,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <stdint.h>
 
 #include "dbgPrint.h"
 
@@ -122,7 +123,7 @@ static int _get_log_level()
  * @return      None.
  **************************************************************************************************
  */
-static void dbg_print(int print_level, const char *fmt, va_list argp)
+static void dbg_print(int print_level, const char *fmt, va_list argp, uint8_t no_line_return)
 {
     static int env_print_level = -1;
     char buffer[MAX_LOG_LINE_SIZE] = {0};
@@ -179,7 +180,9 @@ static void dbg_print(int print_level, const char *fmt, va_list argp)
         return;
 
     vsnprintf(buffer + index, MAX_LOG_LINE_SIZE - index, fmt, argp);
-    fprintf(stdout, "%s\n", buffer);
+    if(no_line_return == 0)
+        fprintf(stdout, "%s\n", buffer);
+    fflush(stdout);
 }
 
 
@@ -191,7 +194,7 @@ void log_cri(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_CRI, fmt, argp);
+    dbg_print(PRINT_LEVEL_CRI, fmt, argp, 0);
     va_end(argp);
 }
 
@@ -199,7 +202,7 @@ void log_err(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_ERR, fmt, argp);
+    dbg_print(PRINT_LEVEL_ERR, fmt, argp, 0);
     va_end(argp);
 }
 
@@ -207,7 +210,7 @@ void log_warn(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_WARN, fmt, argp);
+    dbg_print(PRINT_LEVEL_WARN, fmt, argp, 0);
     va_end(argp);
 }
 
@@ -215,7 +218,7 @@ void log_inf(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_INF, fmt, argp);
+    dbg_print(PRINT_LEVEL_INF, fmt, argp, 0);
     va_end(argp);
 }
 
@@ -223,6 +226,14 @@ void log_dbg(const char *fmt, ...)
 {
     va_list argp;
     va_start(argp, fmt);
-    dbg_print(PRINT_LEVEL_DBG, fmt, argp);
+    dbg_print(PRINT_LEVEL_DBG, fmt, argp, 0);
+    va_end(argp);
+}
+
+void log_dbg_no_line_return(const char *fmt, ...)
+{
+    va_list argp;
+    va_start(argp, fmt);
+    dbg_print(PRINT_LEVEL_DBG, fmt, argp, 1);
     va_end(argp);
 }
