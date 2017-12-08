@@ -28,7 +28,7 @@ int znp_init()
     if(!priv)
     {
         LOG_CRI("Cannot allocate memory for ZNP private data");
-        exit(1);
+        return 1;
     }
     priv->socket_fd = rpcOpen(DEFAULT_DEVICE);
     if(priv->socket_fd < 0)
