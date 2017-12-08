@@ -1,7 +1,8 @@
 project('ZNP Host Library', 'c')
 
 # Sources
-src = ['framework/rpc/rpc.c',
+src = ['framework/znp.c',
+    'framework/rpc/rpc.c',
     'framework/rpc/queue.c',
     'framework/mt/mtParser.c',
     'framework/mt/Zdo/mtZdo.c',
@@ -13,7 +14,8 @@ src = ['framework/rpc/rpc.c',
     'framework/platform/gnu/rpcTransport.c']
 
 # Includes
-headers = ['framework/platform/tirtos/sys/ioctl.h',
+headers = ['framework/znp.h',
+    'framework/platform/tirtos/sys/ioctl.h',
     'framework/platform/gnu/hostConsole.h',
     'framework/platform/gnu/dbgPrint.h',
     'framework/platform/gnu/rpcTransport.h',
@@ -24,6 +26,7 @@ headers = ['framework/platform/tirtos/sys/ioctl.h',
     'framework/mt/mtParser.h',
     'framework/rpc/queue.h',
     'framework/rpc/rpc.h']
+znp_incdir = include_directories('framework')
 gnu_incdir = include_directories('framework/platform/gnu')
 rpc_incdir = include_directories('framework/rpc')
 mt_incdir = include_directories('framework/mt')
