@@ -147,8 +147,6 @@ int32_t rpcOpen(char *_devicePath)
  *
  * @brief   Close serial device file descriptor
  *
- * @param   devicePath - path to the UART device
- *
  * @return  status
  */
 void rpcClose(void)
