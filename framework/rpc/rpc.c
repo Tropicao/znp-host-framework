@@ -186,59 +186,11 @@ int32_t rpcGetMqClientMsg(void)
 	}
 	else
 	{
-		LOG_ERR("Timeout");
+		LOG_ERR("No message in queue");
 		return -1;
 	}
 
 	return 0;
-}
-
-/*********************************************************************
- * @fn      rpcWaitMqClientMsg
- *
- * @brief   wait (with timeout) for incoming message and process
- *          it
- *
- * @param   -
- *
- * @return  status
- */
-int32_t rpcWaitMqClientMsg(uint32_t timeout)
-{
-	uint8_t rpcFrame[RPC_MAX_LEN + 1];
-	int32_t rpcLen, timeLeft = 0, mBefTime, mAftTime;
-	struct timespec to;
-	struct timeval befTime, aftTime;
-	// calculate timeout
-	to.tv_sec = time(0) + (timeout / 1000);
-	to.tv_nsec = (long) ((long) timeout % 1000) * 1000000L;
-
-	LOG_INF("timeout=%d", timeout);
-	LOG_INF("waiting on queue %d:%d:%d", timeout,
-	        to.tv_sec, to.tv_nsec);
-
-	gettimeofday(&befTime, NULL);
-	rpcLen = llq_timedreceive(&rpcLlq, (char *) rpcFrame, RPC_MAX_LEN + 1, &to);
-	gettimeofday(&aftTime, NULL);
-	if (rpcLen != -1)
-	{
-		mBefTime = befTime.tv_sec * 1000;
-		mBefTime += befTime.tv_usec / 1000;
-		mAftTime = aftTime.tv_sec * 1000;
-		mAftTime += aftTime.tv_usec / 1000;
-		timeLeft = mAftTime - mBefTime;
-		timeLeft = timeout - timeLeft;
-		LOG_INF("processing MT[%d]", rpcLen);
-		// process incoming message
-		mtProcess(rpcFrame, rpcLen);
-	}
-	else
-	{
-		LOG_INF("Timed out [%d] - %s", rpcLen, strerror(errno));
-		return -1;
-	}
-
-	return timeLeft;
 }
 
 /*********************************************************************
