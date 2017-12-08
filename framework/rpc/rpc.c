@@ -121,12 +121,12 @@ static void printRpcMsg(char* preMsg, uint8_t sof, uint8_t len, uint8_t *msg);
  *
  * @return  status
  */
-int32_t rpcOpen(char *_devicePath, uint32_t port)
+int32_t rpcOpen(char *_devicePath)
 {
 	int fd;
 
 	// open RPC transport
-	fd = rpcTransportOpen(_devicePath, port);
+	fd = rpcTransportOpen(_devicePath);
 	if (fd < 0)
 	{
 		perror(_devicePath);

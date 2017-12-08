@@ -144,7 +144,7 @@ typedef enum
  * GLOBAL FUNCTIONS
  */
 
-int32_t rpcOpen(char *devicePath, uint32_t port);
+int32_t rpcOpen(char *devicePath);
 void rpcClose(void);
 int32_t rpcProcess(void);
 uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t * payload,

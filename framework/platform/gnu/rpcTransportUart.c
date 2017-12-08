@@ -94,13 +94,11 @@ int serialPortFd;
  *
  * @return  status
  */
-int32_t rpcTransportOpen(char *_devicePath, uint32_t port)
+int32_t rpcTransportOpen(char *_devicePath)
 {
 	struct termios tio;
 	static char lastUsedDevicePath[255];
 	char * devicePath;
-
-	(void) port;
 
 	if (_devicePath != NULL)
 	{
