@@ -100,12 +100,6 @@ uint8_t afRegister(RegisterFormat_t *req)
 		}
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_AF),
 		MT_AF_REGISTER, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -146,12 +140,6 @@ uint8_t afDataRequest(DataRequestFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_AF),
 		MT_AF_DATA_REQUEST, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -195,12 +183,6 @@ uint8_t afDataRequestExt(DataRequestExtFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_AF),
 		MT_AF_DATA_REQUEST_EXT, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -246,12 +228,6 @@ uint8_t afDataRequestSrcRtg(DataRequestSrcRtgFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_AF),
 		MT_AF_DATA_REQUEST_SRC_RTG, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -282,12 +258,6 @@ uint8_t afInterPanCtl(InterPanCtlFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_AF),
 		MT_AF_INTER_PAN_CTL, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -320,12 +290,6 @@ uint8_t afDataStore(DataStoreFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_AF),
 		MT_AF_DATA_STORE, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -465,12 +429,6 @@ uint8_t afDataRetrieve(DataRetrieveFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_AF),
 		MT_AF_DATA_RETRIEVE, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -523,12 +481,6 @@ uint8_t afApsfConfigSet(ApsfConfigSetFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_AF),
 		MT_AF_APSF_CONFIG_SET, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
