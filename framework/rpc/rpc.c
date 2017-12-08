@@ -79,15 +79,6 @@
  * LOCAL VARIABLES
  */
 
-// semaphore for sending RPC frames (used for mutual exclusion for
-// calling rpcSendFrame() function - from application thread(s) )
-static sem_t rpcSem;
-
-// semaphore for SRSP (Synchronous Response) used by application thread
-// to wait for any response from the ZNP. The RPC thread will post
-// the semaphore if any incoming message exists
-static sem_t srspSem;
-
 // expected SRSP command ID
 static uint8_t expectedSrspCmdId;
 
@@ -134,11 +125,6 @@ int32_t rpcOpen(char *_devicePath)
 		return (-1);
 	}
 
-	sem_init(&rpcSem, 0, 1); // initialize mutex to 1 - binary semaphore
-	sem_init(&srspSem, 0, 0); // initialize mutex to 0 - binary semaphore
-
-	//rpcForceRun();
-
 	return fd;
 }
 
@@ -152,8 +138,6 @@ int32_t rpcOpen(char *_devicePath)
 void rpcClose(void)
 {
     rpcTransportClose();
-    sem_destroy(&rpcSem);
-    sem_destroy(&srspSem);
 }
 
 
@@ -376,19 +360,17 @@ int32_t rpcProcess(void)
 				if (expectedSrspCmdId == (rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK))
 				{
 					LOG_INF( "processing expected srsp [%02X]", rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK);
-
-					//unblock waiting sreq
-					sem_post(&srspSem);
-
 					LOG_INF( "writing %d bytes SRSP to head of the queue", rpcLen);
 
 					// send message to queue
 					llq_add(&rpcLlq, (char*) &rpcBuff[1], rpcLen, 1);
+                    expectedSrspCmdId = 0xFF;
 				}
 				else
 				{
 					// unexpected SRSP discard
 					LOG_ERR( "UNEXPECTED SREQ!: %02X:%02X", expectedSrspCmdId, (rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK));
+                    expectedSrspCmdId = 0xFF;
 					return 0;
 				}
 			}
@@ -432,9 +414,6 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 	uint8_t buf[RPC_MAX_LEN];
 	int32_t status = MT_RPC_SUCCESS;
 
-	// block here if SREQ is in progress
-	LOG_INF("Blocking on RPC sem");
-	sem_wait(&rpcSem);
 	LOG_INF("Sending RPC");
 
 	// fill in header bytes
@@ -469,36 +448,7 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 
 	// print out message to be sent
 	printRpcMsg("SOC OUT -->", buf[0], payload_len, &buf[2]);
-
-	// wait for SRSP if necessary
-	if ((cmd0 & MT_RPC_CMD_TYPE_MASK) == MT_RPC_CMD_SREQ)
-	{
-		// calculate timeout
-		struct timespec srspTimeOut =
-			{ time(0) + (SRSP_TIMEOUT_MS / 1000), (long) ((long) SRSP_TIMEOUT_MS
-			        % 1000) * 1000000 };
-
-		LOG_INF("waiting for SRSP [%02x]", expectedSrspCmdId);
-
-		//Wait for the SRSP
-		status = sem_timedwait(&srspSem, &srspTimeOut);
-		if (status == -1)
-		{
-			LOG_ERR("SRSP Error - CMD0: 0x%02X CMD1: 0x%02X", cmd0, cmd1);
-			status = MT_RPC_ERR_SUBSYSTEM;
-		}
-		else
-		{
-			LOG_INF("Receive SRSP");
-			status = MT_RPC_SUCCESS;
-		}
-
-		//set expected SRSP to invalid
-		expectedSrspCmdId = 0xFF;
-	}
-
-	//Unlock RPC sem
-	sem_post(&rpcSem);
+    status = MT_RPC_SUCCESS;
 
 	return status;
 }
