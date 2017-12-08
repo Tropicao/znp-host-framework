@@ -152,7 +152,6 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t * payload,
 void rpcForceRun(void);
 int32_t rpcInitMq(void);
 int32_t rpcGetMqClientMsg(void);
-int32_t rpcWaitMqClientMsg(uint32_t timeout);
 
 #ifdef __cplusplus
 }
