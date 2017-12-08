@@ -115,13 +115,6 @@ uint8_t zdoNwkAddrReq(NwkAddrReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_NWK_ADDR_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -158,13 +151,6 @@ uint8_t zdoIeeeAddrReq(IeeeAddrReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_IEEE_ADDR_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -201,13 +187,6 @@ uint8_t zdoNodeDescReq(NodeDescReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_NODE_DESC_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -244,13 +223,6 @@ uint8_t zdoPowerDescReq(PowerDescReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_POWER_DESC_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -288,13 +260,6 @@ uint8_t zdoSimpleDescReq(SimpleDescReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_SIMPLE_DESC_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -331,13 +296,6 @@ uint8_t zdoActiveEpReq(ActiveEpReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_ACTIVE_EP_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -390,13 +348,6 @@ uint8_t zdoMatchDescReq(MatchDescReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MATCH_DESC_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -433,13 +384,6 @@ uint8_t zdoComplexDescReq(ComplexDescReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_COMPLEX_DESC_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -476,13 +420,6 @@ uint8_t zdoUserDescReq(UserDescReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_USER_DESC_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -520,13 +457,6 @@ uint8_t zdoDeviceAnnce(DeviceAnnceFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_DEVICE_ANNCE, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -570,13 +500,6 @@ uint8_t zdoUserDescSet(UserDescSetFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_USER_DESC_SET, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -611,13 +534,6 @@ uint8_t zdoServerDiscReq(ServerDiscReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_SERVER_DISC_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -673,13 +589,6 @@ uint8_t zdoEndDeviceBindReq(EndDeviceBindReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_END_DEVICE_BIND_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -726,13 +635,6 @@ uint8_t zdoBindReq(BindReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_BIND_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -779,13 +681,6 @@ uint8_t zdoUnbindReq(UnbindReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_UNBIND_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -824,13 +719,6 @@ uint8_t zdoMgmtNwkDiscReq(MgmtNwkDiscReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MGMT_NWK_DISC_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -866,13 +754,6 @@ uint8_t zdoMgmtLqiReq(MgmtLqiReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MGMT_LQI_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -908,13 +789,6 @@ uint8_t zdoMgmtRtgReq(MgmtRtgReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MGMT_RTG_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -950,13 +824,6 @@ uint8_t zdoMgmtBindReq(MgmtBindReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MGMT_BIND_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -994,13 +861,6 @@ uint8_t zdoMgmtLeaveReq(MgmtLeaveReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MGMT_LEAVE_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1038,13 +898,6 @@ uint8_t zdoMgmtDirectJoinReq(MgmtDirectJoinReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MGMT_DIRECT_JOIN_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1082,13 +935,6 @@ uint8_t zdoMgmtPermitJoinReq(MgmtPermitJoinReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MGMT_PERMIT_JOIN_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1130,13 +976,6 @@ uint8_t zdoMgmtNwkUpdateReq(MgmtNwkUpdateReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MGMT_NWK_UPDATE_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1170,13 +1009,6 @@ uint8_t zdoStartupFromApp(StartupFromAppFormat_t *req)
 		cmd[cmInd++] = HI_UINT16(req->StartDelay);
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_STARTUP_FROM_APP, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1210,13 +1042,6 @@ uint8_t zdoAutoFindDestination(AutoFindDestinationFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_AUTO_FIND_DESTINATION, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1255,13 +1080,6 @@ uint8_t zdoSetLinkKey(SetLinkKeyFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_SET_LINK_KEY, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1296,13 +1114,6 @@ uint8_t zdoRemoveLinkKey(RemoveLinkKeyFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_REMOVE_LINK_KEY, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1337,13 +1148,6 @@ uint8_t zdoGetLinkKey(GetLinkKeyFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_GET_LINK_KEY, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1379,13 +1183,6 @@ uint8_t zdoNwkDiscoveryReq(NwkDiscoveryReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_NWK_DISCOVERY_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1427,13 +1224,6 @@ uint8_t zdoJoinReq(JoinReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_JOIN_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1468,13 +1258,6 @@ uint8_t zdoMsgCbRegister(MsgCbRegisterFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MSG_CB_REGISTER, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1509,13 +1292,6 @@ uint8_t zdoMsgCbRemove(MsgCbRemoveFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_MSG_CB_REMOVE, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -2797,18 +2573,6 @@ uint8_t zdoInit(void)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
 		MT_ZDO_STARTUP_FROM_APP, cmd, cmdLen);
-
-		//read the SREQ from the queue
-		if (status == MT_RPC_SUCCESS)
-		{
-			//rpcSendFrame will block on the SRSP's, which will be
-			//pushed to the front of the queue
-			rpcWaitMqClientMsg(50);
-
-			//set status to status of srsp
-			status = srspRpcBuff[2];
-		}
-
 		free(cmd);
 		return status;
 	}
