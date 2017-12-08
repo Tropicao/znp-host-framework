@@ -42,7 +42,6 @@
 #include <string.h>
 #include <time.h>
 #include <stdint.h>
-#include <semaphore.h>
 #include "queue.h"
 
 static void addToHead(llq_t *hndl, char *data, int length)
@@ -105,8 +104,6 @@ static void addToTail(llq_t *hndl, char *data, int length)
 void llq_open(llq_t *hndl)
 {
 	hndl->head = hndl->tail = NULL;
-	sem_init(&(hndl->llqAccessSem), 0, 1);
-	sem_init(&(hndl->llqCountSem), 0, 0);
 }
 
 void llq_close(llq_t *hndl __attribute__((unused)))
@@ -115,86 +112,44 @@ void llq_close(llq_t *hndl __attribute__((unused)))
 }
 
 /*********************************************************************
- * @fn      llq_timedreceive
+ * @fn      llq_receive
  *
- * @brief   Block until a message is recieved or timeout
+ * @brief   Get next message in queue
  *
  * @param   llq_t *hndl - handle to queue to read the message from
  * @Param	char *buffer - Pointer to buffer to read the message in to
  * @Param	int maxLength - Max length of message to read
- * @Param	struct timespec * timeout - Timeout value
  *
  * @return   length of message read from queue
  */
-int llq_timedreceive(llq_t *hndl, char *buffer, int maxLength __attribute__((unused)),
-        const struct timespec * timeout)
+int llq_receive(llq_t *hndl, char *buffer, int maxLength __attribute__((unused)))
 {
-	int rLength = 0, sepmRnt;
+	int rLength = -1;
 
-	if (timeout != NULL)
-	{
-		//wait for a message or timeout
-		sepmRnt = sem_timedwait(&(hndl->llqCountSem), timeout);
-	}
-	else
-	{
-		//wait for a message
-		sepmRnt = sem_wait(&(hndl->llqCountSem));
-	}
+    if (hndl->head != NULL)
+    {
+        hndl->temp = hndl->head->ptr;
+        memcpy(buffer, hndl->head->data, hndl->head->length);
+        rLength = (int) hndl->head->length;
 
-	if (sepmRnt != -1)
-	{
-		if (hndl->head != NULL)
-		{
-			//wait to get access to the que
-			sem_wait(&(hndl->llqAccessSem));
-
-			hndl->temp = hndl->head->ptr;
-			memcpy(buffer, hndl->head->data, hndl->head->length);
-			rLength = (int) hndl->head->length;
-
-			//did head point to another element
-			if (hndl->temp != NULL)
-			{
-				//free current head element and point head to next
-				free(hndl->head->data);
-				free(hndl->head);
-				hndl->head = hndl->temp;
-			}
-			else
-			{
-				//no elements left in queue
-				free(hndl->head->data);
-				free(hndl->head);
-				hndl->head = NULL;
-				hndl->tail = NULL;
-			}
-
-			//release access sem
-			sem_post(&(hndl->llqAccessSem));
-		}
-	}
-	else
-	{
-		rLength = -1;
-	}
+        //did head point to another element
+        if (hndl->temp != NULL)
+        {
+            //free current head element and point head to next
+            free(hndl->head->data);
+            free(hndl->head);
+            hndl->head = hndl->temp;
+        }
+        else
+        {
+            //no elements left in queue
+            free(hndl->head->data);
+            free(hndl->head);
+            hndl->head = NULL;
+            hndl->tail = NULL;
+        }
+    }
 	return rLength;
-}
-
-/*********************************************************************
- * @fn      llq_timedreceive
- *
- * @brief   Block until a message is recieved
- *
- * @param   llq_t *hndl - handle to queue to read the message from
- * @Param	char *buffer - Pointer to buffer to read the message in to
- * @Param	int maxLength - Max length of message to read
- *
- * @return   length of message read from queue
- */
-int llq_receive(llq_t *hndl, char *buffer, int maxLength)
-{
-	return llq_timedreceive(hndl, buffer, maxLength, NULL);
 }
 
 /*********************************************************************
@@ -214,9 +169,6 @@ int llq_add(llq_t *hndl, char *buffer, int len, int prio)
 {
 	int ret = 0;
 
-	//wait to get access to the que
-	sem_wait(&(hndl->llqAccessSem));
-
 	if (prio == 1)
 	{
 		addToHead(hndl, buffer, len);
@@ -225,12 +177,6 @@ int llq_add(llq_t *hndl, char *buffer, int len, int prio)
 	{
 		addToTail(hndl, buffer, len);
 	}
-
-	//release access sem
-	sem_post(&(hndl->llqAccessSem));
-
-	//increase counting sem representing que length
-	sem_post(&(hndl->llqCountSem));
 
 	return ret;
 }

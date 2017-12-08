@@ -61,9 +61,6 @@ typedef struct
 	node_t *head;
 	node_t *tail;
 	node_t *temp;
-	node_t *head1;
-	sem_t llqAccessSem;
-	sem_t llqCountSem;
 } llq_t;
 
 /*********************************************************************
@@ -109,7 +106,7 @@ extern int llq_add(llq_t *hndl, char *buffer, int len, int prio);
 /*********************************************************************
  * @fn      llq_timedreceive
  *
- * @brief   Block until a message is recieved
+ * @brief   Get next message in queue
  *
  * @param   llq_t *hndl - handle to queue to read the message from
  * @Param	char *buffer - Pointer to buffer to read the message in to
@@ -118,21 +115,6 @@ extern int llq_add(llq_t *hndl, char *buffer, int len, int prio);
  * @return   length of message read from queue
  */
 extern int llq_receive(llq_t *hndl, char *buffer, int maxLength);
-
-/*********************************************************************
- * @fn      llq_timedreceive
- *
- * @brief   Block until a message is recieved or timeout
- *
- * @param   llq_t *hndl - handle to queue to read the message from
- * @Param	char *buffer - Pointer to buffer to read the message in to
- * @Param	int maxLength - Max length of message to read
- * @Param	struct timespec * timeout - Timeout value
- *
- * @return   length of message read from queue
- */
-extern int llq_timedreceive(llq_t *hndl, char *buffer, int maxLength,
-        const struct timespec * timeout);
 
 #ifdef __cplusplus
 }
