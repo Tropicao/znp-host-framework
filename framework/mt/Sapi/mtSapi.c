@@ -139,12 +139,6 @@ uint8_t zbAppRegisterReq(AppRegisterReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_APP_REGISTER_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -171,12 +165,6 @@ uint8_t zbStartReq()
 
 	status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 	MT_SAPI_START_REQ, NULL, 0);
-
-	if (status == MT_RPC_SUCCESS)
-	{
-		rpcWaitMqClientMsg(50);
-	}
-
 	return status;
 }
 
@@ -206,12 +194,6 @@ uint8_t zbPermitJoiningReq(PermitJoiningReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_PERMIT_JOINING_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -250,11 +232,6 @@ uint8_t zbBindDevice(BindDeviceFormat_t *req)
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_BIND_DEVICE, cmd, cmdLen);
 
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -289,12 +266,6 @@ uint8_t zbAllowBind(AllowBindFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_ALLOW_BIND, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -343,12 +314,6 @@ uint8_t zbSendDataReq(SendDataReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_SEND_DATA_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -383,12 +348,6 @@ uint8_t zbFindDeviceReq(FindDeviceReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_FIND_DEVICE_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -429,12 +388,6 @@ uint8_t zbWriteConfiguration(WriteConfigurationFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_WRITE_CONFIGURATION, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -468,12 +421,6 @@ uint8_t zbGetDeviceInfo(GetDeviceInfoFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_GET_DEVICE_INFO, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -508,12 +455,6 @@ uint8_t zbReadConfiguration(ReadConfigurationFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SAPI),
 		MT_SAPI_READ_CONFIGURATION, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
