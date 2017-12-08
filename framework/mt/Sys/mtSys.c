@@ -83,12 +83,6 @@ uint8_t sysPing()
 
 	status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 	MT_SYS_PING, NULL, 0);
-
-	if (status == MT_RPC_SUCCESS)
-	{
-		rpcWaitMqClientMsg(50);
-	}
-
 	return status;
 }
 
@@ -147,12 +141,6 @@ uint8_t sysSetExtAddr(SetExtAddrFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_SET_EXTADDR, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -178,12 +166,6 @@ uint8_t sysGetExtAddr()
 
 	status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 	MT_SYS_GET_EXTADDR, NULL, 0);
-
-	if (status == MT_RPC_SUCCESS)
-	{
-		rpcWaitMqClientMsg(50);
-	}
-
 	return status;
 }
 
@@ -243,12 +225,6 @@ uint8_t sysRamRead(RamReadFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_RAM_READ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -328,12 +304,6 @@ uint8_t sysRamWrite(RamWriteFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_RAM_WRITE, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -367,12 +337,6 @@ uint8_t sysResetReq(ResetReqFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_AREQ | MT_RPC_SYS_SYS),
 		MT_SYS_RESET_REQ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -434,12 +398,6 @@ uint8_t sysVersion()
 
 	status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 	MT_SYS_VERSION, NULL, 0);
-
-	if (status == MT_RPC_SUCCESS)
-	{
-		rpcWaitMqClientMsg(50);
-	}
-
 	return status;
 }
 
@@ -503,12 +461,6 @@ uint8_t sysOsalNvRead(OsalNvReadFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_OSAL_NV_READ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -589,12 +541,6 @@ uint8_t sysOsalNvWrite(OsalNvWriteFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_OSAL_NV_WRITE, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -639,12 +585,6 @@ uint8_t sysOsalNvItemInit(OsalNvItemInitFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_OSAL_NV_ITEM_INIT, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -682,12 +622,6 @@ uint8_t sysOsalNvDelete(OsalNvDeleteFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_OSAL_NV_DELETE, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -723,12 +657,6 @@ uint8_t sysOsalNvLength(OsalNvLengthFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_OSAL_NV_LENGTH, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -797,12 +725,6 @@ uint8_t sysOsalStartTimer(OsalStartTimerFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_OSAL_START_TIMER, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -836,12 +758,6 @@ uint8_t sysOsalStopTimer(OsalStopTimerFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_OSAL_STOP_TIMER, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -905,12 +821,6 @@ uint8_t sysStackTune(StackTuneFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_STACK_TUNE, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -975,12 +885,6 @@ uint8_t sysAdcRead(AdcReadFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_ADC_READ, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1046,12 +950,6 @@ uint8_t sysGpio(GpioFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_GPIO, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1107,12 +1005,6 @@ uint8_t sysRandom()
 
 	status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 	MT_SYS_RANDOM, NULL, 0);
-
-	if (status == MT_RPC_SUCCESS)
-	{
-		rpcWaitMqClientMsg(50);
-	}
-
 	return status;
 }
 
@@ -1180,12 +1072,6 @@ uint8_t sysSetTime(SetTimeFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_SET_TIME, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
@@ -1211,12 +1097,6 @@ uint8_t sysGetTime()
 
 	status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 	MT_SYS_GET_TIME, NULL, 0);
-
-	if (status == MT_RPC_SUCCESS)
-	{
-		rpcWaitMqClientMsg(50);
-	}
-
 	return status;
 }
 
@@ -1283,12 +1163,6 @@ uint8_t sysSetTxPower(SetTxPowerFormat_t *req)
 
 		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_SYS),
 		MT_SYS_SET_TX_POWER, cmd, cmdLen);
-
-		if (status == MT_RPC_SUCCESS)
-		{
-			rpcWaitMqClientMsg(50);
-		}
-
 		free(cmd);
 		return status;
 	}
