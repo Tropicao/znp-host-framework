@@ -61,8 +61,12 @@ int znp_socket_get()
 
 void znp_loop_read()
 {
-    if(rpcGetMqClientMsg() < 0)
-        LOG_WARN("Failed to retrieve any message from log queue");
+    if(rpcProcess() < 0)
+    {
+        LOG_WARN("Failed to retrieve message from serial");
+        return;
+    }
+    rpcGetMqClientMsg();
 }
 
 int znp_message_cb_set(ZnpCallback_t cb __attribute__((unused)))
