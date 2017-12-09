@@ -7,3 +7,5 @@
 * More usleep in code
 * Check if SRSP is still properly managed
 * Param ((unused)) in library : delete
+* No that lib is monothreaded : do we really need a queue for incoming messages
+  ?
