@@ -485,9 +485,9 @@ static void processReadConfigurationSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		ReadConfigurationSrspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.ConfigId = rpcBuff[msgIdx++];
@@ -524,9 +524,9 @@ static void processGetDeviceInfoSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		GetDeviceInfoSrspFormat_t rsp;
 		if (rpcLen < 9)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Param = rpcBuff[msgIdx++];
 		uint8_t i;
@@ -559,9 +559,9 @@ static void processFindDeviceCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		FindDeviceCnfFormat_t rsp;
 		if (rpcLen < 11)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SearchKey = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -594,9 +594,9 @@ static void processSendDataCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		SendDataCnfFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Handle = rpcBuff[msgIdx++];
 		rsp.Status = rpcBuff[msgIdx++];
@@ -625,9 +625,9 @@ static void processReceiveDataInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		ReceiveDataIndFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Source = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -666,9 +666,9 @@ static void processAllowBindCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		AllowBindCnfFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Source = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -696,9 +696,9 @@ static void processBindCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		BindCnfFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.CommandId = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -727,9 +727,9 @@ static void processStartCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		StartCnfFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 

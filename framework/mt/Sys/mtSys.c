@@ -105,10 +105,10 @@ static void processPingSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		PingSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Capabilities = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -186,10 +186,10 @@ static void processGetExtAddrSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		GetExtAddrSrspFormat_t rsp;
 		if (rpcLen < 8)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.ExtAddr = 0;
 		uint8_t i;
@@ -254,10 +254,10 @@ static void processRamReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		RamReadSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Len = rpcBuff[msgIdx++];
@@ -366,10 +366,10 @@ static void processResetInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		ResetIndFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Reason = rpcBuff[msgIdx++];
 		rsp.TransportRev = rpcBuff[msgIdx++];
@@ -420,10 +420,10 @@ static void processVersionSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		VersionSrspFormat_t rsp;
 		if (rpcLen < 5)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.TransportRev = rpcBuff[msgIdx++];
 		rsp.Product = rpcBuff[msgIdx++];
@@ -490,10 +490,10 @@ static void processOsalNvReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		OsalNvReadSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Len = rpcBuff[msgIdx++];
@@ -686,10 +686,10 @@ static void processOsalNvLengthSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		OsalNvLengthSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.ItemLen = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -786,10 +786,10 @@ static void processOsalTimerExpired(uint8_t *rpcBuff, uint8_t rpcLen)
 		OsalTimerExpiredFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Id = rpcBuff[msgIdx++];
 
@@ -850,10 +850,10 @@ static void processStackTuneSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		StackTuneSrspFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Value = rpcBuff[msgIdx++];
 
@@ -914,10 +914,10 @@ static void processAdcReadSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		AdcReadSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Value = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -979,10 +979,10 @@ static void processGpioSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		GpioSrspFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Value = rpcBuff[msgIdx++];
 
@@ -1027,10 +1027,10 @@ static void processRandomSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		RandomSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Value = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1119,10 +1119,10 @@ static void processGetTimeSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		GetTimeSrspFormat_t rsp;
 		if (rpcLen < 11)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.UTCTime = 0;
 		uint8_t i;
@@ -1192,10 +1192,10 @@ static void processSetTxPowerSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		SetTxPowerSrspFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.TxPower = rpcBuff[msgIdx++];
 

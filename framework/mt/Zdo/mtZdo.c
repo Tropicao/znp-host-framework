@@ -1320,10 +1320,10 @@ static void processGetLinkKey(uint8_t *rpcBuff, uint8_t rpcLen)
 		GetLinkKeySrspFormat_t rsp;
 		if (rpcLen < 25)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.IEEEAddr = 0;
@@ -1355,10 +1355,10 @@ static void processNwkAddrRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		NwkAddrRspFormat_t rsp;
 		if (rpcLen < 13)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.IEEEAddr = 0;
@@ -1401,10 +1401,10 @@ static void processIeeeAddrRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		IeeeAddrRspFormat_t rsp;
 		if (rpcLen < 13)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.IEEEAddr = 0;
@@ -1448,10 +1448,10 @@ static void processNodeDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		NodeDescRspFormat_t rsp;
 		if (rpcLen < 18)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1497,10 +1497,10 @@ static void processPowerDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		PowerDescRspFormat_t rsp;
 		if (rpcLen < 7)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1532,10 +1532,10 @@ static void processSimpleDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		SimpleDescRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1589,10 +1589,10 @@ static void processActiveEpRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		ActiveEpRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1630,10 +1630,10 @@ static void processMatchDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		MatchDescRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1671,10 +1671,10 @@ static void processComplexDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		ComplexDescRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1712,10 +1712,10 @@ static void processUserDescRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		UserDescRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1753,10 +1753,10 @@ static void processUserDescConf(uint8_t *rpcBuff, uint8_t rpcLen)
 		UserDescConfFormat_t rsp;
 		if (rpcLen < 5)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1786,10 +1786,10 @@ static void processServerDiscRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		ServerDiscRspFormat_t rsp;
 		if (rpcLen < 5)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1819,10 +1819,10 @@ static void processEndDeviceBindRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		EndDeviceBindRspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1850,10 +1850,10 @@ static void processBindRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		BindRspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1881,10 +1881,10 @@ static void processUnbindRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		UnbindRspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1912,10 +1912,10 @@ static void processMgmtNwkDiscRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		MgmtNwkDiscRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -1961,10 +1961,10 @@ static void processMgmtLqiRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		MgmtLqiRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2021,10 +2021,10 @@ static void processMgmtRtgRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		MgmtRtgRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2068,10 +2068,10 @@ static void processMgmtBindRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		MgmtBindRspFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2121,10 +2121,10 @@ static void processMgmtLeaveRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		MgmtLeaveRspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2152,10 +2152,10 @@ static void processMgmtDirectJoinRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		MgmtDirectJoinRspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2183,10 +2183,10 @@ static void processMgmtPermitJoinRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		MgmtPermitJoinRspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2214,10 +2214,10 @@ static void processEndDeviceAnnceInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		EndDeviceAnnceIndFormat_t rsp;
 		if (rpcLen < 13)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2251,10 +2251,10 @@ static void processMatchDescRspSent(uint8_t *rpcBuff, uint8_t rpcLen)
 		MatchDescRspSentFormat_t rsp;
 		if (rpcLen < 4)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.NwkAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2296,10 +2296,10 @@ static void processStatusErrorRsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		StatusErrorRspFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2327,10 +2327,10 @@ static void processSrcRtgInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		SrcRtgIndFormat_t rsp;
 		if (rpcLen < 4)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.DstAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2364,9 +2364,9 @@ static void processBeaconNotifyInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		BeaconNotifyIndFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		printf("rpcLen = %d", rpcLen);
+		LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.BeaconCount = rpcBuff[msgIdx++];
 		if (rpcLen > 1)
@@ -2420,9 +2420,9 @@ static void processJoinCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		JoinCnfFormat_t rsp;
 		if (rpcLen < 5)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		printf("rpcLen = %d", rpcLen);
+		LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.DevAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
@@ -2452,9 +2452,9 @@ static void processNwkDiscoveryCnf(uint8_t *rpcBuff, uint8_t rpcLen)
 		NwkDiscoveryCnfFormat_t rsp;
 		if (rpcLen < 1)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		printf("rpcLen = %d", rpcLen);
+		LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 
@@ -2479,10 +2479,10 @@ static void processLeaveInd(uint8_t *rpcBuff, uint8_t rpcLen)
 		LeaveIndFormat_t rsp;
 		if (rpcLen < 13)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -2519,10 +2519,10 @@ static void processMsgCbIncoming(uint8_t *rpcBuff, uint8_t rpcLen)
 		MsgCbIncomingFormat_t rsp;
 		if (rpcLen < 9)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.SrcAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;

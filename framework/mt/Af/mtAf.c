@@ -308,9 +308,9 @@ static void processDataConfirm(uint8_t *rpcBuff, uint8_t rpcLen)
 		DataConfirmFormat_t rsp;
 		if (rpcLen < 3)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Endpoint = rpcBuff[msgIdx++];
@@ -328,9 +328,9 @@ static void processIncomingMsg(uint8_t *rpcBuff, uint8_t rpcLen)
 		IncomingMsgFormat_t rsp;
 		if (rpcLen < 17)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.GroupId = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -369,9 +369,9 @@ static void processIncomingMsgExt(uint8_t *rpcBuff, uint8_t rpcLen)
 		IncomingMsgExtFormat_t rsp;
 		if (rpcLen < 27)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.GroupId = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
@@ -447,9 +447,9 @@ static void processDataRetrieveSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		DataRetrieveSrspFormat_t rsp;
 		if (rpcLen < 2)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Length = rpcBuff[msgIdx++];
@@ -499,9 +499,9 @@ static void processReflectError(uint8_t *rpcBuff, uint8_t rpcLen)
 		ReflectErrorFormat_t rsp;
 		if (rpcLen < 6)
 		{
-			printf("MT_RPC_ERR_LENGTH");
+			LOG_WARN("MT_RPC_ERR_LENGTH");
 		}
-		//printf("rpcLen = %d", rpcLen);
+		//LOG_DBG("rpcLen = %d", rpcLen);
 
 		rsp.Status = rpcBuff[msgIdx++];
 		rsp.Endpoint = rpcBuff[msgIdx++];
