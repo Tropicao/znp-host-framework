@@ -172,7 +172,7 @@ int32_t rpcGetMqClientMsg(void)
 	uint8_t rpcFrame[RPC_MAX_LEN + 1];
 	int32_t rpcLen;
 
-	LOG_INF("waiting on queue");
+	LOG_INF("Retrieving new message from queue");
 
 	// wait for incoming message queue
 	rpcLen = llq_receive(&rpcLlq, (char *) rpcFrame, RPC_MAX_LEN + 1);
