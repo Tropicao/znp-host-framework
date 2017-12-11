@@ -600,8 +600,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		processDataRetrieveSrsp(rpcBuff, rpcLen);
 		break;
 	default:
-		LOG_INF(
-		        "processSrsp: unsupported message [%x:%x]", rpcBuff[0],
+		LOG_WARN("processSrsp: unsupported message [%x:%x]", rpcBuff[0],
 		        rpcBuff[1]);
 		break;
 	}

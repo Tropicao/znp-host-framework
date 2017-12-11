@@ -765,9 +765,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		processGetDeviceInfoSrsp(rpcBuff, rpcLen);
 		break;
 	default:
-		LOG_INF(
-		        "processSrsp: unsupported message  [%x:%x]", rpcBuff[0],
-		        rpcBuff[1]);
+		LOG_WARN("processSrsp: unsupported message  [%x:%x]", rpcBuff[0], rpcBuff[1]);
 		break;
 	}
 
@@ -826,9 +824,7 @@ void sapiProcess(uint8_t *rpcBuff, uint8_t rpcLen)
 			break;
 
 		default:
-			LOG_INF(
-			        "sapiProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
-			        rpcBuff[1]);
+			LOG_WARN("sapiProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0], rpcBuff[1]);
 			break;
 		}
 	}

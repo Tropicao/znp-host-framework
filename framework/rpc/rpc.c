@@ -172,7 +172,7 @@ int32_t rpcGetMqClientMsg(void)
 	uint8_t rpcFrame[RPC_MAX_LEN + 1];
 	int32_t rpcLen;
 
-	LOG_INF("Retrieving new message from queue");
+	LOG_DBG("Retrieving new message from queue");
 
 	// wait for incoming message queue
 	rpcLen = llq_receive(&rpcLlq, (char *) rpcFrame, RPC_MAX_LEN + 1);
@@ -311,8 +311,8 @@ int32_t rpcProcess(void)
 				// SRSP command ID deteced
 				if (expectedSrspCmdId == (rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK))
 				{
-					LOG_INF( "processing expected srsp [%02X]", rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK);
-					LOG_INF( "writing %d bytes SRSP to head of the queue", rpcLen);
+					LOG_DBG( "Processing expected srsp [%02X]", rpcBuff[1] & MT_RPC_SUBSYSTEM_MASK);
+					LOG_DBG( "Writing %d bytes SRSP to head of the queue", rpcLen);
 
 					// send message to queue
 					llq_add(&rpcLlq, (char*) &rpcBuff[1], rpcLen, 1);
@@ -329,7 +329,7 @@ int32_t rpcProcess(void)
 			else
 			{
 				// should be AREQ frame
-				LOG_INF("writing %d bytes AREQ to tail of the queue", rpcLen);
+				LOG_DBG("writing %d bytes AREQ to tail of the queue", rpcLen);
 
 				// send message to queue
 				llq_add(&rpcLlq, (char*) &rpcBuff[1], rpcLen, 0);
@@ -366,7 +366,7 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 	uint8_t buf[RPC_MAX_LEN];
 	int32_t status = MT_RPC_SUCCESS;
 
-	LOG_INF("Sending RPC");
+	LOG_DBG("Sending RPC");
 
 	// fill in header bytes
 	buf[0] = MT_RPC_SOF;
