@@ -552,6 +552,34 @@ uint8_t sysOsalNvWrite(OsalNvWriteFormat_t *req)
 }
 
 /*********************************************************************
+ * @fn      processOsalNvwriteSrsp
+ *
+ * @brief   This Function is trigered after a call to sysOsalNvWrite.
+ *           Parses the incoming buffer to a command specific structure
+ *           and passes it to its respective callback function.
+ *
+ * @param   rpcBuff - Incoming buffer.
+ * @param   rpcLen - Length of buffer.
+ *
+ */
+static void processOsalNvWriteSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtSysCbs.pfnSysOsalNvWriteSrsp)
+	{
+		uint8_t msgIdx = 2;
+		OsalNvWriteSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtSysCbs.pfnSysOsalNvWriteSrsp(&rsp);
+	}
+}
+
+/*********************************************************************
  * @fn      sysOsalNvItemInit
  *
  * @brief   This command is used by the application processor to create
@@ -1252,6 +1280,10 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	case MT_SYS_OSAL_NV_READ:
 		LOG_DBG("sysProcess: MT_SYS_OSAL_NV_READ");
 		processOsalNvReadSrsp(rpcBuff, rpcLen);
+        break;
+	case MT_SYS_OSAL_NV_WRITE:
+		LOG_DBG("sysProcess: MT_SYS_OSAL_NV_WRITE");
+		processOsalNvWriteSrsp(rpcBuff, rpcLen);
 		break;
 	case MT_SYS_OSAL_NV_LENGTH:
 		LOG_DBG("sysProcess: MT_SYS_OSAL_NV_LENGTH");

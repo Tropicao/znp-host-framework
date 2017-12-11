@@ -317,6 +317,12 @@ typedef struct
 
 typedef struct
 {
+	uint8_t Status;
+} OsalNvWriteSrspFormat_t;
+
+
+typedef struct
+{
 	uint16_t Id;
 	uint16_t ItemLen;
 	uint8_t InitLen;
@@ -433,6 +439,7 @@ typedef uint8_t (*mtSysRamReadSrspCb_t)(RamReadSrspFormat_t *msg);
 typedef uint8_t (*mtSysResetIndCb_t)(ResetIndFormat_t *msg);
 typedef uint8_t (*mtSysVersionSrspCb_t)(VersionSrspFormat_t *msg);
 typedef uint8_t (*mtSysOsalNvReadSrspCb_t)(OsalNvReadSrspFormat_t *msg);
+typedef uint8_t (*mtSysOsalNvWriteSrspCb_t)(OsalNvWriteSrspFormat_t *msg);
 typedef uint8_t (*mtSysOsalNvLengthSrspCb_t)(OsalNvLengthSrspFormat_t *msg);
 typedef uint8_t (*mtSysOsalTimerExpiredCb_t)(OsalTimerExpiredFormat_t *msg);
 typedef uint8_t (*mtSysStackTuneSrspCb_t)(StackTuneSrspFormat_t *msg);
@@ -453,6 +460,7 @@ typedef struct
 	mtSysResetIndCb_t pfnSysResetInd;
 	mtSysVersionSrspCb_t pfnSysVersionSrsp;
 	mtSysOsalNvReadSrspCb_t pfnSysOsalNvReadSrsp;
+	mtSysOsalNvWriteSrspCb_t pfnSysOsalNvWriteSrsp;
 	mtSysOsalNvLengthSrspCb_t pfnSysOsalNvLengthSrsp;
 	mtSysOsalTimerExpiredCb_t pfnSysOsalTimerExpired;
 	mtSysStackTuneSrspCb_t pfnSysStackTuneSrsp;
