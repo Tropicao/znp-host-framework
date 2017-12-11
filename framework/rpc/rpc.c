@@ -329,7 +329,7 @@ int32_t rpcProcess(void)
 			else
 			{
 				// should be AREQ frame
-				LOG_INF("writing %d bytes AREQ to tail of the que", rpcLen);
+				LOG_INF("writing %d bytes AREQ to tail of the queue", rpcLen);
 
 				// send message to queue
 				llq_add(&rpcLlq, (char*) &rpcBuff[1], rpcLen, 0);
