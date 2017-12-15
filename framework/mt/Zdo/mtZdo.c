@@ -2787,7 +2787,7 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 		LOG_DBG("zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s", rpcBuff[2] ? "ERROR":"SUCCESS");
         break;
 	default:
-		LOG_WARN("processSrsp: unsupported ZDO message : %d (0x%02X)", rpcBuff[1], rpcBuff[1]);
+		LOG_WARN("processSrsp: unsupported ZDO message : %02X", rpcBuff[1], rpcBuff[1]);
 		break;
 	}
 }
