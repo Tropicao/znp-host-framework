@@ -386,6 +386,11 @@ typedef struct
 
 typedef struct
 {
+	uint8_t Status;
+} StartupFromAppSrspFormat_t;
+
+typedef struct
+{
 	uint8_t Endpoint;
 } AutoFindDestinationFormat_t;
 
@@ -745,6 +750,7 @@ typedef uint8_t (*mtZdoJoinCnfCb_t)(JoinCnfFormat_t *msg);
 typedef uint8_t (*mtZdoNwkDiscoveryCnfCb_t)(NwkDiscoveryCnfFormat_t *msg);
 typedef uint8_t (*mtZdoLeaveIndCb_t)(LeaveIndFormat_t *msg);
 typedef uint8_t (*mtZdoMsgCbIncomingCb_t)(MsgCbIncomingFormat_t *msg);
+typedef uint8_t (*mtZdoStartupFromAppSrspCb_t)(StartupFromAppSrspFormat_t *msg);
 
 typedef uint8_t (*mtZdoStub_t)(void);
 
@@ -783,6 +789,7 @@ typedef struct
 	mtZdoMatchDescRspSentCb_t pfnZdoMatchDescRspSent; //MT_ZDO_MATCH_DESC_RSP_SENT          0xC2
 	mtZdoMsgCbIncomingCb_t pfnZdoMsgCbIncoming;
 	mtZdoGetLinkKeyCb_t pfnZdoGetLinkKey;
+    mtZdoStartupFromAppSrspCb_t pfnZdoStartupFromAppSrsp;
 } mtZdoCb_t;
 
 void zdoRegisterCallbacks(mtZdoCb_t cbs);

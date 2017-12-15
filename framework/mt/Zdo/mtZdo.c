@@ -1020,6 +1020,33 @@ uint8_t zdoStartupFromApp(StartupFromAppFormat_t *req)
 }
 
 /*********************************************************************
+ * @fn      processZDOStartupFromApp
+ *
+ * @brief   processes incoming command from ZNP
+ *
+ * @param    rpcBuff - Buffer from rpc layer, contains command data
+ * @param    rpcLen - Length of rpcBuff
+ *
+ * @return
+ */
+static void processStartupFromAppSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtZdoCbs.pfnZdoStartupFromAppSrsp)
+	{
+		uint8_t msgIdx = 2;
+		StartupFromAppSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtZdoCbs.pfnZdoStartupFromAppSrsp(&rsp);
+	}
+}
+
+/*********************************************************************
  * @fn      zdoAutoFindDestination
  *
  * @brief   Send ZDO_AUTO_FIND_DESTINATION_REQ to ZNP
@@ -2779,16 +2806,20 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	//srspRpcLen = rpcLen;
 	switch (rpcBuff[1])
 	{
-	case MT_ZDO_GET_LINK_KEY:
-		LOG_DBG("zdoProcess: MT_ZDO_GET_LINK_KEY");
-		processGetLinkKey(rpcBuff, rpcLen);
-		break;
-    case MT_ZDO_NWK_DISCOVERY_REQ:
-		LOG_DBG("zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s", rpcBuff[2] ? "ERROR":"SUCCESS");
-        break;
-	default:
-		LOG_WARN("processSrsp: unsupported ZDO message : %02X", rpcBuff[1], rpcBuff[1]);
-		break;
+        case MT_ZDO_GET_LINK_KEY:
+            LOG_DBG("zdoProcess: MT_ZDO_GET_LINK_KEY");
+            processGetLinkKey(rpcBuff, rpcLen);
+            break;
+        case MT_ZDO_NWK_DISCOVERY_REQ:
+            LOG_DBG("zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s", rpcBuff[2] ? "ERROR":"SUCCESS");
+            break;
+        case MT_ZDO_STARTUP_FROM_APP:
+            LOG_DBG("zdoProcess: MT_ZDO_STARTUP_FROM_APP");
+            processStartupFromAppSrsp(rpcBuff, rpcLen);
+            break;
+        default:
+            LOG_WARN("processSrsp: unsupported ZDO message : %02X", rpcBuff[1], rpcBuff[1]);
+            break;
 	}
 }
 
