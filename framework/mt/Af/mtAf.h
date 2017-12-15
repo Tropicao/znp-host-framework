@@ -118,6 +118,7 @@ typedef struct
 #define MT_AF_DATA_REQUEST_EXT               0x02  /* AREQ optional, but no AREQ response. */
 #define MT_AF_DATA_REQUEST_SRC_RTG            0x03
 
+#define MT_AF_REGISTER                       0x00
 #define MT_AF_INTER_PAN_CTL                  0x10
 #define MT_AF_DATA_STORE                     0x11
 #define MT_AF_DATA_RETRIEVE                  0x12
@@ -148,6 +149,11 @@ typedef struct
 	uint8_t AppNumOutClusters;
 	uint16_t AppOutClusterList[16];
 } RegisterFormat_t;
+
+typedef struct
+{
+	uint8_t Status;
+} RegisterSrspFormat_t;
 
 typedef struct
 {
@@ -276,6 +282,7 @@ typedef struct
 	uint16_t DstAddr;
 } ReflectErrorFormat_t;
 
+typedef uint8_t (*mtAfRegisterSrspCb_t)(RegisterSrspFormat_t *msg);
 typedef uint8_t (*mtAfDataConfirmCb_t)(DataConfirmFormat_t *msg);
 typedef uint8_t (*mtAfIncomingMsgCb_t)(IncomingMsgFormat_t *msg);
 typedef uint8_t (*mtAfIncomingMsgExt_t)(IncomingMsgExtFormat_t *msg);
@@ -284,9 +291,10 @@ typedef uint8_t (*mtAfReflectErrorCb_t)(ReflectErrorFormat_t *msg);
 
 typedef struct
 {
-	mtAfDataConfirmCb_t pfnAfDataConfirm;				//MT_AF_DATA_CONFIRM
-	mtAfIncomingMsgCb_t pfnAfIncomingMsg;				//MT_AF_INCOMING_MSG
-	mtAfIncomingMsgExt_t pfnAfIncomingMsgExt;			//MT_AF_INCOMING_MSG_EXT
+    mtAfRegisterSrspCb_t pfnAfRegisterSrsp;          //MT_AF_REGISTER
+	mtAfDataConfirmCb_t pfnAfDataConfirm;			//MT_AF_DATA_CONFIRM
+	mtAfIncomingMsgCb_t pfnAfIncomingMsg;			//MT_AF_INCOMING_MSG
+	mtAfIncomingMsgExt_t pfnAfIncomingMsgExt;		//MT_AF_INCOMING_MSG_EXT
 	mtAfDataRetrieveSrspCb_t pfnAfDataRetrieveSrsp;	//MT_AF_DATA_RETRIEVE
 	mtAfReflectErrorCb_t pfnAfReflectError;			//MT_AF_REFLECT_ERROR
 } mtAfCb_t;

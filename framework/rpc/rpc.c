@@ -378,6 +378,7 @@ uint8_t rpcSendFrame(uint8_t cmd0, uint8_t cmd1, uint8_t *payload,
 	{
 		// calculate expected SRSP
 		expectedSrspCmdId = (cmd0 & MT_RPC_SUBSYSTEM_MASK);
+        LOG_DBG("Expecting SRSP %02X", expectedSrspCmdId);
 	}
 
 	if (payload_len > 0)

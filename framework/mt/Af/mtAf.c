@@ -110,6 +110,22 @@ uint8_t afRegister(RegisterFormat_t *req)
 	}
 }
 
+static void processAfRegisterSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtAfCbs.pfnAfRegisterSrsp)
+	{
+		uint8_t msgIdx = 2;
+		RegisterSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtAfCbs.pfnAfRegisterSrsp(&rsp);
+	}
+}
+
 uint8_t afDataRequest(DataRequestFormat_t *req)
 {
 	uint8_t status;
@@ -595,14 +611,18 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	//srspRpcLen = rpcLen;
 	switch (rpcBuff[1])
 	{
-	case MT_AF_DATA_RETRIEVE:
-		LOG_DBG("afProcess: MT_AF_DATA_RETRIEVE");
-		processDataRetrieveSrsp(rpcBuff, rpcLen);
-		break;
-	default:
-		LOG_WARN("processSrsp: unsupported message [%x:%x]", rpcBuff[0],
-		        rpcBuff[1]);
-		break;
+        case MT_AF_REGISTER:
+            LOG_DBG("afProcess: MT_AF_REGISTER");
+            processAfRegisterSrsp(rpcBuff, rpcLen);
+            break;
+        case MT_AF_DATA_RETRIEVE:
+            LOG_DBG("afProcess: MT_AF_DATA_RETRIEVE");
+            processDataRetrieveSrsp(rpcBuff, rpcLen);
+            break;
+        default:
+            LOG_WARN("processSrsp: unsupported message [%x:%x]", rpcBuff[0],
+                    rpcBuff[1]);
+            break;
 	}
 
 }
