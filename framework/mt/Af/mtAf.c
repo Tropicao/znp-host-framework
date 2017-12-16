@@ -300,6 +300,22 @@ uint8_t afInterPanCtl(InterPanCtlFormat_t *req)
 	}
 }
 
+static void processAfInterPanCtlSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtAfCbs.pfnAfInterPanCtlSrsp)
+	{
+		uint8_t msgIdx = 2;
+		InterPanCtlSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtAfCbs.pfnAfInterPanCtlSrsp(&rsp);
+	}
+}
+
 uint8_t afDataStore(DataStoreFormat_t *req)
 {
 	uint8_t status;
@@ -634,6 +650,10 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
         case MT_AF_DATA_REQUEST:
             LOG_DBG("afProcess: MT_AF_DATA_REQUEST");
             processAfDataRequestSrsp(rpcBuff, rpcLen);
+            break;
+        case MT_AF_INTER_PAN_CTL:
+            LOG_DBG("afProcess: MT_AF_INTER_PAN_CTL");
+            processAfInterPanCtlSrsp(rpcBuff, rpcLen);
             break;
         case MT_AF_DATA_RETRIEVE:
             LOG_DBG("afProcess: MT_AF_DATA_RETRIEVE");

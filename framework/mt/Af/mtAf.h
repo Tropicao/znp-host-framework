@@ -210,6 +210,11 @@ typedef struct
 
 typedef struct
 {
+    uint8_t Status;
+} InterPanCtlSrspFormat_t;
+
+typedef struct
+{
 	uint16_t Index;
 	uint8_t Length;
 	uint8_t Data[247];
@@ -293,6 +298,7 @@ typedef uint8_t (*mtAfIncomingMsgCb_t)(IncomingMsgFormat_t *msg);
 typedef uint8_t (*mtAfIncomingMsgExt_t)(IncomingMsgExtFormat_t *msg);
 typedef uint8_t (*mtAfDataRetrieveSrspCb_t)(DataRetrieveSrspFormat_t *msg);
 typedef uint8_t (*mtAfReflectErrorCb_t)(ReflectErrorFormat_t *msg);
+typedef uint8_t (*mtAfInterPanCtlCb_t)(InterPanCtlSrspFormat_t *msg);
 
 typedef struct
 {
@@ -303,6 +309,7 @@ typedef struct
 	mtAfIncomingMsgExt_t pfnAfIncomingMsgExt;		//MT_AF_INCOMING_MSG_EXT
 	mtAfDataRetrieveSrspCb_t pfnAfDataRetrieveSrsp;	//MT_AF_DATA_RETRIEVE
 	mtAfReflectErrorCb_t pfnAfReflectError;			//MT_AF_REFLECT_ERROR
+    mtAfInterPanCtlCb_t pfnAfInterPanCtlSrsp;
 } mtAfCb_t;
 
 void afRegisterCallbacks(mtAfCb_t cbs);
