@@ -225,6 +225,22 @@ uint8_t afDataRequestExt(DataRequestExtFormat_t *req)
 	}
 }
 
+static void processAfDataRequestExtSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtAfCbs.pfnAfDataRequestExtSrsp)
+	{
+		uint8_t msgIdx = 2;
+		DataRequestExtSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtAfCbs.pfnAfDataRequestExtSrsp(&rsp);
+	}
+}
+
 uint8_t afDataRequestSrcRtg(DataRequestSrcRtgFormat_t *req)
 {
 	uint8_t status;
@@ -650,6 +666,10 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
         case MT_AF_DATA_REQUEST:
             LOG_DBG("afProcess: MT_AF_DATA_REQUEST");
             processAfDataRequestSrsp(rpcBuff, rpcLen);
+            break;
+        case MT_AF_DATA_REQUEST_EXT:
+            LOG_DBG("afProcess: MT_AF_DATA_REQUEST_EXT");
+            processAfDataRequestExtSrsp(rpcBuff, rpcLen);
             break;
         case MT_AF_INTER_PAN_CTL:
             LOG_DBG("afProcess: MT_AF_INTER_PAN_CTL");

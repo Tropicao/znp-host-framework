@@ -156,11 +156,6 @@ typedef struct
 
 typedef struct
 {
-	uint8_t Status;
-}DataRequestSrspFormat_t;
-
-typedef struct
-{
 	uint16_t DstAddr;
 	uint8_t DstEndpoint;
 	uint8_t SrcEndpoint;
@@ -171,6 +166,11 @@ typedef struct
 	uint8_t Len;
 	uint8_t Data[128];
 } DataRequestFormat_t;
+
+typedef struct
+{
+	uint8_t Status;
+}DataRequestSrspFormat_t;
 
 typedef struct
 {
@@ -186,6 +186,11 @@ typedef struct
 	uint16_t Len;
 	uint8_t Data[230];
 } DataRequestExtFormat_t;
+
+typedef struct
+{
+	uint8_t Status;
+}DataRequestExtSrspFormat_t;
 
 typedef struct
 {
@@ -293,6 +298,7 @@ typedef struct
 
 typedef uint8_t (*mtAfRegisterSrspCb_t)(RegisterSrspFormat_t *msg);
 typedef uint8_t (*mtAfDataRequestSrspCb_t)(DataRequestSrspFormat_t *msg);
+typedef uint8_t (*mtAfDataRequestExtSrspCb_t)(DataRequestExtSrspFormat_t *msg);
 typedef uint8_t (*mtAfDataConfirmCb_t)(DataConfirmFormat_t *msg);
 typedef uint8_t (*mtAfIncomingMsgCb_t)(IncomingMsgFormat_t *msg);
 typedef uint8_t (*mtAfIncomingMsgExt_t)(IncomingMsgExtFormat_t *msg);
@@ -302,13 +308,14 @@ typedef uint8_t (*mtAfInterPanCtlCb_t)(InterPanCtlSrspFormat_t *msg);
 
 typedef struct
 {
-    mtAfRegisterSrspCb_t pfnAfRegisterSrsp;         //MT_AF_REGISTER
-    mtAfDataRequestSrspCb_t pfnAfDataRequestSrsp;   //MT_AF_DATA_REQUEST
-	mtAfDataConfirmCb_t pfnAfDataConfirm;			//MT_AF_DATA_CONFIRM
-	mtAfIncomingMsgCb_t pfnAfIncomingMsg;			//MT_AF_INCOMING_MSG
-	mtAfIncomingMsgExt_t pfnAfIncomingMsgExt;		//MT_AF_INCOMING_MSG_EXT
-	mtAfDataRetrieveSrspCb_t pfnAfDataRetrieveSrsp;	//MT_AF_DATA_RETRIEVE
-	mtAfReflectErrorCb_t pfnAfReflectError;			//MT_AF_REFLECT_ERROR
+    mtAfRegisterSrspCb_t pfnAfRegisterSrsp;             //MT_AF_REGISTER
+    mtAfDataRequestSrspCb_t pfnAfDataRequestSrsp;       //MT_AF_DATA_REQUEST
+    mtAfDataRequestExtSrspCb_t pfnAfDataRequestExtSrsp; //MT_AF_DATA_REQUEST
+	mtAfDataConfirmCb_t pfnAfDataConfirm;			    //MT_AF_DATA_CONFIRM
+	mtAfIncomingMsgCb_t pfnAfIncomingMsg;			    //MT_AF_INCOMING_MSG
+	mtAfIncomingMsgExt_t pfnAfIncomingMsgExt;		    //MT_AF_INCOMING_MSG_EXT
+	mtAfDataRetrieveSrspCb_t pfnAfDataRetrieveSrsp;	    //MT_AF_DATA_RETRIEVE
+	mtAfReflectErrorCb_t pfnAfReflectError;			    //MT_AF_REFLECT_ERROR
     mtAfInterPanCtlCb_t pfnAfInterPanCtlSrsp;
 } mtAfCb_t;
 
