@@ -9,6 +9,7 @@ src = ['framework/znp.c',
     'framework/mt/Sys/mtSys.c',
     'framework/mt/Af/mtAf.c',
     'framework/mt/Sapi/mtSapi.c',
+    'framework/mt/Util/mtUtil.c',
     'framework/platform/gnu/dbgPrint.c',
     'framework/platform/gnu/hostConsole.c',
     'framework/platform/gnu/rpcTransport.c']
@@ -23,6 +24,7 @@ headers = ['framework/znp.h',
     'framework/mt/Sys/mtSys.h',
     'framework/mt/Zdo/mtZdo.h',
     'framework/mt/Sapi/mtSapi.h',
+    'framework/mt/Util/mtUtil.h',
     'framework/mt/mtParser.h',
     'framework/rpc/queue.h',
     'framework/rpc/rpc.h']
@@ -34,13 +36,15 @@ af_incdir = include_directories('framework/mt/Af')
 zdo_incdir = include_directories('framework/mt/Zdo')
 sys_incdir = include_directories('framework/mt/Sys')
 sapi_incdir = include_directories('framework/mt/Sapi')
+util_incdir = include_directories('framework/mt/Util')
 incdir = [gnu_incdir,
     rpc_incdir,
     mt_incdir,
     af_incdir,
     zdo_incdir,
     sys_incdir,
-    sapi_incdir]
+    sapi_incdir,
+    util_incdir]
 
 # Libraries
 cc = meson.get_compiler('c')

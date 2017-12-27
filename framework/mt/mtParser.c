@@ -50,6 +50,7 @@
 #include "mtZdo.h"
 #include "mtAf.h"
 #include "mtSapi.h"
+#include "mtUtil.h"
 
 #include "dbgPrint.h"
 
@@ -85,33 +86,24 @@ void mtProcess(uint8_t *rpcBuff, uint8_t rpcLen)
     //Read CMD0
     switch (rpcBuff[0] & MT_RPC_SUBSYSTEM_MASK)
     {
-    case MT_RPC_SYS_ZDO:
-        //process ZDO RPC's in the ZDO module
-        zdoProcess(rpcBuff, rpcLen);
-        break;
-
-    case MT_RPC_SYS_SYS:
-        //process SYS RPC's in the Sys module
-        sysProcess(rpcBuff, rpcLen);
-        break;
-
-    case MT_RPC_SYS_AF:
-        //process SYS RPC's in the Sys module
-        afProcess(rpcBuff, rpcLen);
-        break;
-
-    case MT_RPC_SYS_SAPI:
-        //process SYS RPC's in the Sys module
-        sapiProcess(rpcBuff, rpcLen);
-        break;
-
-    default:
-        LOG_DBG(
-                "mtProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
-                rpcBuff[1]);
-
-        break;
+        case MT_RPC_SYS_ZDO:
+            zdoProcess(rpcBuff, rpcLen);
+            break;
+        case MT_RPC_SYS_SYS:
+            sysProcess(rpcBuff, rpcLen);
+            break;
+        case MT_RPC_SYS_AF:
+            afProcess(rpcBuff, rpcLen);
+            break;
+        case MT_RPC_SYS_SAPI:
+            sapiProcess(rpcBuff, rpcLen);
+            break;
+        case MT_RPC_SYS_UTIL:
+            utilProcess(rpcBuff, rpcLen);
+            break;
+        default:
+            LOG_DBG("CMD0:%x, CMD1:%x, not handled", rpcBuff[0], rpcBuff[1]);
+            break;
     }
-
 }
 
