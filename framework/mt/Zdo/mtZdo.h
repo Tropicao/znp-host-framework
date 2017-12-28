@@ -87,7 +87,25 @@ extern "C"
 #define MT_ZDO_STARTUP_FROM_APP              0x40
 
 /* AREQ from host */
-#define MT_ZDO_AUTO_FIND_DESTINATION     0x41
+#define MT_ZDO_AUTO_FIND_DESTINATION        0x41
+#define MT_ZDO_SEC_ADD_LINK_KEY             0x42
+#define MT_ZDO_SEC_ENTRY_LOOKUP_EXT         0x43
+#define MT_ZDO_SEC_DEVICE_REMOVE            0x44
+#define MT_ZDO_EXT_ROUTE_DISC               0x45
+#define MT_ZDO_EXT_ROUTE_CHECK              0x46
+#define MT_ZDO_EXT_REMOVE_GROUP             0x47
+#define MT_ZDO_EXT_REMOVE_ALL_GROUP         0x48
+#define MT_ZDO_EXT_FIND_ALL_GROUPS_ENDPOINT 0x49
+#define MT_ZDO_EXT_FIND_GROUP               0x4A
+#define MT_ZDO_EXT_ADD_GROUP                0x4B
+#define MT_ZDO_EXT_COUNT_ALL_GROUPS         0x4C
+#define MT_ZDO_EXT_RX_IDLE                  0x4D
+#define MT_ZDO_EXT_UPDATE_NWK_KEY           0x4E
+#define MT_ZDO_EXT_SWITCH_NWK_KEY           0x4F
+#define MT_ZDO_EXT_NWK_INFO                 0x50
+#define MT_ZDO_EXT_SEC_APS_REMOVE_REQ       0x51
+#define MT_ZDO_FORCE_CONCENTRATOR_CHANGE    0x52
+#define MT_ZDO_EXT_SET_PARAMS               0x53
 
 /* AREQ to host */
 #define MT_ZDO_AREQ_TO_HOST                0x80 /* Mark the start of the ZDO CId AREQs to host. */
@@ -702,6 +720,11 @@ typedef struct
 	uint8_t NotUsed;
 } MsgCbIncomingFormat_t;
 
+typedef struct
+{
+
+}UpdateNwkKeyFormat_t;
+
 //sets the types of response of State Change Ind
 typedef enum
 {
@@ -826,6 +849,7 @@ uint8_t zdoNwkDiscoveryReq(NwkDiscoveryReqFormat_t *req);
 uint8_t zdoJoinReq(JoinReqFormat_t *req);
 uint8_t zdoMsgCbRegister(MsgCbRegisterFormat_t *req);
 uint8_t zdoMsgCbRemove(MsgCbRemoveFormat_t *req);
+uint8_t zdoExtUpdateNwkKey(UpdateNwkKeyFormat_t *req);
 
 void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen);
 
