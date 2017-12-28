@@ -465,6 +465,7 @@ static void processIncomingMsgExt(uint8_t *rpcBuff, uint8_t rpcLen)
 			rsp.TimeStamp |= ((uint32_t) rpcBuff[msgIdx++]) << (i * 8);
 		rsp.TransSeqNum = rpcBuff[msgIdx++];
 		rsp.Len = rpcBuff[msgIdx++];
+        msgIdx++;
 		uint32_t ind;
 		for (ind = 0; ind < rsp.Len; ind++)
 		{
