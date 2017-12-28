@@ -239,7 +239,7 @@ typedef struct
 	uint16_t SrcAddr;
 	uint8_t SrcEndpoint;
 	uint8_t DstEndpoint;
-	uint8_t WasVroadcast;
+	uint8_t WasBroadcast;
 	uint8_t LinkQuality;
 	uint8_t SecurityUse;
 	uint32_t TimeStamp;
@@ -257,7 +257,7 @@ typedef struct
 	uint8_t SrcEndpoint;
 	uint16_t SrcPanId;
 	uint8_t DstEndpoint;
-	uint8_t WasVroadcast;
+	uint8_t WasBroadcast;
 	uint8_t LinkQuality;
 	uint8_t SecurityUse;
 	uint32_t TimeStamp;

@@ -404,7 +404,7 @@ static void processIncomingMsg(uint8_t *rpcBuff, uint8_t rpcLen)
 		msgIdx += 2;
 		rsp.SrcEndpoint = rpcBuff[msgIdx++];
 		rsp.DstEndpoint = rpcBuff[msgIdx++];
-		rsp.WasVroadcast = rpcBuff[msgIdx++];
+		rsp.WasBroadcast = rpcBuff[msgIdx++];
 		rsp.LinkQuality = rpcBuff[msgIdx++];
 		rsp.SecurityUse = rpcBuff[msgIdx++];
 		rsp.TimeStamp = 0;
@@ -457,7 +457,7 @@ static void processIncomingMsgExt(uint8_t *rpcBuff, uint8_t rpcLen)
 		rsp.SrcPanId = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
 		msgIdx += 2;
 		rsp.DstEndpoint = rpcBuff[msgIdx++];
-		rsp.WasVroadcast = rpcBuff[msgIdx++];
+		rsp.WasBroadcast = rpcBuff[msgIdx++];
 		rsp.LinkQuality = rpcBuff[msgIdx++];
 		rsp.SecurityUse = rpcBuff[msgIdx++];
 		rsp.TimeStamp = 0;
