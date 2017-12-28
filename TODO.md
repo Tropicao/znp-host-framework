@@ -9,3 +9,4 @@
 * Param ((unused)) in library : delete
 * No that lib is monothreaded : do we really need a queue for incoming messages
 * fix dbg_print for no line return request
+* CMD0=0x45(ZDO) CMD1=0xCA not handled => undocumented command ?
