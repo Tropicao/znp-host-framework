@@ -2782,9 +2782,7 @@ void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen)
                 processMsgCbIncoming(rpcBuff, rpcLen);
                 break;
             default:
-                LOG_ERR(
-                        "zdoProcess: CMD0:%x, CMD1:%x, not handled", rpcBuff[0],
-                        rpcBuff[1]);
+                LOG_ERR("CMD0:%X, CMD1:%X, not handled", rpcBuff[0], rpcBuff[1]);
                 break;
         }
     }
