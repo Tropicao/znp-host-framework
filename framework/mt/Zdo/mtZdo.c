@@ -2529,6 +2529,42 @@ static void processLeaveInd(uint8_t *rpcBuff, uint8_t rpcLen)
 }
 
 /*********************************************************************
+ * @fn      processTcDevInd
+ *
+ * @brief   processes incoming command from ZNP
+ *
+ * @param    rpcBuff - Buffer from rpc layer, contains command data
+ * @param    rpcLen - Length of rpcBuff
+ *
+ * @return
+ */
+static void processTcDevInd(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtZdoCbs.pfnZdoTcDevInd)
+	{
+		uint8_t msgIdx = 2;
+		TcDevIndFormat_t rsp;
+		if (rpcLen < 12)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+
+		}
+
+		rsp.SrcNwkAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
+		msgIdx += 2;
+
+		rsp.ExtAddr = 0;
+		uint8_t i;
+		for (i = 0; i < 8; i++)
+		{
+			rsp.ExtAddr |= ((uint64_t) rpcBuff[msgIdx++]) << (i * 8);
+		}
+		rsp.ParentNwkAddr = BUILD_UINT16(rpcBuff[msgIdx], rpcBuff[msgIdx + 1]);
+
+		mtZdoCbs.pfnZdoTcDevInd(&rsp);
+	}
+}
+/*********************************************************************
  * @fn      processMsgCbIncoming
  *
  * @brief   processes incoming command from ZNP
@@ -2635,80 +2671,67 @@ void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen)
         switch (rpcBuff[1])
         {
             case MT_ZDO_STATE_CHANGE_IND:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_STATE_CHANGE_IND");
+                LOG_DBG("MT_ZDO_STATE_CHANGE_IND");
                 processStateChange(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_NWK_ADDR_RSP:
-                LOG_DBG("zdoProcess: MT_ZDO_NWK_ADDR_RSP");
+                LOG_DBG("MT_ZDO_NWK_ADDR_RSP");
                 processNwkAddrRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_IEEE_ADDR_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_IEEE_ADDR_RSP");
+                LOG_DBG("MT_ZDO_IEEE_ADDR_RSP");
                 processIeeeAddrRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_NODE_DESC_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_NODE_DESC_RSP");
+                LOG_DBG("MT_ZDO_NODE_DESC_RSP");
                 processNodeDescRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_POWER_DESC_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_POWER_DESC_RSP");
+                LOG_DBG("MT_ZDO_POWER_DESC_RSP");
                 processPowerDescRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_SIMPLE_DESC_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_SIMPLE_DESC_RSP");
+                LOG_DBG("MT_ZDO_SIMPLE_DESC_RSP");
                 processSimpleDescRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_ACTIVE_EP_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_ACTIVE_EP_RSP");
+                LOG_DBG("MT_ZDO_ACTIVE_EP_RSP");
                 processActiveEpRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_MATCH_DESC_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_MATCH_DESC_RSP");
+                LOG_DBG("MT_ZDO_MATCH_DESC_RSP");
                 processMatchDescRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_COMPLEX_DESC_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_COMPLEX_DESC_RSP");
+                LOG_DBG("MT_ZDO_COMPLEX_DESC_RSP");
                 processComplexDescRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_USER_DESC_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_USER_DESC_RSP");
+                LOG_DBG("MT_ZDO_USER_DESC_RSP");
                 processUserDescRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_USER_DESC_CONF:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_USER_DESC_CONF");
+                LOG_DBG("MT_ZDO_USER_DESC_CONF");
                 processUserDescConf(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_SERVER_DISC_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_SERVER_DISC_RSP");
+                LOG_DBG("MT_ZDO_SERVER_DISC_RSP");
                 processServerDiscRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_END_DEVICE_BIND_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_END_DEVICE_BIND_RSP");
+                LOG_DBG("MT_ZDO_END_DEVICE_BIND_RSP");
                 processEndDeviceBindRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_BIND_RSP:
-                LOG_DBG("zdoProcess: MT_ZDO_BIND_RSP");
+                LOG_DBG("MT_ZDO_BIND_RSP");
                 processBindRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_UNBIND_RSP:
-                LOG_DBG("zdoProcess: MT_ZDO_UNBIND_RSP");
+                LOG_DBG("MT_ZDO_UNBIND_RSP");
                 processUnbindRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_MGMT_NWK_DISC_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_MGMT_NWK_DISC_RSP");
+                LOG_DBG("MT_ZDO_MGMT_NWK_DISC_RSP");
                 processMgmtNwkDiscRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_MGMT_LQI_RSP:
@@ -2720,65 +2743,59 @@ void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen)
                 processMgmtRtgRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_MGMT_BIND_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_MGMT_BIND_RSP");
+                LOG_DBG("MT_ZDO_MGMT_BIND_RSP");
                 processMgmtBindRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_MGMT_LEAVE_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_MGMT_LEAVE_RSP");
+                LOG_DBG("MT_ZDO_MGMT_LEAVE_RSP");
                 processMgmtLeaveRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_MGMT_DIRECT_JOIN_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_MGMT_DIRECT_JOIN_RSP");
+                LOG_DBG("MT_ZDO_MGMT_DIRECT_JOIN_RSP");
                 processMgmtDirectJoinRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_MGMT_PERMIT_JOIN_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_MGMT_PERMIT_JOIN_RSP");
+                LOG_DBG("MT_ZDO_MGMT_PERMIT_JOIN_RSP");
                 processMgmtPermitJoinRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_END_DEVICE_ANNCE_IND:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_END_DEVICE_ANNCE_IND");
+                LOG_DBG("MT_ZDO_END_DEVICE_ANNCE_IND");
                 processEndDeviceAnnceInd(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_MATCH_DESC_RSP_SENT:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_MATCH_DESC_RSP_SENT");
+                LOG_DBG("MT_ZDO_MATCH_DESC_RSP_SENT");
                 processMatchDescRspSent(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_STATUS_ERROR_RSP:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_STATUS_ERROR_RSP");
+                LOG_DBG("MT_ZDO_STATUS_ERROR_RSP");
                 processStatusErrorRsp(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_SRC_RTG_IND:
-                LOG_DBG("zdoProcess: MT_ZDO_SRC_RTG_IND");
+                LOG_DBG("MT_ZDO_SRC_RTG_IND");
                 processSrcRtgInd(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_BEACON_NOTIFY_IND:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_BEACON_NOTIFY_IND");
+                LOG_DBG("MT_ZDO_BEACON_NOTIFY_IND");
                 processBeaconNotifyInd(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_JOIN_CNF:
-                LOG_DBG("zdoProcess: MT_ZDO_JOIN_CNF");
+                LOG_DBG("MT_ZDO_JOIN_CNF");
                 processJoinCnf(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_NWK_DISCOVERY_CNF:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_NWK_DISCOVERY_CNF");
+                LOG_DBG("MT_ZDO_NWK_DISCOVERY_CNF");
                 processNwkDiscoveryCnf(rpcBuff, rpcLen);
                 break;
             case MT_ZDO_LEAVE_IND:
-                LOG_DBG("zdoProcess: MT_ZDO_LEAVE_IND");
+                LOG_DBG("MT_ZDO_LEAVE_IND");
                 processLeaveInd(rpcBuff, rpcLen);
                 break;
+            case MT_ZDO_TC_DEV_IND:
+                LOG_DBG("MT_ZDO_TC_DEV_IND");
+                processTcDevInd(rpcBuff, rpcLen);
+                break;
             case MT_ZDO_MSG_CB_INCOMING:
-                LOG_DBG(
-                        "zdoProcess: MT_ZDO_MSG_CB_INCOMING");
+                LOG_DBG("MT_ZDO_MSG_CB_INCOMING");
                 processMsgCbIncoming(rpcBuff, rpcLen);
                 break;
             default:

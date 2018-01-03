@@ -132,6 +132,9 @@ extern "C"
 
 #define MT_ZDO_MSG_CB_INCOMING               0xFF
 
+#define MT_ZDO_TC_DEV_IND                    0xCA
+#define MT_ZDO_PERMIT_JOIN_IND               0xCB
+
 // Some arbitrarily chosen value for a default error status msg.
 //#define MtZdoDef_rsp                         0x0040
 
@@ -690,6 +693,13 @@ typedef struct
 
 typedef struct
 {
+	uint16_t SrcNwkAddr;
+	uint64_t ExtAddr;
+    uint16_t ParentNwkAddr;
+} TcDevIndFormat_t;
+
+typedef struct
+{
 	uint16_t SrcAddr;
 	uint8_t WasBroadcast;
 	uint16_t ClusterID;
@@ -749,6 +759,7 @@ typedef uint8_t (*mtZdoBeaconNotifyIndCb_t)(BeaconNotifyIndFormat_t *msg);
 typedef uint8_t (*mtZdoJoinCnfCb_t)(JoinCnfFormat_t *msg);
 typedef uint8_t (*mtZdoNwkDiscoveryCnfCb_t)(NwkDiscoveryCnfFormat_t *msg);
 typedef uint8_t (*mtZdoLeaveIndCb_t)(LeaveIndFormat_t *msg);
+typedef uint8_t (*mtZdoTcDevIndCb_t)(TcDevIndFormat_t *msg);
 typedef uint8_t (*mtZdoMsgCbIncomingCb_t)(MsgCbIncomingFormat_t *msg);
 typedef uint8_t (*mtZdoStartupFromAppSrspCb_t)(StartupFromAppSrspFormat_t *msg);
 
@@ -756,37 +767,38 @@ typedef uint8_t (*mtZdoStub_t)(void);
 
 typedef struct
 {
-	mtZdoNwkAddrRspCb_t pfnZdoNwkAddrRsp; // MT_ZDO_NWK_ADDR_RSP                0x80
-	mtZdoIeeeAddrRspCb_t pfnZdoIeeeAddrRsp; // MT_ZDO_IEEE_ADDR_RSP               0x81
-	mtZdoNodeDescRspCb_t pfnZdoNodeDescRsp; // MT_ZDO_NODE_DESC_RSP               0x82
-	mtZdoPowerDescRspCb_t pfnZdoPowerDescRsp; // MT_ZDO_POWER_DESC_RSP              0x83
-	mtZdoSimpleDescRspCb_t pfnZdoSimpleDescRsp; // MT_ZDO_SIMPLE_DESC_RSP             0x84
-	mtZdoActiveEpRspCb_t pfnZdoActiveEpRsp; // MT_ZDO_ACTIVE_EP_RSP               0x85
-	mtZdoMatchDescRspCb_t pfnZdoMatchDescRsp; // MT_ZDO_MATCH_DESC_RSP              0x86
+	mtZdoNwkAddrRspCb_t pfnZdoNwkAddrRsp; // MT_ZDO_NWK_ADDR_RSP                        0x80
+	mtZdoIeeeAddrRspCb_t pfnZdoIeeeAddrRsp; // MT_ZDO_IEEE_ADDR_RSP                     0x81
+	mtZdoNodeDescRspCb_t pfnZdoNodeDescRsp; // MT_ZDO_NODE_DESC_RSP                     0x82
+	mtZdoPowerDescRspCb_t pfnZdoPowerDescRsp; // MT_ZDO_POWER_DESC_RSP                  0x83
+	mtZdoSimpleDescRspCb_t pfnZdoSimpleDescRsp; // MT_ZDO_SIMPLE_DESC_RSP               0x84
+	mtZdoActiveEpRspCb_t pfnZdoActiveEpRsp; // MT_ZDO_ACTIVE_EP_RSP                     0x85
+	mtZdoMatchDescRspCb_t pfnZdoMatchDescRsp; // MT_ZDO_MATCH_DESC_RSP                  0x86
 	mtZdoComplexDescRspCb_t pfnZdoComplexDescRsp; // MT_ZDO_COMPLEX_DESC_RSP            0x87
-	mtZdoUserDescRspCb_t pfnZdoUserDescRsp; // MT_ZDO_USER_DESC_RSP               0x88
-	mtZdoUserDescConfCb_t pfnZdoUserDescConf; // MT_ZDO_USER_DESC_CONF              0x89
-	mtZdoServerDiscRspCb_t pfnZdoServerDiscRsp; // MT_ZDO_SERVER_DISC_RSP             0x8A
-	mtZdoEndDeviceBindRspCb_t pfnZdoEndDeviceBindRsp; // MT_ZDO_END_DEVICE_BIND_RSP         0xA0
-	mtZdoBindRspCb_t pfnZdoBindRsp;   // MT_ZDO_BIND_RSP                    0xA1
-	mtZdoUnbindRspCb_t pfnZdoUnbindRsp; // MT_ZDO_UNBIND_RSP                  0xA2
+	mtZdoUserDescRspCb_t pfnZdoUserDescRsp; // MT_ZDO_USER_DESC_RSP                     0x88
+	mtZdoUserDescConfCb_t pfnZdoUserDescConf; // MT_ZDO_USER_DESC_CONF                  0x89
+	mtZdoServerDiscRspCb_t pfnZdoServerDiscRsp; // MT_ZDO_SERVER_DISC_RSP               0x8A
+	mtZdoEndDeviceBindRspCb_t pfnZdoEndDeviceBindRsp; // MT_ZDO_END_DEVICE_BIND_RSP     0xA0
+	mtZdoBindRspCb_t pfnZdoBindRsp;   // MT_ZDO_BIND_RSP                                0xA1
+	mtZdoUnbindRspCb_t pfnZdoUnbindRsp; // MT_ZDO_UNBIND_RSP                            0xA2
 	mtZdoMgmtNwkDiscRspCb_t pfnZdoMgmtNwkDiscRsp; // MT_ZDO_MGMT_NWK_DISC_RSP           0xB0
-	mtZdoMgmtLqiRspCb_t pfnZdoMgmtLqiRsp; // MT_ZDO_MGMT_LQI_RSP                0xB1
-	mtZdoMgmtRtgRspCb_t pfnZdoMgmtRtgRsp; // MT_ZDO_MGMT_RTG_RSP                0xB2
-	mtZdoMgmtBindRspCb_t pfnZdoMgmtBindRsp; // MT_ZDO_MGMT_BIND_RSP               0xB3
-	mtZdoMgmtLeaveRspCb_t pfnZdoMgmtLeaveRsp; // MT_ZDO_MGMT_LEAVE_RSP              0xB4
-	mtZdoMgmtDirectJoinRspCb_t pfnZdoMgmtDirectJoinRsp; // MT_ZDO_MGMT_DIRECT_JOIN_RSP        0xB5
-	mtZdoMgmtPermitJoinRspCb_t pfnZdoMgmtPermitJoinRsp; // MT_ZDO_MGMT_PERMIT_JOIN_RSP        0xB6
-	mtZdoStateChangeIndCb_t pfnmtZdoStateChangeInd;    //MT_ZDO_STATE_CHANGE_IND
-	mtZdoEndDeviceAnnceIndCb_t pfnZdoEndDeviceAnnceInd; //MT_ZDO_END_DEVICE_ANNCE_IND
+	mtZdoMgmtLqiRspCb_t pfnZdoMgmtLqiRsp; // MT_ZDO_MGMT_LQI_RSP                        0xB1
+	mtZdoMgmtRtgRspCb_t pfnZdoMgmtRtgRsp; // MT_ZDO_MGMT_RTG_RSP                        0xB2
+	mtZdoMgmtBindRspCb_t pfnZdoMgmtBindRsp; // MT_ZDO_MGMT_BIND_RSP                     0xB3
+	mtZdoMgmtLeaveRspCb_t pfnZdoMgmtLeaveRsp; // MT_ZDO_MGMT_LEAVE_RSP                  0xB4
+	mtZdoMgmtDirectJoinRspCb_t pfnZdoMgmtDirectJoinRsp; // MT_ZDO_MGMT_DIRECT_JOIN_RSP  0xB5
+	mtZdoMgmtPermitJoinRspCb_t pfnZdoMgmtPermitJoinRsp; // MT_ZDO_MGMT_PERMIT_JOIN_RSP  0xB6
+	mtZdoStateChangeIndCb_t pfnmtZdoStateChangeInd;    //MT_ZDO_STATE_CHANGE_IND        0xC0
+	mtZdoEndDeviceAnnceIndCb_t pfnZdoEndDeviceAnnceInd; //MT_ZDO_END_DEVICE_ANNCE_IND   0xC1
 	mtZdoSrcRtgIndCb_t pfnZdoSrcRtgInd;                 //MT_ZDO_SRC_RTG_IND
 	mtZdoBeaconNotifyIndCb_t pfnZdoBeaconNotifyInd;	//MT_ZDO_BEACON_NOTIFY_IND
 	mtZdoJoinCnfCb_t pfnZdoJoinCnf;				        //MT_ZDO_JOIN_CNF
 	mtZdoNwkDiscoveryCnfCb_t pfnZdoNwkDiscoveryCnf;	//MT_ZDO_NWK_DISCOVERY_CNF
 	mtZdoStub_t pfnZdoConcentratorInd;              //MT_ZDO_CONCENTRATOR_IND_CB
 	mtZdoLeaveIndCb_t pfnZdoLeaveInd;                   //MT_ZDO_LEAVE_IND
+	mtZdoTcDevIndCb_t pfnZdoTcDevInd;                   //MT_ZDO_TC_DEV_IND             0xCA
 	mtZdoStatusErrorRspCb_t pfnZdoStatusErrorRsp; //MT_ZDO_STATUS_ERROR_RSP             0xC3
-	mtZdoMatchDescRspSentCb_t pfnZdoMatchDescRspSent; //MT_ZDO_MATCH_DESC_RSP_SENT          0xC2
+	mtZdoMatchDescRspSentCb_t pfnZdoMatchDescRspSent; //MT_ZDO_MATCH_DESC_RSP_SENT      0xC2
 	mtZdoMsgCbIncomingCb_t pfnZdoMsgCbIncoming;
 	mtZdoGetLinkKeyCb_t pfnZdoGetLinkKey;
     mtZdoStartupFromAppSrspCb_t pfnZdoStartupFromAppSrsp;
