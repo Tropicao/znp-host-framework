@@ -180,7 +180,6 @@ void rpcTransportWrite(uint8_t* buf, uint8_t len)
 {
 	int remain = len;
 	int offset = 0;
-#if 1
 	LOG_DBG("len = %d", len);
 
 	while (remain > 0)
@@ -190,15 +189,9 @@ void rpcTransportWrite(uint8_t* buf, uint8_t len)
 		write(serialPortFd, buf + offset, sub);
 
 		tcflush(serialPortFd, TCOFLUSH);
-		usleep(1000);
 		remain -= 8;
 		offset += 8;
 	}
-#else
-	write (serialPortFd, buf, len);
-	tcflush(serialPortFd, TCOFLUSH);
-
-#endif
 	return;
 }
 
