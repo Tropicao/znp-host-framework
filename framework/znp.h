@@ -1,6 +1,13 @@
 #ifndef ZNP_H
 #define ZNP_H
 
+#include "mtAf.h"
+#include "mtSys.h"
+#include "mtZdo.h"
+#include "mtUtil.h"
+#include "mtSapi.h"
+#include "dbgPrint.h"
+
 typedef void (*ZnpCallback_t)(void);
 
 
