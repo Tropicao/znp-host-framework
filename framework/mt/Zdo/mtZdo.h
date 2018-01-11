@@ -86,8 +86,11 @@ extern "C"
 #define MT_ZDO_MSG_CB_REMOVE                 0x3F
 #define MT_ZDO_STARTUP_FROM_APP              0x40
 
+
 /* AREQ from host */
-#define MT_ZDO_AUTO_FIND_DESTINATION     0x41
+#define MT_ZDO_AUTO_FIND_DESTINATION        0x41
+#define MT_ZDO_EXT_ROUTE_DISC               0x45
+
 
 /* AREQ to host */
 #define MT_ZDO_AREQ_TO_HOST                0x80 /* Mark the start of the ZDO CId AREQs to host. */
@@ -717,6 +720,18 @@ typedef struct
 	uint8_t NotUsed;
 } MsgCbIncomingFormat_t;
 
+typedef struct
+{
+    uint16_t DstAddr;
+    uint8_t Options;
+    uint8_t Radius;
+} ExtRouteDiscFormat_t;
+
+typedef struct
+{
+    uint8_t Status;
+} ExtRouteDiscSrspFormat_t;
+
 //sets the types of response of State Change Ind
 typedef enum
 {
@@ -768,6 +783,7 @@ typedef uint8_t (*mtZdoTcDevIndCb_t)(TcDevIndFormat_t *msg);
 typedef uint8_t (*mtZdoMsgCbIncomingCb_t)(MsgCbIncomingFormat_t *msg);
 typedef uint8_t (*mtZdoStartupFromAppSrspCb_t)(StartupFromAppSrspFormat_t *msg);
 typedef uint8_t (*mtZdoDeviceAnnceSrspCb_t)(DeviceAnnceSrspFormat_t *msg);
+typedef uint8_t (*mtZdoExtRouteDiscSrspCb_t)(ExtRouteDiscSrspFormat_t *msg);
 
 typedef uint8_t (*mtZdoStub_t)(void);
 
@@ -809,6 +825,7 @@ typedef struct
 	mtZdoGetLinkKeyCb_t pfnZdoGetLinkKey;
     mtZdoStartupFromAppSrspCb_t pfnZdoStartupFromAppSrsp;
     mtZdoDeviceAnnceSrspCb_t pfnZdoDeviceAnnceSrsp;
+    mtZdoExtRouteDiscSrspCb_t pfnZdoExtRouteDiscSrsp;
 } mtZdoCb_t;
 
 void zdoRegisterCallbacks(mtZdoCb_t cbs);
@@ -845,6 +862,7 @@ uint8_t zdoNwkDiscoveryReq(NwkDiscoveryReqFormat_t *req);
 uint8_t zdoJoinReq(JoinReqFormat_t *req);
 uint8_t zdoMsgCbRegister(MsgCbRegisterFormat_t *req);
 uint8_t zdoMsgCbRemove(MsgCbRemoveFormat_t *req);
+uint8_t zdoExtRouteDisc(ExtRouteDiscFormat_t *req);
 
 void zdoProcess(uint8_t *rpcBuff, uint8_t rpcLen);
 

@@ -1043,6 +1043,47 @@ uint8_t zdoStartupFromApp(StartupFromAppFormat_t *req)
 	}
 }
 
+uint8_t zdoExtRouteDisc(ExtRouteDiscFormat_t *req)
+{
+	uint8_t status;
+	uint32_t cmdLen = 4;
+	uint8_t *cmd = malloc(cmdLen);
+
+	if (cmd)
+	{
+        memcpy(cmd, &(req->DstAddr), sizeof(uint16_t));
+        cmd[2] = req->Options;
+        cmd[3] = req->Radius;
+
+		status = rpcSendFrame((MT_RPC_CMD_SREQ | MT_RPC_SYS_ZDO),
+		MT_ZDO_EXT_ROUTE_DISC, cmd, cmdLen);
+		free(cmd);
+		return status;
+	}
+	else
+	{
+		LOG_ERR("Memory for cmd was not allocated");
+		return 1;
+	}
+}
+
+static void processExtRouteDiscSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtZdoCbs.pfnZdoExtRouteDiscSrsp)
+	{
+		uint8_t msgIdx = 2;
+		ExtRouteDiscSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtZdoCbs.pfnZdoExtRouteDiscSrsp(&rsp);
+	}
+}
+
 /*********************************************************************
  * @fn      processZDOStartupFromApp
  *
@@ -2859,6 +2900,10 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
         case MT_ZDO_DEVICE_ANNCE:
             LOG_DBG("MT_ZDO_DEVICE_ANNCE");
             processDeviceAnnceSrsp(rpcBuff, rpcLen);
+            break;
+        case MT_ZDO_EXT_ROUTE_DISC:
+            LOG_DBG("MT_ZDO_EXT_ROUTE_DISC");
+            processExtRouteDiscSrsp(rpcBuff, rpcLen);
             break;
         default:
             LOG_WARN("processSrsp: unsupported ZDO message : %02X", rpcBuff[1], rpcBuff[1]);
