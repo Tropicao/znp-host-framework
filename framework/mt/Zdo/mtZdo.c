@@ -468,6 +468,30 @@ uint8_t zdoDeviceAnnce(DeviceAnnceFormat_t *req)
 }
 
 /*********************************************************************
+ * @fn      processDeviceAnnceSrsp
+ *
+ * @brief   Process ZDO_DEVICE_ANNCE_REQ SRSP from ZNP
+ *
+ * @return   status
+ */
+static void processDeviceAnnceSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtZdoCbs.pfnZdoDeviceAnnceSrsp)
+	{
+		uint8_t msgIdx = 2;
+		DeviceAnnceSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtZdoCbs.pfnZdoDeviceAnnceSrsp(&rsp);
+	}
+}
+
+/*********************************************************************
  * @fn      zdoUserDescSet
  *
  * @brief   Send ZDO_USER_DESC_SET to ZNP
@@ -2822,15 +2846,19 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	switch (rpcBuff[1])
 	{
         case MT_ZDO_GET_LINK_KEY:
-            LOG_DBG("zdoProcess: MT_ZDO_GET_LINK_KEY");
+            LOG_DBG("MT_ZDO_GET_LINK_KEY");
             processGetLinkKey(rpcBuff, rpcLen);
             break;
         case MT_ZDO_NWK_DISCOVERY_REQ:
-            LOG_DBG("zdoProcess: MT_ZDO_NWK_DISCOVERY_SRSCP : %s", rpcBuff[2] ? "ERROR":"SUCCESS");
+            LOG_DBG("MT_ZDO_NWK_DISCOVERY_SRSCP : %s", rpcBuff[2] ? "ERROR":"SUCCESS");
             break;
         case MT_ZDO_STARTUP_FROM_APP:
-            LOG_DBG("zdoProcess: MT_ZDO_STARTUP_FROM_APP");
+            LOG_DBG("MT_ZDO_STARTUP_FROM_APP");
             processStartupFromAppSrsp(rpcBuff, rpcLen);
+            break;
+        case MT_ZDO_DEVICE_ANNCE:
+            LOG_DBG("MT_ZDO_DEVICE_ANNCE");
+            processDeviceAnnceSrsp(rpcBuff, rpcLen);
             break;
         default:
             LOG_WARN("processSrsp: unsupported ZDO message : %02X", rpcBuff[1], rpcBuff[1]);

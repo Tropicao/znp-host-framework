@@ -278,6 +278,11 @@ typedef struct
 
 typedef struct
 {
+    uint8_t Status;
+}DeviceAnnceSrspFormat_t;
+
+typedef struct
+{
 	uint16_t DstAddr;
 	uint16_t NwkAddrOfInterest;
 	uint8_t Len;
@@ -762,6 +767,7 @@ typedef uint8_t (*mtZdoLeaveIndCb_t)(LeaveIndFormat_t *msg);
 typedef uint8_t (*mtZdoTcDevIndCb_t)(TcDevIndFormat_t *msg);
 typedef uint8_t (*mtZdoMsgCbIncomingCb_t)(MsgCbIncomingFormat_t *msg);
 typedef uint8_t (*mtZdoStartupFromAppSrspCb_t)(StartupFromAppSrspFormat_t *msg);
+typedef uint8_t (*mtZdoDeviceAnnceSrspCb_t)(DeviceAnnceSrspFormat_t *msg);
 
 typedef uint8_t (*mtZdoStub_t)(void);
 
@@ -802,6 +808,7 @@ typedef struct
 	mtZdoMsgCbIncomingCb_t pfnZdoMsgCbIncoming;
 	mtZdoGetLinkKeyCb_t pfnZdoGetLinkKey;
     mtZdoStartupFromAppSrspCb_t pfnZdoStartupFromAppSrsp;
+    mtZdoDeviceAnnceSrspCb_t pfnZdoDeviceAnnceSrsp;
 } mtZdoCb_t;
 
 void zdoRegisterCallbacks(mtZdoCb_t cbs);
