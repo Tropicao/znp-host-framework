@@ -197,6 +197,24 @@ uint8_t zdoNodeDescReq(NodeDescReqFormat_t *req)
 	}
 }
 
+uint8_t processNodeDescReqSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+    if(mtZdoCbs.pfnZdoNodeDescReqSrsp)
+    {
+		uint8_t msgIdx = 2;
+		NodeDescReqSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtZdoCbs.pfnZdoNodeDescReqSrsp(&rsp);
+    }
+    return 0;
+}
+
 /*********************************************************************
  * @fn      zdoPowerDescReq
  *
@@ -2886,6 +2904,10 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	//srspRpcLen = rpcLen;
 	switch (rpcBuff[1])
 	{
+        case MT_ZDO_NODE_DESC_REQ:
+            LOG_DBG("MT_ZDO_NODE_DESC_REQ");
+            processNodeDescReqSrsp(rpcBuff, rpcLen);
+            break;
         case MT_ZDO_GET_LINK_KEY:
             LOG_DBG("MT_ZDO_GET_LINK_KEY");
             processGetLinkKey(rpcBuff, rpcLen);

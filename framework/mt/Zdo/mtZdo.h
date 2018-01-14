@@ -232,6 +232,11 @@ typedef struct
 
 typedef struct
 {
+    uint8_t Status;
+} NodeDescReqSrspFormat_t;
+
+typedef struct
+{
 	uint16_t DstAddr;
 	uint16_t NwkAddrOfInterest;
 } PowerDescReqFormat_t;
@@ -784,6 +789,7 @@ typedef uint8_t (*mtZdoMsgCbIncomingCb_t)(MsgCbIncomingFormat_t *msg);
 typedef uint8_t (*mtZdoStartupFromAppSrspCb_t)(StartupFromAppSrspFormat_t *msg);
 typedef uint8_t (*mtZdoDeviceAnnceSrspCb_t)(DeviceAnnceSrspFormat_t *msg);
 typedef uint8_t (*mtZdoExtRouteDiscSrspCb_t)(ExtRouteDiscSrspFormat_t *msg);
+typedef uint8_t (*mtZdoNodeDescSrspCb_t)(NodeDescReqSrspFormat_t *msg);
 
 typedef uint8_t (*mtZdoStub_t)(void);
 
@@ -826,6 +832,7 @@ typedef struct
     mtZdoStartupFromAppSrspCb_t pfnZdoStartupFromAppSrsp;
     mtZdoDeviceAnnceSrspCb_t pfnZdoDeviceAnnceSrsp;
     mtZdoExtRouteDiscSrspCb_t pfnZdoExtRouteDiscSrsp;
+    mtZdoNodeDescSrspCb_t pfnZdoNodeDescReqSrsp;
 } mtZdoCb_t;
 
 void zdoRegisterCallbacks(mtZdoCb_t cbs);
