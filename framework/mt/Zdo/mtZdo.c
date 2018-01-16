@@ -324,6 +324,24 @@ uint8_t zdoActiveEpReq(ActiveEpReqFormat_t *req)
 	}
 }
 
+uint8_t processActiveEpReqSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+    if(mtZdoCbs.pfnZdoActiveEpReqSrsp)
+    {
+		uint8_t msgIdx = 2;
+		ActiveEpReqSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtZdoCbs.pfnZdoActiveEpReqSrsp(&rsp);
+    }
+    return 0;
+}
+
 /*********************************************************************
  * @fn      zdoMatchDescReq
  *
@@ -2904,6 +2922,10 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
 	//srspRpcLen = rpcLen;
 	switch (rpcBuff[1])
 	{
+        case MT_ZDO_ACTIVE_EP_REQ:
+            LOG_DBG("MT_ZDO_ACTIVE_EP_REQ");
+            processActiveEpReqSrsp(rpcBuff, rpcLen);
+            break;
         case MT_ZDO_NODE_DESC_REQ:
             LOG_DBG("MT_ZDO_NODE_DESC_REQ");
             processNodeDescReqSrsp(rpcBuff, rpcLen);
