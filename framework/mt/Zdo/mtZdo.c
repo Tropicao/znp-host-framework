@@ -1005,6 +1005,23 @@ uint8_t zdoMgmtPermitJoinReq(MgmtPermitJoinReqFormat_t *req)
 	}
 }
 
+static void processPermitJoinReqSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
+{
+	if (mtZdoCbs.pfnZdoPermitJoinReqSrsp)
+	{
+		uint8_t msgIdx = 2;
+		PermitJoinReqSrspFormat_t rsp;
+		if (rpcLen < 2)
+		{
+			LOG_WARN("MT_RPC_ERR_LENGTH");
+
+		}
+
+		rsp.Status = rpcBuff[msgIdx++];
+		mtZdoCbs.pfnZdoPermitJoinReqSrsp(&rsp);
+	}
+}
+
 /*********************************************************************
  * @fn      zdoMgmtNwkUpdateReq
  *
@@ -2948,6 +2965,10 @@ static void processSrsp(uint8_t *rpcBuff, uint8_t rpcLen)
         case MT_ZDO_EXT_ROUTE_DISC:
             LOG_DBG("MT_ZDO_EXT_ROUTE_DISC");
             processExtRouteDiscSrsp(rpcBuff, rpcLen);
+            break;
+        case MT_ZDO_MGMT_PERMIT_JOIN_REQ:
+            LOG_DBG("MT_ZDO_MGMT_PERMIT_JOIN_REQ");
+            processPermitJoinReqSrsp(rpcBuff, rpcLen);
             break;
         default:
             LOG_WARN("processSrsp: unsupported ZDO message : %02X", rpcBuff[1], rpcBuff[1]);

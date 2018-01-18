@@ -654,6 +654,11 @@ typedef struct
 
 typedef struct
 {
+    uint8_t Status;
+} PermitJoinReqSrspFormat_t;
+
+typedef struct
+{
 	uint16_t SrcAddr;
 	uint16_t NwkAddr;
 	uint64_t IEEEAddr;
@@ -796,6 +801,7 @@ typedef uint8_t (*mtZdoDeviceAnnceSrspCb_t)(DeviceAnnceSrspFormat_t *msg);
 typedef uint8_t (*mtZdoExtRouteDiscSrspCb_t)(ExtRouteDiscSrspFormat_t *msg);
 typedef uint8_t (*mtZdoNodeDescSrspCb_t)(NodeDescReqSrspFormat_t *msg);
 typedef uint8_t (*mtZdoActiveEpReqSrspCb_t)(ActiveEpReqSrspFormat_t *msg);
+typedef uint8_t (*mtZdoPermitJoinReqSrspCb_t)(PermitJoinReqSrspFormat_t *msg);
 
 typedef uint8_t (*mtZdoStub_t)(void);
 
@@ -840,6 +846,7 @@ typedef struct
     mtZdoExtRouteDiscSrspCb_t pfnZdoExtRouteDiscSrsp;
     mtZdoNodeDescSrspCb_t pfnZdoNodeDescReqSrsp;
     mtZdoActiveEpReqSrspCb_t pfnZdoActiveEpReqSrsp;
+    mtZdoPermitJoinReqSrspCb_t pfnZdoPermitJoinReqSrsp;
 } mtZdoCb_t;
 
 void zdoRegisterCallbacks(mtZdoCb_t cbs);
